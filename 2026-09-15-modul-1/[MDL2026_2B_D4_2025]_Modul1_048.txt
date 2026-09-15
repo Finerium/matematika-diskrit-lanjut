@@ -1,0 +1,34 @@
+Dokumentasi Referensi dan Tanya Jawab
+[MDL2026_2B_D4_2025]_Modul1_048
+Ghaisan Khoirul Badruzaman / 251524048 / 2B-D4
+
+A. Dokumentasi resmi yang dipakai
+1. Referensi NetworkX: https://networkx.org/documentation/stable/reference/index.html
+2. Jenis kelas graf (Graph, DiGraph, MultiGraph, MultiDiGraph): https://networkx.org/documentation/stable/reference/classes/index.html
+3. MultiGraph: https://networkx.org/documentation/stable/reference/classes/multigraph.html
+4. Menggambar sisi dan connectionstyle: https://networkx.org/documentation/stable/reference/generated/networkx.drawing.nx_pylab.draw_networkx_edges.html
+5. Derajat simpul: https://networkx.org/documentation/stable/reference/classes/generated/networkx.Graph.degree.html
+6. Cek pohon (is_tree): https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.tree.recognition.is_tree.html
+7. Matplotlib subplots: https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html
+8. Contoh model graf: Kenneth H. Rosen, Discrete Mathematics and Its Applications, bagian Graphs and Graph Models.
+
+B. Tanya jawab selama pengerjaan
+T: Kenapa simpul yang punya gelang derajatnya bertambah 2, bukan 1?
+J: Gelang menempel ke simpul yang sama di kedua ujungnya, jadi dihitung dua kali. NetworkX juga menghitung
+   gelang dua kali pada degree, sehingga jumlah derajat tetap sama dengan 2 x jumlah sisi.
+
+T: Kenapa jumlah sisi G2 berkurang kalau dibuat dengan nx.Graph()?
+J: nx.Graph() tidak menyimpan sisi ganda. Sisi yang sama ditambahkan lagi dianggap sisi yang sudah ada, jadi
+   c-d dan a-d masing-masing hanya tersimpan satu. Untuk sisi ganda harus memakai nx.MultiGraph().
+
+T: Bagaimana supaya sisi ganda tidak tergambar menumpuk?
+J: draw_networkx_edges dengan arrows=True menerima connectionstyle berupa list, misalnya
+   ["arc3,rad=0.0", "arc3,rad=0.18"]. Sisi dengan key ke-k memakai gaya ke-k, jadi sisi kedua melengkung.
+
+T: Kenapa muncul peringatan "The arrowsize keyword argument is not applicable when drawing edges with LineCollection"?
+J: arrowsize hanya berlaku kalau sisi digambar sebagai panah (arrows=True). Graf tak berarah digambar dengan
+   LineCollection, jadi arrowsize tidak perlu diisi untuk graf tak berarah.
+
+T: Contoh kode G2 dan G3 di modul hasilnya berbeda dengan definisi, mana yang dipakai?
+J: Yang dipakai definisi f(e) dan gambarnya. Contoh G2 memuat sisi a-d tiga kali, sedangkan contoh G3 tidak
+   memuat sisi a-c dan gelangnya ada di c, bukan di b.

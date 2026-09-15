@@ -1,0 +1,77 @@
+===== LATIHAN: JENIS-JENIS GRAF (GAMBAR 12) =====
+
+--- Analisis G1 graf sederhana ---
+Jumlah simpul : 4
+Jumlah sisi   : 5
+Derajat : a = 3, b = 2, c = 3, d = 2
+
+--- Analisis G2 graf ganda ---
+Jumlah simpul : 4
+Jumlah sisi   : 7
+Derajat : a = 4, b = 2, c = 4, d = 4
+
+--- Analisis G3 graf semu ---
+Jumlah simpul : 4
+Jumlah sisi   : 8
+Derajat : a = 4, b = 4, c = 4, d = 4
+
+--- Analisis G4 graf berarah ---
+Jumlah simpul : 4
+Jumlah sisi   : 5
+Derajat : a (masuk 1, keluar 2), b (masuk 1, keluar 1), c (masuk 3, keluar 0), d (masuk 0,
+          keluar 2)
+
+--- Analisis G5 graf ganda berarah ---
+Jumlah simpul : 4
+Jumlah sisi   : 8
+Derajat : a (masuk 1, keluar 3), b (masuk 2, keluar 2), c (masuk 4, keluar 0), d (masuk 1,
+          keluar 3)
+
+===== TUGAS PRAKTIKUM =====
+
+--- Analisis Figure 1 jaringan komputer (graf sederhana) ---
+Jumlah simpul : 7
+Jumlah sisi   : 9
+Derajat : San Francisco = 2, Los Angeles = 2, Denver = 3, Chicago = 4, Detroit = 2, New
+          York = 3, Washington = 2
+
+--- Analisis Figure 2 jalur ganda antar data center (graf ganda) ---
+Jumlah simpul : 7
+Jumlah sisi   : 13
+Derajat : San Francisco = 2, Los Angeles = 3, Denver = 5, Chicago = 6, Detroit = 2, New
+          York = 5, Washington = 3
+
+--- Analisis Figure 3 dengan diagnostic link (graf semu) ---
+Jumlah simpul : 7
+Jumlah sisi   : 20
+Derajat : San Francisco = 4, Los Angeles = 5, Denver = 7, Chicago = 8, Detroit = 4, New
+          York = 7, Washington = 5
+
+--- Analisis Figure 6 graf pertemanan ---
+Jumlah simpul : 16
+Jumlah sisi   : 25
+Derajat : Jan = 4, Kamini = 1, Paula = 7, Lila = 5, Joel = 5, Eduardo = 1, Todd = 4, Liz =
+          4, Amy = 4, Steve = 5, Koko = 1, Kamlesh = 2, Ching = 1, Gail = 3, Shaquira = 2,
+          Kari = 1
+
+--- Analisis Figure 13 jaringan semantik kata mouse ---
+Jumlah simpul : 20
+Jumlah sisi   : 28
+Derajat : Wolf = 1, Fox = 3, Dog = 4, Rabbit = 3, Cat = 2, Rat = 3, Mouse = 6, Desktop =
+          5, Keyboard = 4, Trackpad = 2, Lizard = 4, Duck = 1, Turtle = 1, Fly = 3, Spider
+          = 1, Cockroach = 1, Printer = 3, Laptop = 5, Router = 3, Tablet = 1
+
+--- Analisis Figure 15 turnamen sistem gugur ---
+Jumlah simpul : 15
+Jumlah sisi   : 14
+Derajat : Stanford vs Georgia = 1, Stanford vs Xavier = 3, Xavier vs Gonzaga = 1, Oklahoma
+          vs Notre Dame = 1, Oklahoma vs Kentucky = 3, Kentucky vs Nebraska = 1, Stanford
+          vs Oklahoma = 3, Connecticut vs Stanford = 2, Connecticut vs Baylor = 3,
+          Connecticut vs Florida State = 3, Baylor vs Duke = 3, Connecticut vs Iowa State
+          = 1, Florida State vs Mississippi State = 1, Baylor vs Tennessee = 1, Duke vs
+          San Diego State = 1
+
+Apakah graf berbentuk pohon (tree)? True
+Pertandingan final: Connecticut vs Stanford, derajat 2
+Juara turnamen: Connecticut
+

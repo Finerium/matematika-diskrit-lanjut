@@ -1,0 +1,38 @@
+Dokumentasi Referensi dan Tanya Jawab
+[MDL2026_2B_D4_2025]_Modul2_048
+Ghaisan Khoirul Badruzaman / 251524048 / 2B-D4
+
+A. Dokumentasi resmi yang dipakai
+1. complete_graph: https://networkx.org/documentation/stable/reference/generated/networkx.generators.classic.complete_graph.html
+2. cycle_graph: https://networkx.org/documentation/stable/reference/generated/networkx.generators.classic.cycle_graph.html
+3. wheel_graph: https://networkx.org/documentation/stable/reference/generated/networkx.generators.classic.wheel_graph.html
+4. to_numpy_array (adjacency matrix): https://networkx.org/documentation/stable/reference/generated/networkx.convert_matrix.to_numpy_array.html
+5. incidence_matrix: https://networkx.org/documentation/stable/reference/generated/networkx.linalg.graphmatrix.incidence_matrix.html
+6. is_bipartite: https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.bipartite.basic.is_bipartite.html
+7. hopcroft_karp_matching: https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.bipartite.matching.hopcroft_karp_matching.html
+8. is_isomorphic: https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.isomorphism.is_isomorphic.html
+9. vf2pp_isomorphism: https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.isomorphism.vf2pp.vf2pp_isomorphism.html
+10. tadpole_graph: https://networkx.org/documentation/stable/reference/generated/networkx.generators.classic.tadpole_graph.html
+11. node_connectivity: https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.connectivity.connectivity.node_connectivity.html
+12. DiGraph: https://networkx.org/documentation/stable/reference/classes/digraph.html
+13. Materi graf khusus, representasi, dan isomorfisme: Kenneth H. Rosen, Discrete Mathematics and Its Applications.
+
+B. Tanya jawab selama pengerjaan
+T: Kenapa nx.wheel_graph(6) hanya menghasilkan 6 simpul, padahal W6 di buku punya 7 simpul?
+J: Parameter n pada wheel_graph adalah jumlah seluruh simpul termasuk pusat. W_n versi Rosen adalah C_n
+   ditambah satu pusat, jadi W6 dibuat dengan nx.wheel_graph(7).
+
+T: Bagaimana cara mengecek adjacency matrix yang dibuat sudah benar?
+J: Untuk graf tak berarah, matriksnya harus simetris dan jumlah angka 1 di tiap baris sama dengan derajat
+   simpul. Keduanya dicetak di Task02.
+
+T: Kalau dua graf punya jumlah simpul dan sisi yang sama, apakah pasti isomorfik?
+J: Belum tentu. Barisan derajat juga harus sama. Graf tim proyek dan C8 sama-sama 8 simpul dan 8 sisi,
+   tetapi barisan derajatnya berbeda sehingga tidak isomorfik.
+
+T: Kenapa graf aliran data jadi 4 sisi setelah to_undirected()?
+J: Processor->Memory dan Memory->Processor menghubungkan pasangan simpul yang sama. Pada graf tak berarah
+   keduanya menjadi satu sisi, jadi 5 panah tinggal 4 sisi.
+
+T: Apa arti edge connectivity K6 bernilai 5?
+J: Minimal harus ada 5 kabel yang putus agar jaringan terpisah, contohnya semua kabel dari satu server.

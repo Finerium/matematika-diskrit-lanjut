@@ -1,0 +1,41 @@
+Apakah graf bipartit? True
+
+Adjacency list:
+  Alyn: ['UI/UX', 'Testing']
+  Betty: ['UI/UX', 'Backend']
+  Carol: ['UI/UX', 'Database']
+  David: ['Backend', 'Testing']
+  UI/UX: ['Alyn', 'Betty', 'Carol']
+  Backend: ['Betty', 'David']
+  Database: ['Carol']
+  Testing: ['Alyn', 'David']
+
+Adjacency matrix:
+           Alyn  Bett  Caro  Davi  UI/U  Back  Data  Test
+     Alyn     0     0     0     0     1     0     0     1
+    Betty     0     0     0     0     1     1     0     0
+    Carol     0     0     0     0     1     0     1     0
+    David     0     0     0     0     0     1     0     1
+    UI/UX     1     1     1     0     0     0     0     0
+  Backend     0     1     0     1     0     0     0     0
+ Database     0     0     1     0     0     0     0     0
+  Testing     1     0     0     1     0     0     0     0
+
+Derajat tiap simpul: {'Alyn': 2, 'Betty': 2, 'Carol': 2, 'David': 2, 'UI/UX': 3, 'Backend': 2, 'Database': 1, 'Testing': 2}
+Jumlah derajat = 16, 2 x |E| = 2 x 8 = 16
+Handshaking Theorem terbukti: True
+
+Perbandingan dengan graf khusus (simpul, sisi, barisan derajat):
+  Graf tim proyek  (8, 8, [3, 2, 2, 2, 2, 2, 2, 1])
+  K4,4             (8, 16, [4, 4, 4, 4, 4, 4, 4, 4])
+                   isomorfik dengan graf tim proyek? False
+  C8               (8, 8, [2, 2, 2, 2, 2, 2, 2, 2])
+                   isomorfik dengan graf tim proyek? False
+
+Subgraf ['Alyn', 'UI/UX', 'Betty', 'Backend', 'David', 'Testing'] isomorfik dengan C6? True
+
+Contoh pembagian tugas (satu developer satu tugas):
+  Alyn -> Testing
+  Betty -> UI/UX
+  Carol -> Database
+  David -> Backend

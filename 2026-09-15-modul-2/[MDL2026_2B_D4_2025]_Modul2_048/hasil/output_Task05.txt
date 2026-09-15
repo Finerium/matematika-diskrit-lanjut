@@ -1,0 +1,27 @@
+Adjacency list (simpul -> tujuan aliran):
+  Processor: ['Memory', 'Storage']
+  Memory: ['Processor']
+  Storage: ['Network Interface']
+  Network Interface: ['Processor']
+
+Adjacency matrix (baris = asal, kolom = tujuan):
+                   Proc  Memo  Stor  Netw
+        Processor     0     1     1     0
+           Memory     1     0     0     0
+          Storage     0     0     0     1
+Network Interface     1     0     0     0
+
+Derajat masuk dan keluar:
+  Processor          masuk 2, keluar 2
+  Memory             masuk 1, keluar 1
+  Storage            masuk 1, keluar 1
+  Network Interface  masuk 1, keluar 1
+Jumlah derajat masuk = 5, jumlah derajat keluar = 5, |E| = 5
+Handshaking Theorem versi berarah terbukti: True
+
+Isomorfik dengan graf A->B, A->C, B->A, C->D, D->A? True
+Pemetaan simpul: {'Processor': 'A', 'Storage': 'C', 'Network Interface': 'D', 'Memory': 'B'}
+Isomorfik dengan siklus berarah C4? False
+
+Graf tak berarah pembentuknya: 4 simpul, 4 sisi
+Isomorfik dengan tadpole graph (C3 + satu simpul bandul)? True

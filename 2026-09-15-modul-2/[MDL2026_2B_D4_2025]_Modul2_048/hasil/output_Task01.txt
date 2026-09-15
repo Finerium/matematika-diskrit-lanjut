@@ -1,0 +1,15 @@
+--- Graf lengkap K4 ---
+Jumlah simpul : 4
+Jumlah sisi   : 6
+Derajat       : 0 = 3, 1 = 3, 2 = 3, 3 = 3
+
+--- Graf lingkaran C5 ---
+Jumlah simpul : 5
+Jumlah sisi   : 5
+Derajat       : 0 = 2, 1 = 2, 2 = 2, 3 = 2, 4 = 2
+
+--- Graf roda W6 ---
+Jumlah simpul : 7
+Jumlah sisi   : 12
+Derajat       : 0 = 6, 1 = 3, 2 = 3, 3 = 3, 4 = 3, 5 = 3, 6 = 3
+

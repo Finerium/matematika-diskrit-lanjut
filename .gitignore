@@ -1,0 +1,12 @@
+.DS_Store
+__pycache__/
+
+# modul dan catatan pertemuan dari dosen, hak cipta kampus, disimpan lokal saja
+materi/
+
+# skrip bantu penyusun laporan, bukan bagian tugas
+draf/
+
+# arsip sementara diabaikan, kecuali yang final di folder submission
+*.zip
+!**/submission/*.zip

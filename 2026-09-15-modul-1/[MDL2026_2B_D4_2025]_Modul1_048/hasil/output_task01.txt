@@ -1,0 +1,6 @@
+Hello, Python!
+Hello, Matematika Diskrit Lanjut!
+
+Versi Python     : 3.14.6
+Versi NetworkX   : 3.6.1
+Versi Matplotlib : 3.10.8
