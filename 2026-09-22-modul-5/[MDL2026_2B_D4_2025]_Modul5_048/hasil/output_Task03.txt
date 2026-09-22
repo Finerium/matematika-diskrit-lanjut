@@ -1,0 +1,17 @@
+Graf stasiun: 8 simpul, 8 sisi
+Derajat: {'A': 2, 'B': 2, 'C': 2, 'D': 2, 'E': 2, 'F': 2, 'G': 2, 'H': 2}
+Jumlah connected component: 1
+Bentuk graf: satu siklus F - D - B - A - C - E - G - H | isomorfik dengan C8: True
+
+Bilangan kromatik chi(G) = 2, graf bipartit: True
+  Frekuensi 1: ['A', 'D', 'E', 'H']
+  Frekuensi 2: ['B', 'C', 'F', 'G']
+
+Cut vertex: tidak ada
+Graf biconnected (tetap terhubung walau satu stasiun mati): True
+  Kalau stasiun A mati: sisa 7 stasiun, terhubung = True
+  Kalau stasiun E mati: sisa 7 stasiun, terhubung = True
+
+Skenario pembanding: jalur G-H putus sehingga siklus berubah jadi lintasan
+  Cut vertex baru: ['A', 'B', 'C', 'D', 'E', 'F']
+  Kalau A mati di skenario ini, jumlah component jadi 2: [['B', 'D', 'F', 'H'], ['C', 'E', 'G']]

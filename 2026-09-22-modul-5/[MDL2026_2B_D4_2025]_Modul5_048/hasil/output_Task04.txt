@@ -1,0 +1,21 @@
+Graf area: 6 simpul, 8 sisi
+Derajat: {'A': 2, 'B': 3, 'C': 4, 'D': 3, 'E': 2, 'F': 2}
+Simpul berderajat ganjil: ['B', 'D']
+Euler circuit? False | Euler path? True
+Rute kurir (Euler path): B -> A -> C -> B -> D -> C -> E -> F -> D
+Semua jalan dilewati tepat sekali: True
+
+Alokasi loker: chi(G) = 3
+Segitiga di graf: [['A', 'B', 'C'], ['B', 'C', 'D']]
+  Jenis loker 1: area ['A', 'D', 'E']
+  Jenis loker 2: area ['B', 'F']
+  Jenis loker 3: area ['C']
+
+Apakah dua sifat ini saling bergantung?
+  Tambah satu jalan baru B-D (jalan kedua di antara B dan D):
+    derajat baru: {'A': 2, 'B': 4, 'C': 4, 'D': 4, 'E': 2, 'F': 2}
+    Euler circuit sekarang? True
+    chi tetap 3 karena pasangan area yang bertetangga tidak berubah
+  Hapus jalan B-C:
+    Euler path? True | simpul ganjil: ['C', 'D']
+    chi sekarang 2

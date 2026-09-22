@@ -1,0 +1,32 @@
+--- Materi: Path dan Circuit ---
+Path dari a ke e: a -> b -> c -> d -> e
+  nx.is_path: True
+
+Circuit di tutorial: a -> b -> d -> c -> a
+  nx.is_path: False
+  sisi yang tidak ada di graf: [('c', 'a')]
+Circuit pengganti: a -> b -> d -> e -> a
+  nx.is_path: True
+  cycle basis graf: [['a', 'b', 'd', 'e'], ['b', 'c', 'd']]
+
+--- Materi: Keterhubungan Graf Tak Berarah ---
+Apakah graf terhubung? True
+Apakah graf terhubung? False
+Jumlah komponen terhubung: 3
+Cut Vertices (Titik Potong): ['d', 'c', 'b']
+  komponen setelah d dihapus: [['a', 'b', 'c'], ['e', 'f', 'g']]
+Cut Edges (Sisi Potong): [('a', 'b'), ('b', 'c'), ('c', 'd')]
+  komponen setelah sisi a-b dihapus: [['a'], ['b', 'c', 'd', 'e', 'f', 'g']]
+
+--- Latihan Praktikum Minggu 3 ---
+
+Latihan 1:
+Apakah graf terhubung? True
+Cut Vertices (Titik Potong): ['4', '3']
+Cut Edges (Sisi Potong): [('3', '4')]
+
+Latihan 2:
+Apakah graf terhubung kuat? False
+Apakah graf terhubung lemah? True
+Strongly Connected Components: [['d'], ['a', 'b', 'c']]
+Ada path d -> a? False, derajat keluar d = 0

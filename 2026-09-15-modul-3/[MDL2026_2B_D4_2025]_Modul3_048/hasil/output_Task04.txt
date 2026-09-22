@@ -1,0 +1,24 @@
+Jumlah simpul: 15, jumlah sisi: 24
+Terhubung lemah: True
+Terhubung kuat : False
+
+Bukti tidak terhubung kuat (ada pasangan simpul yang tidak bisa saling mencapai):
+  Menko Polhukam -> Massa Mahasiswa: Menko Polhukam -> Kapolda -> Kapolrestabes -> Pasukan Dalmas -> Massa Mahasiswa
+  Massa Mahasiswa -> Menko Polhukam: TIDAK ADA
+  Kapolda -> Provokator Bayaran: TIDAK ADA
+  Provokator Bayaran -> Kapolda: TIDAK ADA
+  Ketua BEM -> Media: Ketua BEM -> Jubir Mahasiswa -> Media
+  Media -> Ketua BEM: TIDAK ADA
+
+Strongly Connected Components (6):
+  SCC 1: ['Intel Polisi', 'Kapolda', 'Kapolrestabes', 'Menko Polhukam', 'Pangdam', 'Pasukan Dalmas', 'Pasukan TNI']
+  SCC 2: ['Jubir Mahasiswa', 'Ketua BEM', 'Korlap Mahasiswa', 'Massa Mahasiswa']
+  SCC 3: ['Media']
+  SCC 4: ['Provokator Bayaran']
+  SCC 5: ['Penyandang Dana']
+  SCC 6: ['Jubir Pemerintah']
+
+Graf kondensasi (SCC -> SCC): [('SCC 1', 'SCC 2'), ('SCC 1', 'SCC 6'), ('SCC 2', 'SCC 3'), ('SCC 4', 'SCC 2'), ('SCC 5', 'SCC 4'), ('SCC 6', 'SCC 3')]
+Kondensasi DAG: True
+SCC tanpa sisi masuk : ['SCC 1', 'SCC 5']
+SCC tanpa sisi keluar: ['SCC 3']

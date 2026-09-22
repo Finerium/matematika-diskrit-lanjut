@@ -1,0 +1,20 @@
+Jumlah kota: 6, jumlah jalur penerbangan: 7
+
+Jalur tercepat Bandung ke Lombok: Bandung -> Jakarta -> Lombok
+  Bandung -> Jakarta: 1 jam
+  Jakarta -> Lombok: 3.5 jam
+Total waktu tempuh: 4.5 jam
+
+Jarak tercepat dari Bandung ke setiap kota (hasil Dijkstra):
+  Bandung       0 jam  lewat Bandung
+  Jakarta       1 jam  lewat Bandung -> Jakarta
+  Yogyakarta  2.5 jam  lewat Bandung -> Jakarta -> Yogyakarta
+  Surabaya      3 jam  lewat Bandung -> Jakarta -> Surabaya
+  Lombok      4.5 jam  lewat Bandung -> Jakarta -> Lombok
+  Bali          5 jam  lewat Bandung -> Jakarta -> Surabaya -> Bali
+
+Pembanding, semua jalur sederhana Bandung ke Lombok:
+   4.5 jam  Bandung -> Jakarta -> Lombok
+   5.5 jam  Bandung -> Jakarta -> Surabaya -> Bali -> Lombok
+   6.0 jam  Bandung -> Jakarta -> Yogyakarta -> Bali -> Lombok
+Hasil Dijkstra sama dengan jalur termurah dari daftar di atas: True

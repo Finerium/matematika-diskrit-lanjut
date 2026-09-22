@@ -1,0 +1,15 @@
+Jumlah simpul: 12, jumlah sisi: 12
+Terhubung: False
+Jumlah connected components: 4
+  Komponen 1 (UGM): ['Joko Widodo', 'Mahfud MD', 'Retno Marsudi']
+  Komponen 2 (ITB): ['Budi Gunadi Sadikin', 'Nurhayati Subakat', 'Ridwan Kamil']
+  Komponen 3 (UI): ['Chairul Tanjung', 'Najwa Shihab', 'Sri Mulyani Indrawati']
+  Komponen 4 (Unpad): ['Ahmad Fuadi', 'Atalia Praratya', 'Ferry Mursyidan Baldan']
+Ada path Joko Widodo -> Sri Mulyani Indrawati? False
+
+Setelah Pramono Anung ditambahkan:
+Jumlah connected components: 2
+  Komponen 1: 10 simpul
+  Komponen 2: 3 simpul
+Cut vertex: ['Pramono Anung']
+Ada path Joko Widodo -> Ridwan Kamil? True, lewat: ['Joko Widodo', 'Pramono Anung', 'Ridwan Kamil']

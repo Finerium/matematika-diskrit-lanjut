@@ -19,27 +19,56 @@ sedangkan praktikum mengerjakan graf dengan Python, NetworkX, dan Matplotlib.
 
 ## Progres praktikum
 
-| Modul | Topik | Status |
-|---|---|---|
-| [Modul 1](2026-09-15-modul-1/) | Pengenalan graf dan visualisasi dasar | Selesai: latihan G1-G5 dan 6 graf tugas, laporan 12 halaman |
-| [Modul 2](2026-09-15-modul-2/) | Properti, representasi, dan isomorfisme graf | Selesai: Task01-Task05, laporan 16 halaman |
+Bagian kelompok dikerjakan bertiga. Nama anggota lain tidak ditulis di repo publik ini, cukup di laporan
+kelompok yang disimpan lokal.
 
-Menurut info kelas, pengumpulan dua modul ini tidak wajib. Modul 2 dikerjakan dari berkas
-modul versi 2025, jadi soalnya bisa berubah kalau dosen membagikan versi terbaru.
+| Modul | Topik | Bagian individu | Bagian kelompok |
+|---|---|---|---|
+| [Modul 1](2026-09-15-modul-1/) | Pengenalan graf dan visualisasi dasar | Semua task, laporan 24 halaman | tidak ada |
+| [Modul 2](2026-09-15-modul-2/) | Properti, representasi, dan isomorfisme graf | Task01-02, laporan 24 halaman | Task03-05, laporan 26 halaman |
+| [Modul 3](2026-09-15-modul-3/) | Konektivitas graf | Task01, laporan 20 halaman | Task02-04, laporan 26 halaman |
+| [Modul 4](2026-09-22-modul-4/) | Euler, Hamilton, dan Dijkstra | Task01-03, laporan 24 halaman | tidak ada |
+| [Modul 5](2026-09-22-modul-5/) | Graph coloring | Task01, laporan 13 halaman | Task02-04, laporan 17 halaman |
+
+Soal kelompok dibagi rata dan digilir, tiap anggota memegang satu soal di setiap modul. Bagian saya:
+Modul 2 Task04 (full-mesh K6), Modul 3 Task02 (jaringan jalan Simpang Lima), dan Modul 5 Task04 (rute kurir dan
+loker). Kode semua soal tetap ada di folder `_048` karena dikerjakan dan diuji bersama di sana.
+
+Catatan pengerjaan:
+
+- Modul 2 Task02 menganalisis graf semu G3 dari berkas `Task02_Individu.py` bawaan zip, ditambah
+  K4, C5, dan W6 dari Task01 sebagai pembanding.
+- Modul 3 Task01 menemukan circuit a-b-d-c-a di `Tutorial01.py` tidak valid karena sisi c-a tidak ada di graf.
+- Modul 3 Task02 memodelkan Simpang Lima Bandung dari data OpenStreetMap, sedangkan Task03 memakai
+  12 tokoh yang data pendidikannya dicek di Wikipedia bahasa Indonesia.
+- Modul 4 Task01 menemukan graf "Euler Circuit" di `Tutorial01.py` sebenarnya hanya punya Euler path
+  (B dan C berderajat 3), dan `nx.eulerian_circuit()` ternyata tersedia walaupun komentar tutorial bilang tidak.
+- Modul 5 Task01 menunjukkan greedy coloring hanya batas atas: crown graph 8 simpul butuh 2 warna,
+  tetapi greedy dengan urutan tertentu memakai 4.
+- Modul 5 Task04 tidak memberi daftar jalan, jadi jaringan 6 area dirancang sendiri dengan tepat dua
+  simpul ganjil supaya kasus Euler path bisa dibahas.
 
 ## Struktur
 
+Repo ini hanya berisi kode dan output program. Laporan `.docx` dan `.pdf`, dokumentasi `.txt`, arsip `.zip`, dan
+salinan kode kelompok disimpan lokal karena memuat foto dan identitas anggota kelompok.
+
 ```
 2026-09-15-modul-1/
-  [MDL2026_2B_D4_2025]_Modul1_048/   kode Task01 dan Task02
-    hasil/                           gambar graf dan output program
+  [MDL2026_2B_D4_2025]_Modul1_048/          kode Task01 dan Task02, hasil/ berisi gambar dan output
   [MDL2026_2B_D4_2025]_Modul1_048.pdf, .docx, .txt
-  submission/                        arsip .zip untuk dikumpulkan
+  submission/                               arsip .zip untuk dikumpulkan
 
-2026-09-15-modul-2/
-  [MDL2026_2B_D4_2025]_Modul2_048/   kode Task01 sampai Task05
-    hasil/
-  [MDL2026_2B_D4_2025]_Modul2_048.pdf, .docx, .txt
+2026-09-15-modul-2/, 2026-09-15-modul-3/, 2026-09-22-modul-5/
+  [MDL2026_2B_D4_2025]_ModulN_048/          semua kode yang dikerjakan (tempat kerja), hasil/
+  [MDL2026_2B_D4_2025]_ModulN_048.*         laporan individu (foto sendiri, task individu saja)
+  [MDL2026_2B_D4_2025]_ModulN_042_048_049/  salinan kode task kelompok, identitas diganti penanggung jawabnya
+  [MDL2026_2B_D4_2025]_ModulN_042_048_049.* laporan kelompok (foto kelompok, task kelompok saja)
+  submission/                               zip individu dan zip kelompok
+
+2026-09-22-modul-4/
+  [MDL2026_2B_D4_2025]_Modul4_048/          kode Task01 sampai Task03, hasil/
+  [MDL2026_2B_D4_2025]_Modul4_048.pdf, .docx, .txt
   submission/
 ```
 
@@ -57,9 +86,28 @@ Diuji dengan Python 3.14.6, NetworkX 3.6.1, dan Matplotlib 3.10.8.
 
 ## Pengumpulan
 
-Satu arsip `[MDL2026_2B_D4_2025]_Modul<N>_048.zip` berisi folder kode bernama sama, laporan
-`.pdf` dan `.docx`, serta `.txt` berisi dokumentasi referensi dan tanya jawab selama pengerjaan.
-Contoh penamaan di modul masih `MDL2025` angkatan 2024, jadi yang dipakai pola nama arsip tahun ini.
+Di Teams, modul dikumpulkan per bagian, masing-masing punya slot individu dan slot kelompok:
+
+| Slot di Teams | Deadline | Berkas yang diunggah |
+|---|---|---|
+| Tugas 1 Kompilasi Graph Part 1 Individu | Senin 26 Okt 2026 23.59 | `Modul1_048.zip`, `Modul2_048.zip`, `Modul3_048.zip` |
+| Tugas 1 Kompilasi Graph Part 1 Kelompok | Senin 26 Okt 2026 23.59 | `Modul2_042_048_049.zip`, `Modul3_042_048_049.zip` (oleh perwakilan kelompok) |
+| Tugas 2 Kompilasi Graph Part 2 Individu | Kamis 29 Okt 2026 23.59 | `Modul4_048.zip`, `Modul5_048.zip` |
+| Tugas 2 Kompilasi Graph Part 2 Kelompok | Kamis 29 Okt 2026 23.59 | `Modul5_042_048_049.zip` (oleh perwakilan kelompok) |
+
+Semua nama arsip diawali `[MDL2026_2B_D4_2025]_` dan ada di folder `submission/` tiap modul. Instruksi slot
+Part 2 Kelompok di Teams tertulis "hanya bagian Individu", kemungkinan salin tempel dari slot individu,
+jadi yang diisi tetap bagian kelompok.
+
+Tiap arsip berisi folder kode bernama sama dengan arsipnya, laporan `.pdf` dan `.docx`, serta `.txt` berisi
+dokumentasi referensi dan tanya jawab selama pengerjaan. Contoh penamaan di modul masih `MDL2025` angkatan
+2024, jadi yang dipakai pola nama arsip tahun ini.
+
+Laporannya adalah berkas modul dari dosen yang diisi langsung, bukan dokumen baru: foto di kotak kanan atas
+sampul, baris identitas, lalu kode, output, analisis, dan lesson learnt di bawah setiap task. Laporan individu
+memakai foto sendiri dan identitas `048 - Nama - tanggal`. Laporan kelompok memakai foto kelompok, tiga identitas
+anggota, tabel pembagian soal, penanggung jawab tiap soal, dan catatan lesson learnt dari anggota lain. Versi PDF
+dibuat langsung dari docx tersebut dengan skrip Python (ReportLab).
 
 ## Catatan
 

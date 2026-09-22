@@ -1,0 +1,37 @@
+Jumlah simpul (persimpangan): 8
+Jumlah sisi (ruas jalan)    : 12
+
+Derajat tiap simpul:
+  Gerbang  : 4 (genap)
+  Blok A   : 2 (genap)
+  Masjid   : 4 (genap)
+  Blok B   : 2 (genap)
+  Lapangan : 4 (genap)
+  Blok C   : 2 (genap)
+  Taman    : 4 (genap)
+  Blok D   : 2 (genap)
+Jumlah derajat = 24 = 2 x 12
+
+Syarat Euler circuit:
+  graf terhubung                : True
+  semua simpul berderajat genap: True
+  nx.is_eulerian(G)             : True
+
+Rute kurir (Euler circuit dari Gerbang):
+   1. Gerbang -> Taman
+   2. Taman -> Blok C
+   3. Blok C -> Lapangan
+   4. Lapangan -> Blok B
+   5. Blok B -> Masjid
+   6. Masjid -> Lapangan
+   7. Lapangan -> Taman
+   8. Taman -> Blok D
+   9. Blok D -> Gerbang
+  10. Gerbang -> Masjid
+  11. Masjid -> Blok A
+  12. Blok A -> Gerbang
+Tiap jalan dilewati tepat sekali: True
+Kembali ke titik awal           : True
+
+Pembanding, salah satu Hamilton circuit: Gerbang -> Blok A -> Masjid -> Blok B -> Lapangan -> Blok C -> Taman -> Blok D -> Gerbang
+  Hamilton circuit memakai 8 dari 12 jalan, jadi 4 jalan tidak pernah dilewati kurir

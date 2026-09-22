@@ -1,0 +1,27 @@
+Hasil Pewarnaan Greedy:
+{'B': 0, 'C': 1, 'D': 1, 'E': 0, 'A': 2, 'F': 0, 'G': 1}
+Jumlah warna yang digunakan: 3
+
+Hasil Pewarnaan Graf Bipartit:
+{1: 0, 2: 0, 3: 0, 'a': 1, 'b': 1, 'c': 1}
+Jumlah warna yang digunakan: 2
+
+=== ANALISIS 1: apakah hasil greedy sudah minimum? ===
+Pewarnaan greedy valid: True
+Segitiga (klik 3 simpul) di graf: [['A', 'B', 'C']]
+Bilangan kromatik eksak (brute force) = 3, contoh pewarnaan: {'A': 0, 'B': 1, 'C': 2, 'D': 0, 'E': 1, 'F': 1, 'G': 0}
+Batas bawah 3 dari segitiga, batas atas dari greedy = 3 -> keduanya sama, jadi greedy kebetulan optimal di graf ini
+
+=== ANALISIS 2: strategi greedy yang berbeda ===
+  largest_first     : 3 warna
+  smallest_last     : 3 warna
+  independent_set   : 3 warna
+  DSATUR            : 3 warna
+
+=== ANALISIS 3: contoh saat greedy tidak optimal ===
+Crown graph 8 simpul, bipartit: True
+Greedy dengan urutan u1, v1, u2, v2, ... memakai 4 warna
+Bilangan kromatik sebenarnya = 2
+
+=== ANALISIS 4: graf bipartit tutorial ===
+nx.is_bipartite: True | bentuknya siklus C6: True

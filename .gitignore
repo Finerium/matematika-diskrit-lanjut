@@ -7,6 +7,11 @@ materi/
 # skrip bantu penyusun laporan, bukan bagian tugas
 draf/
 
-# arsip sementara diabaikan, kecuali yang final di folder submission
+# laporan, dokumentasi, dan arsip pengumpulan memuat foto (sendiri dan kelompok) serta nama anggota kelompok,
+# jadi hanya disimpan lokal. Yang di-push cuma kode dan output programnya.
+*.docx
+*.pdf
 *.zip
-!**/submission/*.zip
+/2026-*/*.txt
+# salinan kode kelompok memuat nama dan NIM anggota lain
+*_042_048_049/

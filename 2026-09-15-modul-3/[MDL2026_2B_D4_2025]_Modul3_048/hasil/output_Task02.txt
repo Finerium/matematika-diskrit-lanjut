@@ -1,0 +1,26 @@
+===== Model A: jalan utama saja =====
+Simpul: 9, sisi: 8, terhubung: True
+Cut vertex: ['Asia Afrika - Kaca Kaca Wetan', 'Sunda - Naripan', 'Karapitan - Lengkong Kecil', 'Simpang Lima']
+Cut edge  : 
+  Simpang Lima -- Asia Afrika - Kaca Kaca Wetan (Jl. Asia Afrika)
+  Simpang Lima -- Sunda - Naripan (Jl. Sunda)
+  Simpang Lima -- Ahmad Yani - Veteran (Jl. Jend. Ahmad Yani)
+  Simpang Lima -- Gatot Subroto - Ketapang (Jl. Jend. Gatot Subroto)
+  Simpang Lima -- Karapitan - Lengkong Kecil (Jl. Sunda - Karapitan)
+  Asia Afrika - Kaca Kaca Wetan -- Asia Afrika - Embong (Jl. Asia Afrika)
+  Sunda - Naripan -- Sunda - Veteran (Jl. Sunda)
+  Karapitan - Lengkong Kecil -- Karapitan - Emong (Jl. Karapitan)
+Setelah Simpang Lima dihapus: terhubung = False, jumlah komponen = 5
+  komponen 1: ['Asia Afrika - Embong', 'Asia Afrika - Kaca Kaca Wetan']
+  komponen 2: ['Sunda - Naripan', 'Sunda - Veteran']
+  komponen 3: ['Ahmad Yani - Veteran']
+  komponen 4: ['Gatot Subroto - Ketapang']
+  komponen 5: ['Karapitan - Emong', 'Karapitan - Lengkong Kecil']
+
+===== Model B: jalan utama + jalan alternatif =====
+Simpul: 12, sisi: 17, terhubung: True
+Cut vertex: tidak ada
+Cut edge  : tidak ada
+Setelah Simpang Lima dihapus: terhubung = True, jumlah komponen = 1
+  komponen 1: ['Ahmad Yani - Veteran', 'Asia Afrika - Embong', 'Asia Afrika - Kaca Kaca Wetan', 'Burangrang - Emong', 'Gatot Subroto - Ketapang', 'Karapitan - Emong', 'Karapitan - Lengkong Kecil', 'Lengkong Kecil - Kaca Kaca Wetan', 'Naripan - Embong', 'Sunda - Naripan', 'Sunda - Veteran']
+

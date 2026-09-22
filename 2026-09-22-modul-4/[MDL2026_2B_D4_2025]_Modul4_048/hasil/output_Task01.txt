@@ -1,0 +1,37 @@
+--- Bagian 1: Euler Path dan Circuit ---
+Derajat simpul pada graf G_euler_circuit:
+Simpul A: 2
+Simpul B: 3
+Simpul C: 3
+Simpul D: 2
+Apakah memiliki Euler Circuit? False
+
+--- Bagian 2: Hamilton Path dan Circuit ---
+C5 dibuat dengan 5 simpul dan 5 sisi
+
+--- Bagian 3: Algoritma Dijkstra ---
+Jalur terpendek dari A ke F: ['A', 'C', 'B', 'D', 'E', 'F']
+Panjang jalur terpendek: 13
+
+=== ANALISIS 1: graf 'Euler Circuit' di tutorial ===
+Simpul berderajat ganjil: ['B', 'C']
+Punya Euler path? True
+Euler path dari B: B -> A -> C -> B -> D -> C
+
+Setelah sisi B-C dibuang, derajat: {'A': 2, 'B': 2, 'C': 2, 'D': 2}
+Punya Euler circuit? True
+Euler circuit dari nx.eulerian_circuit: A -> C -> D -> B -> A
+
+=== ANALISIS 2: Hamilton circuit dicek dengan brute force ===
+C5                            : Hamilton circuit [0, 1, 2, 3, 4, 0] (mencoba 1 urutan)
+graf tutorial bagian 1        : Hamilton circuit ['A', 'B', 'D', 'C', 'A'] (mencoba 2 urutan)
+K4 ditambah satu simpul daun  : tidak ada Hamilton circuit (mencoba 24 urutan)
+
+=== ANALISIS 3: langkah Dijkstra ===
+  jarak A ke A =  0  lewat ['A']
+  jarak A ke C =  2  lewat ['A', 'C']
+  jarak A ke B =  3  lewat ['A', 'C', 'B']
+  jarak A ke D =  8  lewat ['A', 'C', 'B', 'D']
+  jarak A ke E = 10  lewat ['A', 'C', 'B', 'D', 'E']
+  jarak A ke F = 13  lewat ['A', 'C', 'B', 'D', 'E', 'F']
+Jalur langsung D-F berbobot 6 kalah dari D-E-F yang totalnya 5

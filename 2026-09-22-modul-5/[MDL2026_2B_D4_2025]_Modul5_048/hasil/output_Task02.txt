@@ -1,0 +1,23 @@
+Graf konflik: 5 simpul, 7 sisi
+  Sub-tim 1 - Sub-tim 2  (anggota sama: Alyn)
+  Sub-tim 1 - Sub-tim 3  (anggota sama: Betty)
+  Sub-tim 1 - Sub-tim 4  (anggota sama: Erin)
+  Sub-tim 2 - Sub-tim 4  (anggota sama: Carol, Frank)
+  Sub-tim 2 - Sub-tim 5  (anggota sama: Frank)
+  Sub-tim 3 - Sub-tim 5  (anggota sama: David)
+  Sub-tim 4 - Sub-tim 5  (anggota sama: Frank)
+Pasangan yang boleh rapat bersamaan: ['Sub-tim 1 & Sub-tim 5', 'Sub-tim 2 & Sub-tim 3', 'Sub-tim 3 & Sub-tim 4']
+
+Segitiga di graf: [['Sub-tim 1', 'Sub-tim 2', 'Sub-tim 4'], ['Sub-tim 2', 'Sub-tim 4', 'Sub-tim 5']]
+Bilangan kromatik chi(G) = 3 (brute force)
+Greedy largest_first memakai 3 warna
+
+Jadwal rapat (satu warna = satu slot waktu):
+  Slot 1: Sub-tim 1, Sub-tim 5   hadir: Alyn, Betty, David, Erin, Frank
+  Slot 2: Sub-tim 2, Sub-tim 3   hadir: Alyn, Betty, Carol, David, Frank
+  Slot 3: Sub-tim 4              hadir: Carol, Erin, Frank
+
+Perbandingan dengan graf bipartit minggu 2:
+  Graf developer dan sub-tim: bipartit = True, 11 simpul, 13 sisi
+  Proyeksi graf bipartit ke sisi sub-tim sama dengan graf konflik: True
+  Graf konflik bipartit? False (ada segitiga, jadi butuh minimal 3 warna)
