@@ -54,12 +54,12 @@ Kasus 4 Pasar Tumpah (Max Flow), dikerjakan berlima. Folder [`2026-10-19-tubes-k
 berisi starter kit dari dosen ([trisgelar/matdis-tubes-2026](https://github.com/trisgelar/matdis-tubes-2026)) yang
 dilengkapi bagian max flow:
 
-- skenario jaringan jalan nyata Gasibu - Monumen Perjuangan dari OpenStreetMap (15 simpul, 20 busur berarah,
-  kapasitas skr/jam menurut PKJI 2014) dengan 30 event perubahan kapasitas dari lapak buka sampai pasar bubar;
+- skenario jaringan jalan nyata Gasibu - Monumen Perjuangan dari OpenStreetMap (17 simpul, 22 busur berarah,
+  kapasitas skr/jam menurut PKJI 2014) dengan 34 event perubahan kapasitas dari lapak buka sampai pasar bubar;
 - baseline Ford-Fulkerson (Edmonds-Karp), SOTA Push-Relabel yang melanjutkan aliran lama saat kapasitas berubah,
   dan Dinic dinamis sebagai pembanding;
 - runner `scripts/run_maxflow.py`, benchmark `scripts/run_benchmark_maxflow.py`, dan `tests/test_maxflow.py`
-  (71 tes lulus, hasil dicocokkan dengan networkx).
+  (72 tes lulus, hasil dicocokkan dengan networkx).
 
 Hasil sementara: max flow normal 5.055,1 skr/jam, saat puncak pasar 3.296,9 skr/jam (turun 34,8%), min cut di
 Jl. Surapati sisi utara Gasibu dan Jl. Japati. Penjelasan lengkap ada di

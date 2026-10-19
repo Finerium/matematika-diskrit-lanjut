@@ -16,8 +16,8 @@ nodes:
     label: "S Sumber arus (gabungan arus masuk)"
     pos: [0.0, 7.5]
   - id: 1
-    label: "V1 Simpang Monumen Perjuangan (Dipatiukur - Wirayuda)"
-    pos: [6.5, 12.0]
+    label: "V1 Simpang Dipatiukur - Jl. Singaperbangsa"
+    pos: [3.0, 11.6]
   - id: 2
     label: "V2 Ujung turun Flyover Pasupati (Surapati arah timur)"
     pos: [2.5, 6.0]
@@ -44,10 +44,10 @@ nodes:
     pos: [14.0, 6.0]
   - id: 10
     label: "V10 Simpang Sentot Alibasyah utara (cabang ke Majapahit)"
-    pos: [10.5, 4.5]
+    pos: [10.5, 4.0]
   - id: 11
     label: "V11 Simpang Majapahit - Surapati (sisi Gasibu)"
-    pos: [6.5, 4.5]
+    pos: [6.5, 4.0]
   - id: 12
     label: "V12 Simpang Diponegoro - Majapahit"
     pos: [6.5, 1.0]
@@ -55,15 +55,21 @@ nodes:
     label: "V13 Simpang Diponegoro - Sentot Alibasyah"
     pos: [10.5, 1.0]
   - id: 14
+    label: "V14 Simpang Singaperbangsa - Wirayuda Barat"
+    pos: [6.5, 11.6]
+  - id: 15
+    label: "V15 Simpang Singaperbangsa - Wirayuda Timur"
+    pos: [9.5, 11.6]
+  - id: 16
     label: "T Tujuan arus (gabungan arus keluar)"
     pos: [18.0, 3.5]
 
 edges:
   - from: 0
     to: 1
-    weight: 0.1
-    capacity: 2882.9
-    label: "E01 Jl. Dipatiukur (masuk dari arah Unpad/Sekeloa)"
+    weight: 0.66
+    capacity: 1247.0
+    label: "E01 Jl. Dipatiukur (masuk dari arah Monumen Perjuangan)"
   - from: 0
     to: 2
     weight: 0.14
@@ -71,12 +77,12 @@ edges:
     label: "E02 Flyover Pasupati dan Jl. Surapati dari Cikapayang"
   - from: 1
     to: 2
-    weight: 1.74
+    weight: 1.19
     capacity: 1247.0
     label: "E03 Jl. Dipatiukur - Jl. Penata Yudha (memutar)"
-  - from: 1
+  - from: 14
     to: 4
-    weight: 2.07
+    weight: 1.07
     capacity: 2732.4
     label: "E04 Jl. Wirayuda Barat (sisi barat taman)"
   - from: 4
@@ -84,9 +90,9 @@ edges:
     weight: 0.39
     capacity: 2732.4
     label: "E05 Jl. Wirayuda Barat (ujung selatan)"
-  - from: 1
+  - from: 15
     to: 6
-    weight: 2.02
+    weight: 0.75
     capacity: 2732.4
     label: "E06 Jl. Wirayuda Timur (sisi timur taman)"
   - from: 6
@@ -136,7 +142,7 @@ edges:
     label: "E15 Jl. Sentot Alibasyah (sisi timur Gasibu)"
   - from: 10
     to: 11
-    weight: 0.4
+    weight: 0.41
     capacity: 1305.5
     label: "E16 Jl. Surapati jalur lambat sisi Gasibu"
   - from: 11
@@ -145,30 +151,40 @@ edges:
     capacity: 2882.9
     label: "E17 Jl. Majapahit (sisi barat Gasibu)"
   - from: 9
-    to: 14
+    to: 16
     weight: 0.45
     capacity: 2882.9
     label: "E18 Jl. Surapati arah PUSDAI - Cicaheum"
   - from: 13
-    to: 14
+    to: 16
     weight: 0.31
     capacity: 2882.9
     label: "E19 Jl. Diponegoro arah timur dan Jl. Cisangkuy"
   - from: 12
-    to: 14
+    to: 16
     weight: 0.26
     capacity: 2882.9
     label: "E20 Jl. Diponegoro arah barat (Cilamaya - Sulanjana)"
+  - from: 1
+    to: 14
+    weight: 0.52
+    capacity: 1135.4
+    label: "E21 Jl. Singaperbangsa (dari Dipatiukur ke koridor taman)"
+  - from: 14
+    to: 15
+    weight: 0.25
+    capacity: 1135.4
+    label: "E22 Jl. Singaperbangsa (memotong koridor taman)"
 
 execution_plan:
   start_node: 0
-  goal_node: 14
+  goal_node: 16
   algorithm: maxflow
   events:
     - step: 1
       time: "06.00"
       type: "DYNAMIC_EDGE_CAPACITY"
-      target_edge: [1, 4]
+      target_edge: [14, 4]
       new_capacity: 2064.5
       description: "06.00 E04 Jl. Wirayuda Barat (sisi barat taman): Lapak dipindah ke dalam area taman, dua lajur tetap terbuka tetapi sisi jalan masih ramai."
     - step: 2
@@ -180,78 +196,90 @@ execution_plan:
     - step: 3
       time: "06.00"
       type: "DYNAMIC_EDGE_CAPACITY"
-      target_edge: [1, 6]
+      target_edge: [15, 6]
       new_capacity: 2064.5
       description: "06.00 E06 Jl. Wirayuda Timur (sisi timur taman): Lapak dipindah ke dalam area taman, dua lajur tetap terbuka."
     - step: 4
+      time: "06.00"
+      type: "DYNAMIC_EDGE_CAPACITY"
+      target_edge: [14, 15]
+      new_capacity: 857.8
+      description: "06.00 E22 Jl. Singaperbangsa (memotong koridor taman): Ruas tetap di tengah area pasar walaupun lapak keluar dari badan jalan."
+    - step: 5
       time: "06.15"
       type: "DYNAMIC_EDGE_CAPACITY"
       target_edge: [5, 4]
       new_capacity: 1032.2
       description: "06.15 E08 Jl. Haji Hasan (penghubung antarsisi taman): Penghubung tetap di tengah area pasar."
-    - step: 5
+    - step: 6
       time: "06.30"
       type: "DYNAMIC_EDGE_CAPACITY"
       target_edge: [6, 5]
       new_capacity: 2064.5
       description: "06.30 E07 Jl. Wirayuda Timur depan Telkom (portal saat pasar): Portal depan Telkom tidak ditutup lagi, lapak keluar dari badan jalan."
-    - step: 6
+    - step: 7
       time: "07.00"
       type: "DYNAMIC_EDGE_CAPACITY"
       target_edge: [2, 3]
       new_capacity: 4086.7
       description: "07.00 E11 Jl. Surapati (turunan flyover - Wirayuda Barat): Parkir bahu jalan dilarang, pengunjung masih ramai."
-    - step: 7
+    - step: 8
       time: "07.00"
       type: "DYNAMIC_EDGE_CAPACITY"
       target_edge: [3, 8]
       new_capacity: 4086.7
       description: "07.00 E12 Jl. Surapati sisi utara Gasibu: Parkir dipindah ke halaman kantor sekitar Gasibu, tiga lajur kembali terbuka, penyeberangan diatur petugas."
-    - step: 8
+    - step: 9
       time: "07.15"
       type: "DYNAMIC_EDGE_CAPACITY"
       target_edge: [8, 9]
       new_capacity: 2724.5
       description: "07.15 E13 Jl. Surapati depan Telkom: Lapak tidak boleh di badan jalan depan Telkom, dua lajur kembali terbuka."
-    - step: 9
+    - step: 10
       time: "07.15"
       type: "DYNAMIC_EDGE_CAPACITY"
       target_edge: [10, 11]
       new_capacity: 1184.0
       description: "07.15 E16 Jl. Surapati jalur lambat sisi Gasibu: Titik keluar masuk parkir dipisah dari jalur lambat."
-    - step: 10
+    - step: 11
       time: "07.30"
       type: "DYNAMIC_EDGE_CAPACITY"
       target_edge: [0, 1]
-      new_capacity: 2724.5
-      description: "07.30 E01 Jl. Dipatiukur (masuk dari arah Unpad/Sekeloa): Pengunjung tetap ramai di sekitar Monju, hambatan samping tinggi."
-    - step: 11
+      new_capacity: 1131.0
+      description: "07.30 E01 Jl. Dipatiukur (masuk dari arah Monumen Perjuangan): Pengunjung tetap ramai di sekitar Monju, hambatan samping tinggi."
+    - step: 12
+      time: "07.30"
+      type: "DYNAMIC_EDGE_CAPACITY"
+      target_edge: [1, 14]
+      new_capacity: 984.0
+      description: "07.30 E21 Jl. Singaperbangsa (dari Dipatiukur ke koridor taman): Pengunjung tetap parkir dan berjalan di Jl. Singaperbangsa."
+    - step: 13
       time: "07.30"
       type: "DYNAMIC_EDGE_CAPACITY"
       target_edge: [8, 10]
       new_capacity: 2724.5
       description: "07.30 E14 Belokan Surapati ke Jl. Sentot Alibasyah: Kendaraan dilarang berhenti di dekat simpang."
-    - step: 12
+    - step: 14
       time: "07.30"
       type: "DYNAMIC_EDGE_CAPACITY"
       target_edge: [10, 13]
       new_capacity: 2724.5
       description: "07.30 E15 Jl. Sentot Alibasyah (sisi timur Gasibu): Parkir dan pejalan kaki di sisi Gasibu masih ada."
-    - step: 13
+    - step: 15
       time: "07.30"
       type: "DYNAMIC_EDGE_CAPACITY"
       target_edge: [11, 12]
       new_capacity: 2724.5
       description: "07.30 E17 Jl. Majapahit (sisi barat Gasibu): Parkir dan pejalan kaki di sisi Gasibu masih ada."
-    - step: 14
+    - step: 16
       time: "07.30"
       type: "DYNAMIC_EDGE_CAPACITY"
-      target_edge: [13, 14]
+      target_edge: [13, 16]
       new_capacity: 2724.5
       description: "07.30 E19 Jl. Diponegoro arah timur dan Jl. Cisangkuy: Pejalan kaki dan kendaraan keluar kawasan."
-    - step: 15
+    - step: 17
       time: "07.30"
       type: "DYNAMIC_EDGE_CAPACITY"
-      target_edge: [12, 14]
+      target_edge: [12, 16]
       new_capacity: 2724.5
       description: "07.30 E20 Jl. Diponegoro arah barat (Cilamaya - Sulanjana): Pejalan kaki dan kendaraan keluar kawasan."

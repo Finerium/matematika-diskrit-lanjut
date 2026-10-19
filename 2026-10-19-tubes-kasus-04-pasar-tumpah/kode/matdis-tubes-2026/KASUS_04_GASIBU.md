@@ -8,11 +8,14 @@ Perjuangan, Bandung, dan algoritma max flow yang belum ada di starter kit.
 
 | File | Isi |
 |---|---|
-| `cases/scenarios/case_04_pasar_tumpah_gasibu.yaml` | 15 simpul, 20 busur berarah, 30 event `DYNAMIC_EDGE_CAPACITY` dari lapak buka (06.00) sampai pasar bubar (11.00) |
-| `cases/scenarios/case_04_pasar_tumpah_gasibu_penataan.yaml` | jaringan yang sama, 15 event usulan penataan (lapak keluar dari badan jalan) |
+| `cases/scenarios/case_04_pasar_tumpah_gasibu.yaml` | 17 simpul, 22 busur berarah, 34 event `DYNAMIC_EDGE_CAPACITY` dari lapak buka (06.00) sampai pasar bubar (11.00) |
+| `cases/scenarios/case_04_pasar_tumpah_gasibu_penataan.yaml` | jaringan yang sama, 17 event usulan penataan (lapak keluar dari badan jalan) |
 
-- Simpul V1 - V13 = persimpangan nyata dari OpenStreetMap (diunduh 19 Oktober 2026). S = super source (pintu masuk
+- Simpul V1 - V15 = persimpangan nyata dari OpenStreetMap (diunduh 19 Oktober 2026). S = super source (pintu masuk
   Jl. Dipatiukur dan Flyover Pasupati), T = super sink (pintu keluar Surapati timur, Diponegoro timur dan barat).
+- Kendaraan masuk koridor taman (Jl. Wirayuda Barat dan Timur) lewat Jl. Singaperbangsa (E21, E22). Penghubung dari
+  Dipatiukur di Monumen Perjuangan punya gerbang `access=no` dan bagian utara Wirayuda punya portal `access=destination`
+  di OSM, jadi bagian itu tidak dimodelkan sebagai jalan tembus.
 - `capacity` = kapasitas ruas dalam skr/jam menurut PKJI 2014: C = C0 x FCLJ x FCPA x FCHS x FCUK.
 - `weight` = waktu tempuh bebas (menit), supaya skenario ini juga lolos audit Dijkstra di `tests/test_all_scenarios.py`.
 - `label` di setiap busur dan field `time` di setiap event dipakai untuk narasi log, loader lama mengabaikannya.
@@ -50,7 +53,7 @@ Supaya event kapasitas bisa jalan, beberapa bagian inti disesuaikan. Perilaku un
 
 ```bash
 pip install -r requirements.txt matplotlib
-python -m pytest                                                     # 71 tes
+python -m pytest                                                     # 72 tes
 python -m scripts.run_maxflow cases/scenarios/case_04_pasar_tumpah_gasibu.yaml
 python -m scripts.run_maxflow cases/scenarios/case_04_pasar_tumpah_gasibu.yaml -a ford_fulkerson
 python -m scripts.run_maxflow cases/scenarios/case_04_pasar_tumpah_gasibu_penataan.yaml
@@ -81,4 +84,7 @@ max flow apa pun, jadi ketiga algoritma selalu melaporkan min cut yang sama.
   dan kapasitas min cut = max flow.
 - 120 graf berarah acak per algoritma, masing-masing dengan 6 perubahan kapasitas acak.
 - `SOTAScaffoldingAuditor` untuk `PushRelabel` dan `DynamicDinic` di skenario Gasibu.
-- Angka yang dipakai di slide (5.055,1, 3.296,9, min cut E12 + E09) dikunci di `test_hasil_kasus_gasibu`.
+- Min cut yang dilaporkan ketiga algoritma sama persis setelah `run()` dan setelah setiap event
+  (`test_min_cut_sama_di_semua_algoritma`).
+- Angka yang dipakai di slide (5.055,1, 3.296,9, min cut E12 + E09) dikunci di `test_hasil_kasus_gasibu`,
+  angka penataan 4.817,5 dikunci di `test_min_cut_sama_di_semua_algoritma`.

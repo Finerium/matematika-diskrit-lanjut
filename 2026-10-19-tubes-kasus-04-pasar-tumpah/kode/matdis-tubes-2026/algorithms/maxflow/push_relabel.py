@@ -20,6 +20,8 @@ class PushRelabel(FordFulkerson):
     Hasilnya tetap max flow, tetapi kerjanya jauh lebih sedikit daripada menghitung dari nol.
     """
 
+    KALIMAT_SELESAI = "Tidak ada lagi kelebihan (excess) yang bisa didorong ke tujuan."
+
     def __init__(self, model):
         super().__init__(model)
         self.height = {}

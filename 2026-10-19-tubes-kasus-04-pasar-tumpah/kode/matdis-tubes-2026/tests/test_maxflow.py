@@ -65,7 +65,8 @@ def test_hasil_kasus_gasibu():
     model = loader.build_graph_model()
     plan = loader.get_execution_plan()
     solver = AlgorithmRegistry.create("maxflow", model)
-    _, normal = solver.run(0, 14)
+    s, t = plan["start_node"], plan["goal_node"]
+    _, normal = solver.run(s, t)
     assert normal == pytest.approx(5055.1, abs=0.05)
     # E09 (6 -> 7) dan E10 (7 -> 9) seri dengan kapasitas sama, min cut yang dilaporkan adalah yang paling dekat
     # ke source (himpunan simpul yang terjangkau dari source di residual graph, sama untuk max flow apa pun)
@@ -73,11 +74,32 @@ def test_hasil_kasus_gasibu():
     hasil = []
     for event in plan["events"]:
         _, nilai = solver.handle_dynamic_event({"edge": tuple(event["target_edge"]),
-                                                "new_capacity": event["new_capacity"], "start": 0, "goal": 14})
+                                                "new_capacity": event["new_capacity"], "start": s, "goal": t})
         hasil.append((event["time"], round(nilai, 1)))
     puncak = min(v for _, v in hasil)
     assert puncak == pytest.approx(3296.9, abs=0.05)
     assert hasil[-1][1] == pytest.approx(5055.1, abs=0.05)
+
+
+def test_min_cut_sama_di_semua_algoritma():
+    """Min cut yang dilaporkan (sisi S paling dekat ke source) harus sama untuk ketiga algoritma setelah run()
+    dan setelah setiap event. Skenario penataan berakhir di 4.817,5 (angka slide)."""
+    for yaml_path, akhir in [(GASIBU, 5055.1), (CASES_DIR / "case_04_pasar_tumpah_gasibu_penataan.yaml", 4817.5)]:
+        jejak = {}
+        for key in MAXFLOW_KEYS:
+            loader = ScenarioLoader(yaml_path)
+            plan = loader.get_execution_plan()
+            solver = AlgorithmRegistry.create(key, loader.build_graph_model())
+            s, t = plan["start_node"], plan["goal_node"]
+            _, nilai = solver.run(s, t)
+            catat = [(sorted(solver.min_cut_edges), sorted(solver.source_side))]
+            for event in plan["events"]:
+                _, nilai = solver.handle_dynamic_event({"edge": tuple(event["target_edge"]),
+                                                        "new_capacity": event["new_capacity"], "start": s, "goal": t})
+                catat.append((sorted(solver.min_cut_edges), sorted(solver.source_side)))
+            assert nilai == pytest.approx(akhir, abs=0.05)
+            jejak[key] = catat
+        assert jejak["ford_fulkerson"] == jejak["push_relabel"] == jejak["dynamic_dinic"]
 
 
 @pytest.mark.parametrize("key", MAXFLOW_KEYS)
@@ -116,9 +138,10 @@ def test_sota_lebih_hemat_dari_baseline():
         model = loader.build_graph_model()
         plan = loader.get_execution_plan()
         solver = AlgorithmRegistry.create(key, model)
-        solver.run(0, 14)
+        s, t = plan["start_node"], plan["goal_node"]
+        solver.run(s, t)
         for event in plan["events"]:
             solver.handle_dynamic_event({"edge": tuple(event["target_edge"]),
-                                         "new_capacity": event["new_capacity"], "start": 0, "goal": 14})
+                                         "new_capacity": event["new_capacity"], "start": s, "goal": t})
         langkah[key] = sum(1 for d in solver.delta_logs if d["event_type"] == "AUGMENTING_PATH_FOUND")
     assert langkah["dynamic_dinic"] < langkah["ford_fulkerson"]

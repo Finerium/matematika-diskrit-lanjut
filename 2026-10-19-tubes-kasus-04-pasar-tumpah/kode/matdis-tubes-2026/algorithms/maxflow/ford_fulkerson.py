@@ -22,6 +22,8 @@ class FordFulkerson(BaseGraphAlgorithm):
     """
 
     SUPPORTED_EVENT_TYPES = frozenset({"DYNAMIC_EDGE_CAPACITY"})
+    # kalimat pembuka narasi saat algoritma selesai (Push-Relabel tidak memakai augmenting path)
+    KALIMAT_SELESAI = "Tidak ada lagi augmenting path."
 
     def __init__(self, model: SpatialGraphModel):
         super().__init__(model)
@@ -147,7 +149,7 @@ class FordFulkerson(BaseGraphAlgorithm):
                 "edge_flows": [[u, v, round(self.flow.get((u, v), 0.0), 6)] for u, v in self.graph.edges()],
             },
             narrative=(
-                f"Tidak ada lagi augmenting path. Max flow = {angka(self.max_flow)} skr/jam. Min cut berisi "
+                f"{self.KALIMAT_SELESAI} Max flow = {angka(self.max_flow)} skr/jam. Min cut berisi "
                 + ", ".join(self.edge_text(u, v) for u, v in self.min_cut_edges if self.capacity(u, v) > EPS)
                 + f" dengan total kapasitas {angka(cut_value)} skr/jam, sama dengan max flow."
             ),
