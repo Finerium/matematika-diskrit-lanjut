@@ -15,3 +15,10 @@ draf/
 /2026-*/*.txt
 # salinan kode kelompok memuat nama dan NIM anggota lain
 *_042_048_049/
+
+# tubes kasus 4: aset presentasi (kliping berita, NIM kelompok) disimpan lokal, yang di-push hanya kode starter kit
+/2026-10-19-tubes-kasus-04-pasar-tumpah/aset/
+# output run --all untuk kasus kelompok lain tidak ikut, kecuali hasil kasus 4 Gasibu dan contoh asli dosen
+/2026-10-19-tubes-kasus-04-pasar-tumpah/kode/matdis-tubes-2026/output/output_case_*.json
+!/2026-10-19-tubes-kasus-04-pasar-tumpah/kode/matdis-tubes-2026/output/output_case_04_pasar_tumpah_gasibu*.json
+!/2026-10-19-tubes-kasus-04-pasar-tumpah/kode/matdis-tubes-2026/output/output_case_08_warga_nonton.json

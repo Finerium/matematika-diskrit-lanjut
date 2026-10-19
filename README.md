@@ -48,6 +48,24 @@ Catatan pengerjaan:
 - Modul 5 Task04 tidak memberi daftar jalan, jadi jaringan 6 area dirancang sendiri dengan tepat dua
   simpul ganjil supaya kasus Euler path bisa dibahas.
 
+## Tugas besar graph
+
+Kasus 4 Pasar Tumpah (Max Flow), dikerjakan berlima. Folder [`2026-10-19-tubes-kasus-04-pasar-tumpah/`](2026-10-19-tubes-kasus-04-pasar-tumpah/)
+berisi starter kit dari dosen ([trisgelar/matdis-tubes-2026](https://github.com/trisgelar/matdis-tubes-2026)) yang
+dilengkapi bagian max flow:
+
+- skenario jaringan jalan nyata Gasibu - Monumen Perjuangan dari OpenStreetMap (15 simpul, 20 busur berarah,
+  kapasitas skr/jam menurut PKJI 2014) dengan 30 event perubahan kapasitas dari lapak buka sampai pasar bubar;
+- baseline Ford-Fulkerson (Edmonds-Karp), SOTA Push-Relabel yang melanjutkan aliran lama saat kapasitas berubah,
+  dan Dinic dinamis sebagai pembanding;
+- runner `scripts/run_maxflow.py`, benchmark `scripts/run_benchmark_maxflow.py`, dan `tests/test_maxflow.py`
+  (71 tes lulus, hasil dicocokkan dengan networkx).
+
+Hasil sementara: max flow normal 5.055,1 skr/jam, saat puncak pasar 3.296,9 skr/jam (turun 34,8%), min cut di
+Jl. Surapati sisi utara Gasibu dan Jl. Japati. Penjelasan lengkap ada di
+`kode/matdis-tubes-2026/KASUS_04_GASIBU.md`. Aset presentasi (fishbone, peta, slide) dan skrip pembuatnya disimpan
+lokal karena memuat kliping berita dan identitas kelompok.
+
 ## Struktur
 
 Repo ini hanya berisi kode dan output program. Laporan `.docx` dan `.pdf`, dokumentasi `.txt`, arsip `.zip`, dan
