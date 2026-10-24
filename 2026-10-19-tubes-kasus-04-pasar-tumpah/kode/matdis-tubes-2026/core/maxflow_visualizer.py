@@ -35,15 +35,15 @@ class MaxFlowSnapshotVisualizer:
             else:
                 warna.append(ABU)
         nx.draw_networkx_edges(self.graph, self.pos, ax=ax, width=lebar, edge_color=warna, arrows=True,
-                               arrowsize=16, connectionstyle="arc3,rad=0.04", node_size=900)
+                               arrowsize=16, connectionstyle="arc3,rad=0.04", node_size=420)
         if highlighted_edge:
             nx.draw_networkx_edges(self.graph, self.pos, ax=ax, edgelist=[tuple(highlighted_edge)], width=2.5,
-                                   edge_color=ORANYE, style="dashed", arrows=True, arrowsize=18, node_size=900)
+                                   edge_color=ORANYE, style="dashed", arrows=True, arrowsize=18, node_size=420)
         warna_node = [ORANYE if d.get("label", "").startswith(("S ", "T ")) else NAVY
                       for _, d in self.graph.nodes(data=True)]
-        nx.draw_networkx_nodes(self.graph, self.pos, ax=ax, node_size=900, node_color=warna_node,
+        nx.draw_networkx_nodes(self.graph, self.pos, ax=ax, node_size=420, node_color=warna_node,
                                edgecolors="white", linewidths=2)
-        nx.draw_networkx_labels(self.graph, self.pos, ax=ax, font_color="white", font_weight="bold", font_size=9,
+        nx.draw_networkx_labels(self.graph, self.pos, ax=ax, font_color="white", font_weight="bold", font_size=7,
                                 labels={n: d.get("label", str(n)).split(" ")[0] for n, d in self.graph.nodes(data=True)})
         label_edge = {}
         for u, v in self.graph.edges():
@@ -64,6 +64,7 @@ class MaxFlowSnapshotVisualizer:
         ax.text(0.99, 0.01, "label edge = aliran / kapasitas (skr/jam)", transform=ax.transAxes, ha="right",
                 fontsize=8, color="#55607A")
         ax.axis("off")
+        ax.set_aspect("equal")  # posisi node = koordinat asli, jadi bentuknya mengikuti peta
         fig.tight_layout()
         fig.savefig(path)
         plt.close(fig)

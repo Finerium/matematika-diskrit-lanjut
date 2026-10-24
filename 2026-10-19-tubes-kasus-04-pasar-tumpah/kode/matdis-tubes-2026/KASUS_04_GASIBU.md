@@ -19,6 +19,8 @@ Perjuangan, Bandung, dan algoritma max flow yang belum ada di starter kit. Istil
 - Kendaraan masuk koridor taman (Jl. Wirayuda Barat dan Timur) lewat Jl. Singaperbangsa (E21, E22). Penghubung dari
   Dipatiukur di Monumen Perjuangan punya gerbang `access=no` dan bagian utara Wirayuda punya portal `access=destination`
   di OSM, jadi bagian itu tidak dimodelkan sebagai jalan tembus.
+- `pos` = koordinat asli persimpangan dalam ratusan meter dari titik acuan, jadi gambar dari visualizer kit
+  bentuknya mengikuti peta. S dan T tidak punya lokasi dan diletakkan di luar kawasan.
 - `capacity` = kapasitas ruas dalam skr/jam menurut PKJI 2014: C = C0 x FCLJ x FCPA x FCHS x FCUK.
 - `weight` = waktu tempuh bebas (menit), supaya skenario ini juga lolos audit Dijkstra di `tests/test_all_scenarios.py`.
 - `road_class` (arteri, kolektor, lokal) dari tag `highway` OSM, `heavy_vehicle` = boleh dilewati bus dan truk
