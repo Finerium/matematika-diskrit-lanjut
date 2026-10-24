@@ -5,11 +5,13 @@
 # permanen sejak 10 Juli 2026, jadi tidak dimodelkan).
 # Kapasitas (capacity) dalam skr/jam menurut PKJI 2014: C = C0 x FCLJ x FCPA x FCHS x FCUK.
 # Bobot (weight) = waktu tempuh bebas dalam menit, dipakai kalau skenario dijalankan dengan Dijkstra.
+# road_class = fungsi jalan dari tag highway OSM (arteri, kolektor, lokal). heavy_vehicle = boleh dilewati
+# bus dan truk (hanya arteri dan kolektor), dipakai scripts/analisis_kasus4.py, loader mengabaikannya.
 # Skenario: kondisi normal -> pasar tumpah (06.00 - 07.30) -> pasar bubar (11.00).
 
 case_id: "case_04_pasar_tumpah_gasibu"
 title: "Penurunan Arus Maksimum Kendaraan akibat Pasar Tumpah Gasibu Bandung"
-description: "Jaringan jalan nyata sekitar Gasibu - Monumen Perjuangan dengan 17 simpul dan 22 ruas berarah. Lapak dan parkir pasar tumpah Minggu pagi mempersempit lebar efektif jalan, event mengikuti urutan jam dari lapak buka (06.00) sampai pasar bubar (11.00)."
+description: "Jaringan jalan nyata sekitar Gasibu - Monumen Perjuangan dengan 18 node dan 24 edge berarah. Lapak dan parkir pasar tumpah Minggu pagi mempersempit lebar efektif jalan, event mengikuti urutan jam dari lapak buka (06.00) sampai pasar bubar (11.00)."
 
 nodes:
   - id: 0
@@ -61,6 +63,9 @@ nodes:
     label: "V15 Simpang Singaperbangsa - Wirayuda Timur"
     pos: [9.5, 11.6]
   - id: 16
+    label: "V16 Simpang Surapati permukaan - Jl. Penata Yudha"
+    pos: [2.7, 8.8]
+  - id: 17
     label: "T Tujuan arus (gabungan arus keluar)"
     pos: [18.0, 3.5]
 
@@ -70,115 +75,173 @@ edges:
     weight: 0.66
     capacity: 1247.0
     label: "E01 Jl. Dipatiukur (masuk dari arah Monumen Perjuangan)"
+    road_class: "kolektor"
+    heavy_vehicle: true
   - from: 0
     to: 2
     weight: 0.14
-    capacity: 4324.3
-    label: "E02 Flyover Pasupati dan Jl. Surapati dari Cikapayang"
+    capacity: 3009.6
+    label: "E02 Flyover Pasupati (Jalan Layang Mochtar Kusumaatmadja) dari arah Pasteur"
+    road_class: "arteri"
+    heavy_vehicle: true
   - from: 1
-    to: 2
-    weight: 1.19
+    to: 16
+    weight: 1.08
     capacity: 1247.0
     label: "E03 Jl. Dipatiukur - Jl. Penata Yudha (memutar)"
+    road_class: "kolektor"
+    heavy_vehicle: true
   - from: 14
     to: 4
     weight: 1.07
     capacity: 2732.4
     label: "E04 Jl. Wirayuda Barat (sisi barat taman)"
+    road_class: "lokal"
+    heavy_vehicle: false
   - from: 4
     to: 3
     weight: 0.39
     capacity: 2732.4
     label: "E05 Jl. Wirayuda Barat (ujung selatan)"
+    road_class: "lokal"
+    heavy_vehicle: false
   - from: 15
     to: 6
     weight: 0.75
     capacity: 2732.4
     label: "E06 Jl. Wirayuda Timur (sisi timur taman)"
+    road_class: "lokal"
+    heavy_vehicle: false
   - from: 6
     to: 5
     weight: 0.32
     capacity: 2732.4
     label: "E07 Jl. Wirayuda Timur depan Telkom (portal saat pasar)"
+    road_class: "lokal"
+    heavy_vehicle: false
   - from: 5
     to: 4
     weight: 0.25
     capacity: 1366.2
     label: "E08 Jl. Haji Hasan (penghubung antarsisi taman)"
+    road_class: "lokal"
+    heavy_vehicle: false
   - from: 6
     to: 7
     weight: 0.58
     capacity: 730.8
     label: "E09 Jl. Japati (sisi utara Telkom)"
+    road_class: "lokal"
+    heavy_vehicle: false
   - from: 7
     to: 9
     weight: 0.75
     capacity: 730.8
     label: "E10 Jl. Merak (belakang Telkom)"
+    road_class: "lokal"
+    heavy_vehicle: false
   - from: 2
     to: 3
     weight: 0.44
     capacity: 4324.3
     label: "E11 Jl. Surapati (turunan flyover - Wirayuda Barat)"
+    road_class: "arteri"
+    heavy_vehicle: true
   - from: 3
     to: 8
     weight: 0.15
     capacity: 4324.3
     label: "E12 Jl. Surapati sisi utara Gasibu"
+    road_class: "arteri"
+    heavy_vehicle: true
   - from: 8
     to: 9
     weight: 0.27
     capacity: 2882.9
     label: "E13 Jl. Surapati depan Telkom"
+    road_class: "arteri"
+    heavy_vehicle: true
   - from: 8
     to: 10
     weight: 0.09
     capacity: 2882.9
     label: "E14 Belokan Surapati ke Jl. Sentot Alibasyah"
+    road_class: "arteri"
+    heavy_vehicle: true
   - from: 10
     to: 13
     weight: 0.39
     capacity: 2882.9
     label: "E15 Jl. Sentot Alibasyah (sisi timur Gasibu)"
+    road_class: "arteri"
+    heavy_vehicle: true
   - from: 10
     to: 11
     weight: 0.41
     capacity: 1305.5
     label: "E16 Jl. Surapati jalur lambat sisi Gasibu"
+    road_class: "arteri"
+    heavy_vehicle: true
   - from: 11
     to: 12
     weight: 0.6
     capacity: 2882.9
     label: "E17 Jl. Majapahit (sisi barat Gasibu)"
+    road_class: "arteri"
+    heavy_vehicle: true
   - from: 9
-    to: 16
+    to: 17
     weight: 0.45
     capacity: 2882.9
     label: "E18 Jl. Surapati arah PUSDAI - Cicaheum"
+    road_class: "arteri"
+    heavy_vehicle: true
   - from: 13
-    to: 16
+    to: 17
     weight: 0.31
     capacity: 2882.9
     label: "E19 Jl. Diponegoro arah timur dan Jl. Cisangkuy"
+    road_class: "arteri"
+    heavy_vehicle: true
   - from: 12
-    to: 16
+    to: 17
     weight: 0.26
     capacity: 2882.9
     label: "E20 Jl. Diponegoro arah barat (Cilamaya - Sulanjana)"
+    road_class: "arteri"
+    heavy_vehicle: true
   - from: 1
     to: 14
     weight: 0.52
     capacity: 1135.4
     label: "E21 Jl. Singaperbangsa (dari Dipatiukur ke koridor taman)"
+    road_class: "lokal"
+    heavy_vehicle: false
   - from: 14
     to: 15
     weight: 0.25
     capacity: 1135.4
     label: "E22 Jl. Singaperbangsa (memotong koridor taman)"
+    road_class: "lokal"
+    heavy_vehicle: false
+  - from: 0
+    to: 16
+    weight: 0.61
+    capacity: 2882.9
+    label: "E23 Jl. Surapati permukaan dari arah Cikapayang - Dago"
+    road_class: "arteri"
+    heavy_vehicle: true
+  - from: 16
+    to: 2
+    weight: 0.1
+    capacity: 2882.9
+    label: "E24 Jl. Surapati permukaan (Penata Yudha - turunan flyover)"
+    road_class: "arteri"
+    heavy_vehicle: true
 
 execution_plan:
   start_node: 0
-  goal_node: 16
+  goal_node: 17
   algorithm: maxflow
   events:
     - step: 1
@@ -274,13 +337,13 @@ execution_plan:
     - step: 16
       time: "07.30"
       type: "DYNAMIC_EDGE_CAPACITY"
-      target_edge: [13, 16]
+      target_edge: [13, 17]
       new_capacity: 2724.5
       description: "07.30 E19 Jl. Diponegoro arah timur dan Jl. Cisangkuy: Pejalan kaki dan kendaraan keluar kawasan."
     - step: 17
       time: "07.30"
       type: "DYNAMIC_EDGE_CAPACITY"
-      target_edge: [12, 16]
+      target_edge: [12, 17]
       new_capacity: 2724.5
       description: "07.30 E20 Jl. Diponegoro arah barat (Cilamaya - Sulanjana): Pejalan kaki dan kendaraan keluar kawasan."
     - step: 18
@@ -376,12 +439,12 @@ execution_plan:
     - step: 33
       time: "11.00"
       type: "DYNAMIC_EDGE_CAPACITY"
-      target_edge: [13, 16]
+      target_edge: [13, 17]
       new_capacity: 2882.9
       description: "11.00 E19 Jl. Diponegoro arah timur dan Jl. Cisangkuy: Pasar bubar, lapak dibongkar, kapasitas kembali normal."
     - step: 34
       time: "11.00"
       type: "DYNAMIC_EDGE_CAPACITY"
-      target_edge: [12, 16]
+      target_edge: [12, 17]
       new_capacity: 2882.9
       description: "11.00 E20 Jl. Diponegoro arah barat (Cilamaya - Sulanjana): Pasar bubar, lapak dibongkar, kapasitas kembali normal."

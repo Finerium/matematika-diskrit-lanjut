@@ -31,7 +31,7 @@ class DynamicDinic(FordFulkerson):
         return level if sink in level else None
 
     def _blocking_flow(self, source, sink, level, fase):
-        # DFS iteratif dengan pointer per simpul (dead end tidak dikunjungi ulang)
+        # DFS iteratif dengan pointer per node (dead end tidak dikunjungi ulang)
         adj = {u: [v for v in self.residual_neighbors(u)] for u in level}
         ptr = {u: 0 for u in level}
         total = 0.0
@@ -68,7 +68,7 @@ class DynamicDinic(FordFulkerson):
                 event_type="AUGMENTING_PATH_FOUND",
                 state_mutations=info,
                 narrative=(
-                    f"Fase Dinic ke-{self.phase_count}, jalur {self.path_text(path)}. Busur kritis "
+                    f"Fase Dinic ke-{self.phase_count}, jalur {self.path_text(path)}. Edge kritis "
                     f"{self.edge_text(bu, bv)} menahan aliran tambahan {angka(delta)} skr/jam, "
                     f"total aliran naik dari {angka(sebelum)} jadi {angka(self.max_flow)} skr/jam."
                 ),

@@ -2,7 +2,7 @@
   "metadata": {
     "case_id": "case_04_pasar_tumpah_gasibu",
     "title": "Penurunan Arus Maksimum Kendaraan akibat Pasar Tumpah Gasibu Bandung",
-    "description": "Jaringan jalan nyata sekitar Gasibu - Monumen Perjuangan dengan 17 simpul dan 22 ruas berarah. Lapak dan parkir pasar tumpah Minggu pagi mempersempit lebar efektif jalan, event mengikuti urutan jam dari lapak buka (06.00) sampai pasar bubar (11.00).",
+    "description": "Jaringan jalan nyata sekitar Gasibu - Monumen Perjuangan dengan 18 node dan 24 edge berarah. Lapak dan parkir pasar tumpah Minggu pagi mempersempit lebar efektif jalan, event mengikuti urutan jam dari lapak buka (06.00) sampai pasar bubar (11.00).",
     "algorithm": "DynamicDinic",
     "registry_key": "dinic",
     "timeline_max_flow": [
@@ -218,7 +218,7 @@
       }
     ]
   },
-  "total_steps": 118,
+  "total_steps": 120,
   "initial_topology": {
     "nodes": [
       {
@@ -351,6 +351,14 @@
       },
       {
         "id": 16,
+        "label": "V16 Simpang Surapati permukaan - Jl. Penata Yudha",
+        "pos": [
+          2.7,
+          8.8
+        ]
+      },
+      {
+        "id": 17,
         "label": "T Tujuan arus (gabungan arus keluar)",
         "pos": [
           18.0,
@@ -370,13 +378,20 @@
         "from": 0,
         "to": 2,
         "weight": 0.14,
-        "capacity": 4324.3,
-        "label": "E02 Flyover Pasupati dan Jl. Surapati dari Cikapayang"
+        "capacity": 3009.6,
+        "label": "E02 Flyover Pasupati (Jalan Layang Mochtar Kusumaatmadja) dari arah Pasteur"
+      },
+      {
+        "from": 0,
+        "to": 16,
+        "weight": 0.61,
+        "capacity": 2882.9,
+        "label": "E23 Jl. Surapati permukaan dari arah Cikapayang - Dago"
       },
       {
         "from": 1,
-        "to": 2,
-        "weight": 1.19,
+        "to": 16,
+        "weight": 1.08,
         "capacity": 1247.0,
         "label": "E03 Jl. Dipatiukur - Jl. Penata Yudha (memutar)"
       },
@@ -452,7 +467,7 @@
       },
       {
         "from": 9,
-        "to": 16,
+        "to": 17,
         "weight": 0.45,
         "capacity": 2882.9,
         "label": "E18 Jl. Surapati arah PUSDAI - Cicaheum"
@@ -480,14 +495,14 @@
       },
       {
         "from": 12,
-        "to": 16,
+        "to": 17,
         "weight": 0.26,
         "capacity": 2882.9,
         "label": "E20 Jl. Diponegoro arah barat (Cilamaya - Sulanjana)"
       },
       {
         "from": 13,
-        "to": 16,
+        "to": 17,
         "weight": 0.31,
         "capacity": 2882.9,
         "label": "E19 Jl. Diponegoro arah timur dan Jl. Cisangkuy"
@@ -512,6 +527,13 @@
         "weight": 0.75,
         "capacity": 2732.4,
         "label": "E06 Jl. Wirayuda Timur (sisi timur taman)"
+      },
+      {
+        "from": 16,
+        "to": 2,
+        "weight": 0.1,
+        "capacity": 2882.9,
+        "label": "E24 Jl. Surapati permukaan (Penata Yudha - turunan flyover)"
       }
     ]
   },
@@ -521,11 +543,11 @@
       "event_type": "INITIALIZATION",
       "mutations": {
         "source": 0,
-        "sink": 16,
+        "sink": 17,
         "max_flow": 0.0,
-        "total_edges": 22
+        "total_edges": 24
       },
-      "action_narrative": "Semua aliran diset 0. Sumber = S Sumber arus (gabungan arus masuk) (node 0), tujuan = T Tujuan arus (gabungan arus keluar) (node 16)."
+      "action_narrative": "Semua aliran diset 0. Sumber = S Sumber arus (gabungan arus masuk) (node 0), tujuan = T Tujuan arus (gabungan arus keluar) (node 17)."
     },
     {
       "step": 2,
@@ -536,6 +558,7 @@
           "0": 0,
           "1": 1,
           "2": 1,
+          "16": 1,
           "14": 2,
           "3": 2,
           "4": 3,
@@ -546,7 +569,7 @@
           "10": 4,
           "5": 5,
           "7": 5,
-          "16": 5,
+          "17": 5,
           "13": 5,
           "11": 5,
           "12": 6
@@ -564,7 +587,7 @@
           3,
           8,
           9,
-          16
+          17
         ],
         "flow_added": 2882.9,
         "current_max_flow": 2882.9,
@@ -575,7 +598,7 @@
         "fase": "awal",
         "dinic_phase": 1
       },
-      "action_narrative": "Fase Dinic ke-1, jalur 0 -> 2 -> 3 -> 8 -> 9 -> 16. Busur kritis E13 Jl. Surapati depan Telkom (8 -> 9) menahan aliran tambahan 2.882,9 skr/jam, total aliran naik dari 0,0 jadi 2.882,9 skr/jam."
+      "action_narrative": "Fase Dinic ke-1, jalur 0 -> 2 -> 3 -> 8 -> 9 -> 17. Edge kritis E13 Jl. Surapati depan Telkom (8 -> 9) menahan aliran tambahan 2.882,9 skr/jam, total aliran naik dari 0,0 jadi 2.882,9 skr/jam."
     },
     {
       "step": 4,
@@ -586,6 +609,7 @@
           "0": 0,
           "1": 1,
           "2": 1,
+          "16": 1,
           "14": 2,
           "3": 2,
           "4": 3,
@@ -598,7 +622,7 @@
           "13": 5,
           "11": 5,
           "9": 6,
-          "16": 6,
+          "17": 6,
           "12": 6
         }
       },
@@ -615,10 +639,10 @@
           8,
           10,
           13,
-          16
+          17
         ],
-        "flow_added": 1441.4,
-        "current_max_flow": 4324.3,
+        "flow_added": 126.69999999999982,
+        "current_max_flow": 3009.6,
         "bottleneck_edge": [
           0,
           2
@@ -626,7 +650,7 @@
         "fase": "awal",
         "dinic_phase": 2
       },
-      "action_narrative": "Fase Dinic ke-2, jalur 0 -> 2 -> 3 -> 8 -> 10 -> 13 -> 16. Busur kritis E02 Flyover Pasupati dan Jl. Surapati dari Cikapayang (0 -> 2) menahan aliran tambahan 1.441,4 skr/jam, total aliran naik dari 2.882,9 jadi 4.324,3 skr/jam."
+      "action_narrative": "Fase Dinic ke-2, jalur 0 -> 2 -> 3 -> 8 -> 10 -> 13 -> 17. Edge kritis E02 Flyover Pasupati (Jalan Layang Mochtar Kusumaatmadja) dari arah Pasteur (0 -> 2) menahan aliran tambahan 126,7 skr/jam, total aliran naik dari 2.882,9 jadi 3.009,6 skr/jam."
     },
     {
       "step": 6,
@@ -636,8 +660,62 @@
         "level": {
           "0": 0,
           "1": 1,
-          "2": 2,
+          "16": 1,
           "14": 2,
+          "2": 2,
+          "4": 3,
+          "15": 3,
+          "3": 3,
+          "6": 4,
+          "8": 4,
+          "5": 5,
+          "7": 5,
+          "10": 5,
+          "9": 6,
+          "13": 6,
+          "11": 6,
+          "17": 7,
+          "12": 7
+        }
+      },
+      "action_narrative": "Fase Dinic ke-3: level graph dibangun dengan BFS, tujuan ada di level 7."
+    },
+    {
+      "step": 7,
+      "event_type": "AUGMENTING_PATH_FOUND",
+      "mutations": {
+        "path": [
+          0,
+          16,
+          2,
+          3,
+          8,
+          10,
+          13,
+          17
+        ],
+        "flow_added": 1314.7000000000003,
+        "current_max_flow": 4324.3,
+        "bottleneck_edge": [
+          2,
+          3
+        ],
+        "fase": "awal",
+        "dinic_phase": 3
+      },
+      "action_narrative": "Fase Dinic ke-3, jalur 0 -> 16 -> 2 -> 3 -> 8 -> 10 -> 13 -> 17. Edge kritis E11 Jl. Surapati (turunan flyover - Wirayuda Barat) (2 -> 3) menahan aliran tambahan 1.314,7 skr/jam, total aliran naik dari 3.009,6 jadi 4.324,3 skr/jam."
+    },
+    {
+      "step": 8,
+      "event_type": "LEVEL_GRAPH_BUILT",
+      "mutations": {
+        "phase": 4,
+        "level": {
+          "0": 0,
+          "1": 1,
+          "16": 1,
+          "14": 2,
+          "2": 2,
           "4": 3,
           "15": 3,
           "3": 4,
@@ -649,14 +727,14 @@
           "10": 8,
           "13": 9,
           "11": 9,
-          "16": 10,
+          "17": 10,
           "12": 10
         }
       },
-      "action_narrative": "Fase Dinic ke-3: level graph dibangun dengan BFS, tujuan ada di level 10."
+      "action_narrative": "Fase Dinic ke-4: level graph dibangun dengan BFS, tujuan ada di level 10."
     },
     {
-      "step": 7,
+      "step": 9,
       "event_type": "AUGMENTING_PATH_FOUND",
       "mutations": {
         "path": [
@@ -670,7 +748,7 @@
           8,
           10,
           13,
-          16
+          17
         ],
         "flow_added": 730.8,
         "current_max_flow": 5055.1,
@@ -679,12 +757,12 @@
           7
         ],
         "fase": "awal",
-        "dinic_phase": 3
+        "dinic_phase": 4
       },
-      "action_narrative": "Fase Dinic ke-3, jalur 0 -> 1 -> 14 -> 15 -> 6 -> 7 -> 9 -> 8 -> 10 -> 13 -> 16. Busur kritis E09 Jl. Japati (sisi utara Telkom) (6 -> 7) menahan aliran tambahan 730,8 skr/jam, total aliran naik dari 4.324,3 jadi 5.055,1 skr/jam."
+      "action_narrative": "Fase Dinic ke-4, jalur 0 -> 1 -> 14 -> 15 -> 6 -> 7 -> 9 -> 8 -> 10 -> 13 -> 17. Edge kritis E09 Jl. Japati (sisi utara Telkom) (6 -> 7) menahan aliran tambahan 730,8 skr/jam, total aliran naik dari 4.324,3 jadi 5.055,1 skr/jam."
     },
     {
-      "step": 8,
+      "step": 10,
       "event_type": "MIN_CUT_FOUND",
       "mutations": {
         "max_flow": 5055.1,
@@ -708,7 +786,8 @@
           5,
           6,
           14,
-          15
+          15,
+          16
         ],
         "edge_flows": [
           [
@@ -719,11 +798,16 @@
           [
             0,
             2,
-            4324.3
+            3009.6
+          ],
+          [
+            0,
+            16,
+            1314.7
           ],
           [
             1,
-            2,
+            16,
             0.0
           ],
           [
@@ -778,7 +862,7 @@
           ],
           [
             9,
-            16,
+            17,
             2882.9
           ],
           [
@@ -798,12 +882,12 @@
           ],
           [
             12,
-            16,
+            17,
             0.0
           ],
           [
             13,
-            16,
+            17,
             2172.2
           ],
           [
@@ -820,13 +904,18 @@
             15,
             6,
             730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
           ]
         ]
       },
       "action_narrative": "Tidak ada lagi augmenting path. Max flow = 5.055,1 skr/jam. Min cut berisi E12 Jl. Surapati sisi utara Gasibu (3 -> 8), E09 Jl. Japati (sisi utara Telkom) (6 -> 7) dengan total kapasitas 5.055,1 skr/jam, sama dengan max flow."
     },
     {
-      "step": 9,
+      "step": 11,
       "event_type": "UPDATE_CAPACITY_EVENT",
       "mutations": {
         "target_edge": [
@@ -839,7 +928,7 @@
       "action_narrative": "Kapasitas E04 Jl. Wirayuda Barat (sisi barat taman) (14 -> 4) berubah dari 2.732,4 jadi 1.032,2 skr/jam. 06.00 E04 Jl. Wirayuda Barat (sisi barat taman): Lapak dan pembeli menutup satu lajur, hambatan samping sangat tinggi (aktivitas pasar)."
     },
     {
-      "step": 10,
+      "step": 12,
       "event_type": "FLOW_KEPT",
       "mutations": {
         "target_edge": [
@@ -851,7 +940,7 @@
       "action_narrative": "Aliran lama di E04 Jl. Wirayuda Barat (sisi barat taman) (14 -> 4) masih muat di kapasitas baru, jadi aliran 5.055,1 skr/jam dipertahankan dan hanya dicari tambahan."
     },
     {
-      "step": 11,
+      "step": 13,
       "event_type": "MIN_CUT_FOUND",
       "mutations": {
         "max_flow": 5055.1,
@@ -875,7 +964,8 @@
           5,
           6,
           14,
-          15
+          15,
+          16
         ],
         "edge_flows": [
           [
@@ -886,11 +976,16 @@
           [
             0,
             2,
-            4324.3
+            3009.6
+          ],
+          [
+            0,
+            16,
+            1314.7
           ],
           [
             1,
-            2,
+            16,
             0.0
           ],
           [
@@ -945,7 +1040,7 @@
           ],
           [
             9,
-            16,
+            17,
             2882.9
           ],
           [
@@ -965,12 +1060,12 @@
           ],
           [
             12,
-            16,
+            17,
             0.0
           ],
           [
             13,
-            16,
+            17,
             2172.2
           ],
           [
@@ -987,13 +1082,18 @@
             15,
             6,
             730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
           ]
         ]
       },
       "action_narrative": "Tidak ada lagi augmenting path. Max flow = 5.055,1 skr/jam. Min cut berisi E12 Jl. Surapati sisi utara Gasibu (3 -> 8), E09 Jl. Japati (sisi utara Telkom) (6 -> 7) dengan total kapasitas 5.055,1 skr/jam, sama dengan max flow."
     },
     {
-      "step": 12,
+      "step": 14,
       "event_type": "UPDATE_CAPACITY_EVENT",
       "mutations": {
         "target_edge": [
@@ -1006,7 +1106,7 @@
       "action_narrative": "Kapasitas E05 Jl. Wirayuda Barat (ujung selatan) (4 -> 3) berubah dari 2.732,4 jadi 1.032,2 skr/jam. 06.00 E05 Jl. Wirayuda Barat (ujung selatan): Lapak dan pembeli menutup satu lajur, hambatan samping sangat tinggi."
     },
     {
-      "step": 13,
+      "step": 15,
       "event_type": "FLOW_KEPT",
       "mutations": {
         "target_edge": [
@@ -1018,7 +1118,7 @@
       "action_narrative": "Aliran lama di E05 Jl. Wirayuda Barat (ujung selatan) (4 -> 3) masih muat di kapasitas baru, jadi aliran 5.055,1 skr/jam dipertahankan dan hanya dicari tambahan."
     },
     {
-      "step": 14,
+      "step": 16,
       "event_type": "MIN_CUT_FOUND",
       "mutations": {
         "max_flow": 5055.1,
@@ -1042,7 +1142,8 @@
           5,
           6,
           14,
-          15
+          15,
+          16
         ],
         "edge_flows": [
           [
@@ -1053,11 +1154,16 @@
           [
             0,
             2,
-            4324.3
+            3009.6
+          ],
+          [
+            0,
+            16,
+            1314.7
           ],
           [
             1,
-            2,
+            16,
             0.0
           ],
           [
@@ -1112,7 +1218,7 @@
           ],
           [
             9,
-            16,
+            17,
             2882.9
           ],
           [
@@ -1132,12 +1238,12 @@
           ],
           [
             12,
-            16,
+            17,
             0.0
           ],
           [
             13,
-            16,
+            17,
             2172.2
           ],
           [
@@ -1154,13 +1260,18 @@
             15,
             6,
             730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
           ]
         ]
       },
       "action_narrative": "Tidak ada lagi augmenting path. Max flow = 5.055,1 skr/jam. Min cut berisi E12 Jl. Surapati sisi utara Gasibu (3 -> 8), E09 Jl. Japati (sisi utara Telkom) (6 -> 7) dengan total kapasitas 5.055,1 skr/jam, sama dengan max flow."
     },
     {
-      "step": 15,
+      "step": 17,
       "event_type": "UPDATE_CAPACITY_EVENT",
       "mutations": {
         "target_edge": [
@@ -1173,7 +1284,7 @@
       "action_narrative": "Kapasitas E06 Jl. Wirayuda Timur (sisi timur taman) (15 -> 6) berubah dari 2.732,4 jadi 1.032,2 skr/jam. 06.00 E06 Jl. Wirayuda Timur (sisi timur taman): Lapak dan pembeli menutup satu lajur, hambatan samping sangat tinggi."
     },
     {
-      "step": 16,
+      "step": 18,
       "event_type": "FLOW_KEPT",
       "mutations": {
         "target_edge": [
@@ -1185,7 +1296,7 @@
       "action_narrative": "Aliran lama di E06 Jl. Wirayuda Timur (sisi timur taman) (15 -> 6) masih muat di kapasitas baru, jadi aliran 5.055,1 skr/jam dipertahankan dan hanya dicari tambahan."
     },
     {
-      "step": 17,
+      "step": 19,
       "event_type": "MIN_CUT_FOUND",
       "mutations": {
         "max_flow": 5055.1,
@@ -1209,7 +1320,8 @@
           5,
           6,
           14,
-          15
+          15,
+          16
         ],
         "edge_flows": [
           [
@@ -1220,11 +1332,16 @@
           [
             0,
             2,
-            4324.3
+            3009.6
+          ],
+          [
+            0,
+            16,
+            1314.7
           ],
           [
             1,
-            2,
+            16,
             0.0
           ],
           [
@@ -1279,7 +1396,7 @@
           ],
           [
             9,
-            16,
+            17,
             2882.9
           ],
           [
@@ -1299,12 +1416,12 @@
           ],
           [
             12,
-            16,
+            17,
             0.0
           ],
           [
             13,
-            16,
+            17,
             2172.2
           ],
           [
@@ -1321,13 +1438,18 @@
             15,
             6,
             730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
           ]
         ]
       },
       "action_narrative": "Tidak ada lagi augmenting path. Max flow = 5.055,1 skr/jam. Min cut berisi E12 Jl. Surapati sisi utara Gasibu (3 -> 8), E09 Jl. Japati (sisi utara Telkom) (6 -> 7) dengan total kapasitas 5.055,1 skr/jam, sama dengan max flow."
     },
     {
-      "step": 18,
+      "step": 20,
       "event_type": "UPDATE_CAPACITY_EVENT",
       "mutations": {
         "target_edge": [
@@ -1340,7 +1462,7 @@
       "action_narrative": "Kapasitas E22 Jl. Singaperbangsa (memotong koridor taman) (14 -> 15) berubah dari 1.135,4 jadi 857,8 skr/jam. 06.00 E22 Jl. Singaperbangsa (memotong koridor taman): Ruas ini memotong koridor taman di tengah area pasar, hambatan samping sangat tinggi."
     },
     {
-      "step": 19,
+      "step": 21,
       "event_type": "FLOW_KEPT",
       "mutations": {
         "target_edge": [
@@ -1352,7 +1474,7 @@
       "action_narrative": "Aliran lama di E22 Jl. Singaperbangsa (memotong koridor taman) (14 -> 15) masih muat di kapasitas baru, jadi aliran 5.055,1 skr/jam dipertahankan dan hanya dicari tambahan."
     },
     {
-      "step": 20,
+      "step": 22,
       "event_type": "MIN_CUT_FOUND",
       "mutations": {
         "max_flow": 5055.1,
@@ -1376,7 +1498,8 @@
           5,
           6,
           14,
-          15
+          15,
+          16
         ],
         "edge_flows": [
           [
@@ -1387,11 +1510,16 @@
           [
             0,
             2,
-            4324.3
+            3009.6
+          ],
+          [
+            0,
+            16,
+            1314.7
           ],
           [
             1,
-            2,
+            16,
             0.0
           ],
           [
@@ -1446,7 +1574,7 @@
           ],
           [
             9,
-            16,
+            17,
             2882.9
           ],
           [
@@ -1466,12 +1594,12 @@
           ],
           [
             12,
-            16,
+            17,
             0.0
           ],
           [
             13,
-            16,
+            17,
             2172.2
           ],
           [
@@ -1488,13 +1616,18 @@
             15,
             6,
             730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
           ]
         ]
       },
       "action_narrative": "Tidak ada lagi augmenting path. Max flow = 5.055,1 skr/jam. Min cut berisi E12 Jl. Surapati sisi utara Gasibu (3 -> 8), E09 Jl. Japati (sisi utara Telkom) (6 -> 7) dengan total kapasitas 5.055,1 skr/jam, sama dengan max flow."
     },
     {
-      "step": 21,
+      "step": 23,
       "event_type": "UPDATE_CAPACITY_EVENT",
       "mutations": {
         "target_edge": [
@@ -1507,7 +1640,7 @@
       "action_narrative": "Kapasitas E08 Jl. Haji Hasan (penghubung antarsisi taman) (5 -> 4) berubah dari 1.366,2 jadi 1.032,2 skr/jam. 06.15 E08 Jl. Haji Hasan (penghubung antarsisi taman): Penghubung di tengah area pasar, hambatan samping sangat tinggi."
     },
     {
-      "step": 22,
+      "step": 24,
       "event_type": "FLOW_KEPT",
       "mutations": {
         "target_edge": [
@@ -1519,7 +1652,7 @@
       "action_narrative": "Aliran lama di E08 Jl. Haji Hasan (penghubung antarsisi taman) (5 -> 4) masih muat di kapasitas baru, jadi aliran 5.055,1 skr/jam dipertahankan dan hanya dicari tambahan."
     },
     {
-      "step": 23,
+      "step": 25,
       "event_type": "MIN_CUT_FOUND",
       "mutations": {
         "max_flow": 5055.1,
@@ -1543,7 +1676,8 @@
           5,
           6,
           14,
-          15
+          15,
+          16
         ],
         "edge_flows": [
           [
@@ -1554,11 +1688,16 @@
           [
             0,
             2,
-            4324.3
+            3009.6
+          ],
+          [
+            0,
+            16,
+            1314.7
           ],
           [
             1,
-            2,
+            16,
             0.0
           ],
           [
@@ -1613,7 +1752,7 @@
           ],
           [
             9,
-            16,
+            17,
             2882.9
           ],
           [
@@ -1633,12 +1772,12 @@
           ],
           [
             12,
-            16,
+            17,
             0.0
           ],
           [
             13,
-            16,
+            17,
             2172.2
           ],
           [
@@ -1655,13 +1794,18 @@
             15,
             6,
             730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
           ]
         ]
       },
       "action_narrative": "Tidak ada lagi augmenting path. Max flow = 5.055,1 skr/jam. Min cut berisi E12 Jl. Surapati sisi utara Gasibu (3 -> 8), E09 Jl. Japati (sisi utara Telkom) (6 -> 7) dengan total kapasitas 5.055,1 skr/jam, sama dengan max flow."
     },
     {
-      "step": 24,
+      "step": 26,
       "event_type": "UPDATE_CAPACITY_EVENT",
       "mutations": {
         "target_edge": [
@@ -1674,7 +1818,7 @@
       "action_narrative": "Kapasitas E07 Jl. Wirayuda Timur depan Telkom (portal saat pasar) (6 -> 5) berubah dari 2.732,4 jadi 0,0 skr/jam. 06.30 E07 Jl. Wirayuda Timur depan Telkom (portal saat pasar): Portal ditutup di depan Telkom selama pasar berlangsung."
     },
     {
-      "step": 25,
+      "step": 27,
       "event_type": "FLOW_KEPT",
       "mutations": {
         "target_edge": [
@@ -1686,7 +1830,7 @@
       "action_narrative": "Aliran lama di E07 Jl. Wirayuda Timur depan Telkom (portal saat pasar) (6 -> 5) masih muat di kapasitas baru, jadi aliran 5.055,1 skr/jam dipertahankan dan hanya dicari tambahan."
     },
     {
-      "step": 26,
+      "step": 28,
       "event_type": "MIN_CUT_FOUND",
       "mutations": {
         "max_flow": 5055.1,
@@ -1713,7 +1857,8 @@
           4,
           6,
           14,
-          15
+          15,
+          16
         ],
         "edge_flows": [
           [
@@ -1724,11 +1869,16 @@
           [
             0,
             2,
-            4324.3
+            3009.6
+          ],
+          [
+            0,
+            16,
+            1314.7
           ],
           [
             1,
-            2,
+            16,
             0.0
           ],
           [
@@ -1783,7 +1933,7 @@
           ],
           [
             9,
-            16,
+            17,
             2882.9
           ],
           [
@@ -1803,12 +1953,12 @@
           ],
           [
             12,
-            16,
+            17,
             0.0
           ],
           [
             13,
-            16,
+            17,
             2172.2
           ],
           [
@@ -1825,13 +1975,18 @@
             15,
             6,
             730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
           ]
         ]
       },
       "action_narrative": "Tidak ada lagi augmenting path. Max flow = 5.055,1 skr/jam. Min cut berisi E12 Jl. Surapati sisi utara Gasibu (3 -> 8), E09 Jl. Japati (sisi utara Telkom) (6 -> 7) dengan total kapasitas 5.055,1 skr/jam, sama dengan max flow."
     },
     {
-      "step": 27,
+      "step": 29,
       "event_type": "UPDATE_CAPACITY_EVENT",
       "mutations": {
         "target_edge": [
@@ -1844,7 +1999,7 @@
       "action_narrative": "Kapasitas E11 Jl. Surapati (turunan flyover - Wirayuda Barat) (2 -> 3) berubah dari 4.324,3 jadi 4.086,7 skr/jam. 07.00 E11 Jl. Surapati (turunan flyover - Wirayuda Barat): Parkir motor di bahu jalan dekat lampu lalu lintas, hambatan samping tinggi."
     },
     {
-      "step": 28,
+      "step": 30,
       "event_type": "FLOW_REPAIRED",
       "mutations": {
         "target_edge": [
@@ -1857,14 +2012,15 @@
       "action_narrative": "Aliran lama di E11 Jl. Surapati (turunan flyover - Wirayuda Barat) (2 -> 3) melebihi kapasitas baru sebesar 237,6 skr/jam, jadi kelebihannya dikembalikan. Total aliran sementara turun dari 5.055,1 jadi 4.817,5 skr/jam, lalu dicari jalur pengganti."
     },
     {
-      "step": 29,
+      "step": 31,
       "event_type": "LEVEL_GRAPH_BUILT",
       "mutations": {
-        "phase": 4,
+        "phase": 5,
         "level": {
           "0": 0,
           "1": 1,
           "2": 1,
+          "16": 1,
           "14": 2,
           "4": 3,
           "15": 3,
@@ -1873,17 +2029,17 @@
           "8": 5,
           "9": 6,
           "10": 6,
-          "16": 7,
+          "17": 7,
           "7": 7,
           "13": 7,
           "11": 7,
           "12": 8
         }
       },
-      "action_narrative": "Fase Dinic ke-4: level graph dibangun dengan BFS, tujuan ada di level 7."
+      "action_narrative": "Fase Dinic ke-5: level graph dibangun dengan BFS, tujuan ada di level 7."
     },
     {
-      "step": 30,
+      "step": 32,
       "event_type": "AUGMENTING_PATH_FOUND",
       "mutations": {
         "path": [
@@ -1894,7 +2050,7 @@
           3,
           8,
           9,
-          16
+          17
         ],
         "flow_added": 237.60000000000036,
         "current_max_flow": 5055.1,
@@ -1903,12 +2059,12 @@
           8
         ],
         "fase": "perbaikan",
-        "dinic_phase": 4
+        "dinic_phase": 5
       },
-      "action_narrative": "Fase Dinic ke-4, jalur 0 -> 1 -> 14 -> 4 -> 3 -> 8 -> 9 -> 16. Busur kritis E12 Jl. Surapati sisi utara Gasibu (3 -> 8) menahan aliran tambahan 237,6 skr/jam, total aliran naik dari 4.817,5 jadi 5.055,1 skr/jam."
+      "action_narrative": "Fase Dinic ke-5, jalur 0 -> 1 -> 14 -> 4 -> 3 -> 8 -> 9 -> 17. Edge kritis E12 Jl. Surapati sisi utara Gasibu (3 -> 8) menahan aliran tambahan 237,6 skr/jam, total aliran naik dari 4.817,5 jadi 5.055,1 skr/jam."
     },
     {
-      "step": 31,
+      "step": 33,
       "event_type": "MIN_CUT_FOUND",
       "mutations": {
         "max_flow": 5055.1,
@@ -1935,7 +2091,8 @@
           4,
           6,
           14,
-          15
+          15,
+          16
         ],
         "edge_flows": [
           [
@@ -1946,11 +2103,16 @@
           [
             0,
             2,
-            4086.7
+            2772.0
+          ],
+          [
+            0,
+            16,
+            1314.7
           ],
           [
             1,
-            2,
+            16,
             0.0
           ],
           [
@@ -2005,7 +2167,7 @@
           ],
           [
             9,
-            16,
+            17,
             2882.9
           ],
           [
@@ -2025,12 +2187,12 @@
           ],
           [
             12,
-            16,
+            17,
             0.0
           ],
           [
             13,
-            16,
+            17,
             2172.2
           ],
           [
@@ -2047,13 +2209,18 @@
             15,
             6,
             730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
           ]
         ]
       },
       "action_narrative": "Tidak ada lagi augmenting path. Max flow = 5.055,1 skr/jam. Min cut berisi E12 Jl. Surapati sisi utara Gasibu (3 -> 8), E09 Jl. Japati (sisi utara Telkom) (6 -> 7) dengan total kapasitas 5.055,1 skr/jam, sama dengan max flow."
     },
     {
-      "step": 32,
+      "step": 34,
       "event_type": "UPDATE_CAPACITY_EVENT",
       "mutations": {
         "target_edge": [
@@ -2066,7 +2233,7 @@
       "action_narrative": "Kapasitas E12 Jl. Surapati sisi utara Gasibu (3 -> 8) berubah dari 4.324,3 jadi 2.566,1 skr/jam. 07.00 E12 Jl. Surapati sisi utara Gasibu: Lajur kiri dipakai parkir dan titik keluar masuk parkir, pengunjung menyeberang dari taman ke Gasibu."
     },
     {
-      "step": 33,
+      "step": 35,
       "event_type": "FLOW_REPAIRED",
       "mutations": {
         "target_edge": [
@@ -2079,7 +2246,7 @@
       "action_narrative": "Aliran lama di E12 Jl. Surapati sisi utara Gasibu (3 -> 8) melebihi kapasitas baru sebesar 1.758,2 skr/jam, jadi kelebihannya dikembalikan. Total aliran sementara turun dari 5.055,1 jadi 3.296,9 skr/jam, lalu dicari jalur pengganti."
     },
     {
-      "step": 34,
+      "step": 36,
       "event_type": "MIN_CUT_FOUND",
       "mutations": {
         "max_flow": 3296.9,
@@ -2106,7 +2273,8 @@
           4,
           6,
           14,
-          15
+          15,
+          16
         ],
         "edge_flows": [
           [
@@ -2117,11 +2285,16 @@
           [
             0,
             2,
-            2328.5
+            1013.8
+          ],
+          [
+            0,
+            16,
+            1314.7
           ],
           [
             1,
-            2,
+            16,
             0.0
           ],
           [
@@ -2176,7 +2349,7 @@
           ],
           [
             9,
-            16,
+            17,
             1124.7
           ],
           [
@@ -2196,12 +2369,12 @@
           ],
           [
             12,
-            16,
+            17,
             0.0
           ],
           [
             13,
-            16,
+            17,
             2172.2
           ],
           [
@@ -2218,13 +2391,18 @@
             15,
             6,
             730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
           ]
         ]
       },
       "action_narrative": "Tidak ada lagi augmenting path. Max flow = 3.296,9 skr/jam. Min cut berisi E12 Jl. Surapati sisi utara Gasibu (3 -> 8), E09 Jl. Japati (sisi utara Telkom) (6 -> 7) dengan total kapasitas 3.296,9 skr/jam, sama dengan max flow."
     },
     {
-      "step": 35,
+      "step": 37,
       "event_type": "UPDATE_CAPACITY_EVENT",
       "mutations": {
         "target_edge": [
@@ -2237,7 +2415,7 @@
       "action_narrative": "Kapasitas E13 Jl. Surapati depan Telkom (8 -> 9) berubah dari 2.882,9 jadi 1.283,0 skr/jam. 07.15 E13 Jl. Surapati depan Telkom: Pedagang dan parkir mengambil badan jalan depan Telkom, tersisa satu lajur."
     },
     {
-      "step": 36,
+      "step": 38,
       "event_type": "FLOW_KEPT",
       "mutations": {
         "target_edge": [
@@ -2249,7 +2427,7 @@
       "action_narrative": "Aliran lama di E13 Jl. Surapati depan Telkom (8 -> 9) masih muat di kapasitas baru, jadi aliran 3.296,9 skr/jam dipertahankan dan hanya dicari tambahan."
     },
     {
-      "step": 37,
+      "step": 39,
       "event_type": "MIN_CUT_FOUND",
       "mutations": {
         "max_flow": 3296.9,
@@ -2276,7 +2454,8 @@
           4,
           6,
           14,
-          15
+          15,
+          16
         ],
         "edge_flows": [
           [
@@ -2287,11 +2466,16 @@
           [
             0,
             2,
-            2328.5
+            1013.8
+          ],
+          [
+            0,
+            16,
+            1314.7
           ],
           [
             1,
-            2,
+            16,
             0.0
           ],
           [
@@ -2346,7 +2530,7 @@
           ],
           [
             9,
-            16,
+            17,
             1124.7
           ],
           [
@@ -2366,12 +2550,12 @@
           ],
           [
             12,
-            16,
+            17,
             0.0
           ],
           [
             13,
-            16,
+            17,
             2172.2
           ],
           [
@@ -2388,13 +2572,18 @@
             15,
             6,
             730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
           ]
         ]
       },
       "action_narrative": "Tidak ada lagi augmenting path. Max flow = 3.296,9 skr/jam. Min cut berisi E12 Jl. Surapati sisi utara Gasibu (3 -> 8), E09 Jl. Japati (sisi utara Telkom) (6 -> 7) dengan total kapasitas 3.296,9 skr/jam, sama dengan max flow."
     },
     {
-      "step": 38,
+      "step": 40,
       "event_type": "UPDATE_CAPACITY_EVENT",
       "mutations": {
         "target_edge": [
@@ -2407,7 +2596,7 @@
       "action_narrative": "Kapasitas E16 Jl. Surapati jalur lambat sisi Gasibu (10 -> 11) berubah dari 1.305,5 jadi 1.032,2 skr/jam. 07.15 E16 Jl. Surapati jalur lambat sisi Gasibu: Titik keluar masuk parkir Surapati menyatu dengan jalur lambat."
     },
     {
-      "step": 39,
+      "step": 41,
       "event_type": "FLOW_KEPT",
       "mutations": {
         "target_edge": [
@@ -2419,7 +2608,7 @@
       "action_narrative": "Aliran lama di E16 Jl. Surapati jalur lambat sisi Gasibu (10 -> 11) masih muat di kapasitas baru, jadi aliran 3.296,9 skr/jam dipertahankan dan hanya dicari tambahan."
     },
     {
-      "step": 40,
+      "step": 42,
       "event_type": "MIN_CUT_FOUND",
       "mutations": {
         "max_flow": 3296.9,
@@ -2446,7 +2635,8 @@
           4,
           6,
           14,
-          15
+          15,
+          16
         ],
         "edge_flows": [
           [
@@ -2457,11 +2647,16 @@
           [
             0,
             2,
-            2328.5
+            1013.8
+          ],
+          [
+            0,
+            16,
+            1314.7
           ],
           [
             1,
-            2,
+            16,
             0.0
           ],
           [
@@ -2516,7 +2711,7 @@
           ],
           [
             9,
-            16,
+            17,
             1124.7
           ],
           [
@@ -2536,12 +2731,12 @@
           ],
           [
             12,
-            16,
+            17,
             0.0
           ],
           [
             13,
-            16,
+            17,
             2172.2
           ],
           [
@@ -2558,13 +2753,18 @@
             15,
             6,
             730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
           ]
         ]
       },
       "action_narrative": "Tidak ada lagi augmenting path. Max flow = 3.296,9 skr/jam. Min cut berisi E12 Jl. Surapati sisi utara Gasibu (3 -> 8), E09 Jl. Japati (sisi utara Telkom) (6 -> 7) dengan total kapasitas 3.296,9 skr/jam, sama dengan max flow."
     },
     {
-      "step": 41,
+      "step": 43,
       "event_type": "UPDATE_CAPACITY_EVENT",
       "mutations": {
         "target_edge": [
@@ -2577,7 +2777,7 @@
       "action_narrative": "Kapasitas E01 Jl. Dipatiukur (masuk dari arah Monumen Perjuangan) (0 -> 1) berubah dari 1.247,0 jadi 1.131,0 skr/jam. 07.30 E01 Jl. Dipatiukur (masuk dari arah Monumen Perjuangan): Pengunjung Monju dan parkir di Jl. Dipatiukur, hambatan samping naik ke tinggi."
     },
     {
-      "step": 42,
+      "step": 44,
       "event_type": "FLOW_KEPT",
       "mutations": {
         "target_edge": [
@@ -2589,7 +2789,7 @@
       "action_narrative": "Aliran lama di E01 Jl. Dipatiukur (masuk dari arah Monumen Perjuangan) (0 -> 1) masih muat di kapasitas baru, jadi aliran 3.296,9 skr/jam dipertahankan dan hanya dicari tambahan."
     },
     {
-      "step": 43,
+      "step": 45,
       "event_type": "MIN_CUT_FOUND",
       "mutations": {
         "max_flow": 3296.9,
@@ -2616,7 +2816,8 @@
           4,
           6,
           14,
-          15
+          15,
+          16
         ],
         "edge_flows": [
           [
@@ -2627,11 +2828,16 @@
           [
             0,
             2,
-            2328.5
+            1013.8
+          ],
+          [
+            0,
+            16,
+            1314.7
           ],
           [
             1,
-            2,
+            16,
             0.0
           ],
           [
@@ -2686,7 +2892,7 @@
           ],
           [
             9,
-            16,
+            17,
             1124.7
           ],
           [
@@ -2706,12 +2912,12 @@
           ],
           [
             12,
-            16,
+            17,
             0.0
           ],
           [
             13,
-            16,
+            17,
             2172.2
           ],
           [
@@ -2728,13 +2934,18 @@
             15,
             6,
             730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
           ]
         ]
       },
       "action_narrative": "Tidak ada lagi augmenting path. Max flow = 3.296,9 skr/jam. Min cut berisi E12 Jl. Surapati sisi utara Gasibu (3 -> 8), E09 Jl. Japati (sisi utara Telkom) (6 -> 7) dengan total kapasitas 3.296,9 skr/jam, sama dengan max flow."
     },
     {
-      "step": 44,
+      "step": 46,
       "event_type": "UPDATE_CAPACITY_EVENT",
       "mutations": {
         "target_edge": [
@@ -2747,7 +2958,7 @@
       "action_narrative": "Kapasitas E21 Jl. Singaperbangsa (dari Dipatiukur ke koridor taman) (1 -> 14) berubah dari 1.135,4 jadi 984,0 skr/jam. 07.30 E21 Jl. Singaperbangsa (dari Dipatiukur ke koridor taman): Pengunjung parkir dan berjalan di Jl. Singaperbangsa menuju area pasar, hambatan samping tinggi."
     },
     {
-      "step": 45,
+      "step": 47,
       "event_type": "FLOW_KEPT",
       "mutations": {
         "target_edge": [
@@ -2759,7 +2970,7 @@
       "action_narrative": "Aliran lama di E21 Jl. Singaperbangsa (dari Dipatiukur ke koridor taman) (1 -> 14) masih muat di kapasitas baru, jadi aliran 3.296,9 skr/jam dipertahankan dan hanya dicari tambahan."
     },
     {
-      "step": 46,
+      "step": 48,
       "event_type": "MIN_CUT_FOUND",
       "mutations": {
         "max_flow": 3296.9,
@@ -2786,7 +2997,8 @@
           4,
           6,
           14,
-          15
+          15,
+          16
         ],
         "edge_flows": [
           [
@@ -2797,11 +3009,16 @@
           [
             0,
             2,
-            2328.5
+            1013.8
+          ],
+          [
+            0,
+            16,
+            1314.7
           ],
           [
             1,
-            2,
+            16,
             0.0
           ],
           [
@@ -2856,7 +3073,7 @@
           ],
           [
             9,
-            16,
+            17,
             1124.7
           ],
           [
@@ -2876,12 +3093,12 @@
           ],
           [
             12,
-            16,
+            17,
             0.0
           ],
           [
             13,
-            16,
+            17,
             2172.2
           ],
           [
@@ -2898,13 +3115,18 @@
             15,
             6,
             730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
           ]
         ]
       },
       "action_narrative": "Tidak ada lagi augmenting path. Max flow = 3.296,9 skr/jam. Min cut berisi E12 Jl. Surapati sisi utara Gasibu (3 -> 8), E09 Jl. Japati (sisi utara Telkom) (6 -> 7) dengan total kapasitas 3.296,9 skr/jam, sama dengan max flow."
     },
     {
-      "step": 47,
+      "step": 49,
       "event_type": "UPDATE_CAPACITY_EVENT",
       "mutations": {
         "target_edge": [
@@ -2917,7 +3139,7 @@
       "action_narrative": "Kapasitas E14 Belokan Surapati ke Jl. Sentot Alibasyah (8 -> 10) berubah dari 2.882,9 jadi 2.724,5 skr/jam. 07.30 E14 Belokan Surapati ke Jl. Sentot Alibasyah: Kendaraan berhenti menurunkan pengunjung di dekat simpang."
     },
     {
-      "step": 48,
+      "step": 50,
       "event_type": "FLOW_KEPT",
       "mutations": {
         "target_edge": [
@@ -2929,7 +3151,7 @@
       "action_narrative": "Aliran lama di E14 Belokan Surapati ke Jl. Sentot Alibasyah (8 -> 10) masih muat di kapasitas baru, jadi aliran 3.296,9 skr/jam dipertahankan dan hanya dicari tambahan."
     },
     {
-      "step": 49,
+      "step": 51,
       "event_type": "MIN_CUT_FOUND",
       "mutations": {
         "max_flow": 3296.9,
@@ -2956,7 +3178,8 @@
           4,
           6,
           14,
-          15
+          15,
+          16
         ],
         "edge_flows": [
           [
@@ -2967,11 +3190,16 @@
           [
             0,
             2,
-            2328.5
+            1013.8
+          ],
+          [
+            0,
+            16,
+            1314.7
           ],
           [
             1,
-            2,
+            16,
             0.0
           ],
           [
@@ -3026,7 +3254,7 @@
           ],
           [
             9,
-            16,
+            17,
             1124.7
           ],
           [
@@ -3046,12 +3274,12 @@
           ],
           [
             12,
-            16,
+            17,
             0.0
           ],
           [
             13,
-            16,
+            17,
             2172.2
           ],
           [
@@ -3068,13 +3296,18 @@
             15,
             6,
             730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
           ]
         ]
       },
       "action_narrative": "Tidak ada lagi augmenting path. Max flow = 3.296,9 skr/jam. Min cut berisi E12 Jl. Surapati sisi utara Gasibu (3 -> 8), E09 Jl. Japati (sisi utara Telkom) (6 -> 7) dengan total kapasitas 3.296,9 skr/jam, sama dengan max flow."
     },
     {
-      "step": 50,
+      "step": 52,
       "event_type": "UPDATE_CAPACITY_EVENT",
       "mutations": {
         "target_edge": [
@@ -3087,7 +3320,7 @@
       "action_narrative": "Kapasitas E15 Jl. Sentot Alibasyah (sisi timur Gasibu) (10 -> 13) berubah dari 2.882,9 jadi 2.724,5 skr/jam. 07.30 E15 Jl. Sentot Alibasyah (sisi timur Gasibu): Parkir dan pejalan kaki di sisi Gasibu."
     },
     {
-      "step": 51,
+      "step": 53,
       "event_type": "FLOW_KEPT",
       "mutations": {
         "target_edge": [
@@ -3099,7 +3332,7 @@
       "action_narrative": "Aliran lama di E15 Jl. Sentot Alibasyah (sisi timur Gasibu) (10 -> 13) masih muat di kapasitas baru, jadi aliran 3.296,9 skr/jam dipertahankan dan hanya dicari tambahan."
     },
     {
-      "step": 52,
+      "step": 54,
       "event_type": "MIN_CUT_FOUND",
       "mutations": {
         "max_flow": 3296.9,
@@ -3126,7 +3359,8 @@
           4,
           6,
           14,
-          15
+          15,
+          16
         ],
         "edge_flows": [
           [
@@ -3137,11 +3371,16 @@
           [
             0,
             2,
-            2328.5
+            1013.8
+          ],
+          [
+            0,
+            16,
+            1314.7
           ],
           [
             1,
-            2,
+            16,
             0.0
           ],
           [
@@ -3196,7 +3435,7 @@
           ],
           [
             9,
-            16,
+            17,
             1124.7
           ],
           [
@@ -3216,12 +3455,12 @@
           ],
           [
             12,
-            16,
+            17,
             0.0
           ],
           [
             13,
-            16,
+            17,
             2172.2
           ],
           [
@@ -3238,13 +3477,18 @@
             15,
             6,
             730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
           ]
         ]
       },
       "action_narrative": "Tidak ada lagi augmenting path. Max flow = 3.296,9 skr/jam. Min cut berisi E12 Jl. Surapati sisi utara Gasibu (3 -> 8), E09 Jl. Japati (sisi utara Telkom) (6 -> 7) dengan total kapasitas 3.296,9 skr/jam, sama dengan max flow."
     },
     {
-      "step": 53,
+      "step": 55,
       "event_type": "UPDATE_CAPACITY_EVENT",
       "mutations": {
         "target_edge": [
@@ -3257,7 +3501,7 @@
       "action_narrative": "Kapasitas E17 Jl. Majapahit (sisi barat Gasibu) (11 -> 12) berubah dari 2.882,9 jadi 2.724,5 skr/jam. 07.30 E17 Jl. Majapahit (sisi barat Gasibu): Parkir dan pejalan kaki di sisi Gasibu."
     },
     {
-      "step": 54,
+      "step": 56,
       "event_type": "FLOW_KEPT",
       "mutations": {
         "target_edge": [
@@ -3269,7 +3513,7 @@
       "action_narrative": "Aliran lama di E17 Jl. Majapahit (sisi barat Gasibu) (11 -> 12) masih muat di kapasitas baru, jadi aliran 3.296,9 skr/jam dipertahankan dan hanya dicari tambahan."
     },
     {
-      "step": 55,
+      "step": 57,
       "event_type": "MIN_CUT_FOUND",
       "mutations": {
         "max_flow": 3296.9,
@@ -3296,7 +3540,8 @@
           4,
           6,
           14,
-          15
+          15,
+          16
         ],
         "edge_flows": [
           [
@@ -3307,11 +3552,16 @@
           [
             0,
             2,
-            2328.5
+            1013.8
+          ],
+          [
+            0,
+            16,
+            1314.7
           ],
           [
             1,
-            2,
+            16,
             0.0
           ],
           [
@@ -3366,7 +3616,7 @@
           ],
           [
             9,
-            16,
+            17,
             1124.7
           ],
           [
@@ -3386,12 +3636,12 @@
           ],
           [
             12,
-            16,
+            17,
             0.0
           ],
           [
             13,
-            16,
+            17,
             2172.2
           ],
           [
@@ -3408,208 +3658,43 @@
             15,
             6,
             730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
           ]
         ]
       },
       "action_narrative": "Tidak ada lagi augmenting path. Max flow = 3.296,9 skr/jam. Min cut berisi E12 Jl. Surapati sisi utara Gasibu (3 -> 8), E09 Jl. Japati (sisi utara Telkom) (6 -> 7) dengan total kapasitas 3.296,9 skr/jam, sama dengan max flow."
-    },
-    {
-      "step": 56,
-      "event_type": "UPDATE_CAPACITY_EVENT",
-      "mutations": {
-        "target_edge": [
-          13,
-          16
-        ],
-        "old_capacity": 2882.9,
-        "new_capacity": 2724.5
-      },
-      "action_narrative": "Kapasitas E19 Jl. Diponegoro arah timur dan Jl. Cisangkuy (13 -> 16) berubah dari 2.882,9 jadi 2.724,5 skr/jam. 07.30 E19 Jl. Diponegoro arah timur dan Jl. Cisangkuy: Pejalan kaki dan kendaraan keluar kawasan."
-    },
-    {
-      "step": 57,
-      "event_type": "FLOW_KEPT",
-      "mutations": {
-        "target_edge": [
-          13,
-          16
-        ],
-        "current_max_flow": 3296.9
-      },
-      "action_narrative": "Aliran lama di E19 Jl. Diponegoro arah timur dan Jl. Cisangkuy (13 -> 16) masih muat di kapasitas baru, jadi aliran 3.296,9 skr/jam dipertahankan dan hanya dicari tambahan."
     },
     {
       "step": 58,
-      "event_type": "MIN_CUT_FOUND",
-      "mutations": {
-        "max_flow": 3296.9,
-        "min_cut_edges": [
-          [
-            3,
-            8
-          ],
-          [
-            6,
-            5
-          ],
-          [
-            6,
-            7
-          ]
-        ],
-        "min_cut_capacity": 3296.8999999999996,
-        "source_side": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          6,
-          14,
-          15
-        ],
-        "edge_flows": [
-          [
-            0,
-            1,
-            968.4
-          ],
-          [
-            0,
-            2,
-            2328.5
-          ],
-          [
-            1,
-            2,
-            0.0
-          ],
-          [
-            1,
-            14,
-            968.4
-          ],
-          [
-            2,
-            3,
-            2328.5
-          ],
-          [
-            3,
-            8,
-            2566.1
-          ],
-          [
-            4,
-            3,
-            237.6
-          ],
-          [
-            5,
-            4,
-            0.0
-          ],
-          [
-            6,
-            5,
-            0.0
-          ],
-          [
-            6,
-            7,
-            730.8
-          ],
-          [
-            7,
-            9,
-            730.8
-          ],
-          [
-            8,
-            9,
-            393.9
-          ],
-          [
-            8,
-            10,
-            2172.2
-          ],
-          [
-            9,
-            16,
-            1124.7
-          ],
-          [
-            10,
-            13,
-            2172.2
-          ],
-          [
-            10,
-            11,
-            0.0
-          ],
-          [
-            11,
-            12,
-            0.0
-          ],
-          [
-            12,
-            16,
-            0.0
-          ],
-          [
-            13,
-            16,
-            2172.2
-          ],
-          [
-            14,
-            4,
-            237.6
-          ],
-          [
-            14,
-            15,
-            730.8
-          ],
-          [
-            15,
-            6,
-            730.8
-          ]
-        ]
-      },
-      "action_narrative": "Tidak ada lagi augmenting path. Max flow = 3.296,9 skr/jam. Min cut berisi E12 Jl. Surapati sisi utara Gasibu (3 -> 8), E09 Jl. Japati (sisi utara Telkom) (6 -> 7) dengan total kapasitas 3.296,9 skr/jam, sama dengan max flow."
-    },
-    {
-      "step": 59,
       "event_type": "UPDATE_CAPACITY_EVENT",
       "mutations": {
         "target_edge": [
-          12,
-          16
+          13,
+          17
         ],
         "old_capacity": 2882.9,
         "new_capacity": 2724.5
       },
-      "action_narrative": "Kapasitas E20 Jl. Diponegoro arah barat (Cilamaya - Sulanjana) (12 -> 16) berubah dari 2.882,9 jadi 2.724,5 skr/jam. 07.30 E20 Jl. Diponegoro arah barat (Cilamaya - Sulanjana): Pejalan kaki dan kendaraan keluar kawasan."
+      "action_narrative": "Kapasitas E19 Jl. Diponegoro arah timur dan Jl. Cisangkuy (13 -> 17) berubah dari 2.882,9 jadi 2.724,5 skr/jam. 07.30 E19 Jl. Diponegoro arah timur dan Jl. Cisangkuy: Pejalan kaki dan kendaraan keluar kawasan."
     },
     {
-      "step": 60,
+      "step": 59,
       "event_type": "FLOW_KEPT",
       "mutations": {
         "target_edge": [
-          12,
-          16
+          13,
+          17
         ],
         "current_max_flow": 3296.9
       },
-      "action_narrative": "Aliran lama di E20 Jl. Diponegoro arah barat (Cilamaya - Sulanjana) (12 -> 16) masih muat di kapasitas baru, jadi aliran 3.296,9 skr/jam dipertahankan dan hanya dicari tambahan."
+      "action_narrative": "Aliran lama di E19 Jl. Diponegoro arah timur dan Jl. Cisangkuy (13 -> 17) masih muat di kapasitas baru, jadi aliran 3.296,9 skr/jam dipertahankan dan hanya dicari tambahan."
     },
     {
-      "step": 61,
+      "step": 60,
       "event_type": "MIN_CUT_FOUND",
       "mutations": {
         "max_flow": 3296.9,
@@ -3636,7 +3721,8 @@
           4,
           6,
           14,
-          15
+          15,
+          16
         ],
         "edge_flows": [
           [
@@ -3647,11 +3733,16 @@
           [
             0,
             2,
-            2328.5
+            1013.8
+          ],
+          [
+            0,
+            16,
+            1314.7
           ],
           [
             1,
-            2,
+            16,
             0.0
           ],
           [
@@ -3706,7 +3797,7 @@
           ],
           [
             9,
-            16,
+            17,
             1124.7
           ],
           [
@@ -3726,12 +3817,12 @@
           ],
           [
             12,
-            16,
+            17,
             0.0
           ],
           [
             13,
-            16,
+            17,
             2172.2
           ],
           [
@@ -3748,13 +3839,199 @@
             15,
             6,
             730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
           ]
         ]
       },
       "action_narrative": "Tidak ada lagi augmenting path. Max flow = 3.296,9 skr/jam. Min cut berisi E12 Jl. Surapati sisi utara Gasibu (3 -> 8), E09 Jl. Japati (sisi utara Telkom) (6 -> 7) dengan total kapasitas 3.296,9 skr/jam, sama dengan max flow."
     },
     {
+      "step": 61,
+      "event_type": "UPDATE_CAPACITY_EVENT",
+      "mutations": {
+        "target_edge": [
+          12,
+          17
+        ],
+        "old_capacity": 2882.9,
+        "new_capacity": 2724.5
+      },
+      "action_narrative": "Kapasitas E20 Jl. Diponegoro arah barat (Cilamaya - Sulanjana) (12 -> 17) berubah dari 2.882,9 jadi 2.724,5 skr/jam. 07.30 E20 Jl. Diponegoro arah barat (Cilamaya - Sulanjana): Pejalan kaki dan kendaraan keluar kawasan."
+    },
+    {
       "step": 62,
+      "event_type": "FLOW_KEPT",
+      "mutations": {
+        "target_edge": [
+          12,
+          17
+        ],
+        "current_max_flow": 3296.9
+      },
+      "action_narrative": "Aliran lama di E20 Jl. Diponegoro arah barat (Cilamaya - Sulanjana) (12 -> 17) masih muat di kapasitas baru, jadi aliran 3.296,9 skr/jam dipertahankan dan hanya dicari tambahan."
+    },
+    {
+      "step": 63,
+      "event_type": "MIN_CUT_FOUND",
+      "mutations": {
+        "max_flow": 3296.9,
+        "min_cut_edges": [
+          [
+            3,
+            8
+          ],
+          [
+            6,
+            5
+          ],
+          [
+            6,
+            7
+          ]
+        ],
+        "min_cut_capacity": 3296.8999999999996,
+        "source_side": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          6,
+          14,
+          15,
+          16
+        ],
+        "edge_flows": [
+          [
+            0,
+            1,
+            968.4
+          ],
+          [
+            0,
+            2,
+            1013.8
+          ],
+          [
+            0,
+            16,
+            1314.7
+          ],
+          [
+            1,
+            16,
+            0.0
+          ],
+          [
+            1,
+            14,
+            968.4
+          ],
+          [
+            2,
+            3,
+            2328.5
+          ],
+          [
+            3,
+            8,
+            2566.1
+          ],
+          [
+            4,
+            3,
+            237.6
+          ],
+          [
+            5,
+            4,
+            0.0
+          ],
+          [
+            6,
+            5,
+            0.0
+          ],
+          [
+            6,
+            7,
+            730.8
+          ],
+          [
+            7,
+            9,
+            730.8
+          ],
+          [
+            8,
+            9,
+            393.9
+          ],
+          [
+            8,
+            10,
+            2172.2
+          ],
+          [
+            9,
+            17,
+            1124.7
+          ],
+          [
+            10,
+            13,
+            2172.2
+          ],
+          [
+            10,
+            11,
+            0.0
+          ],
+          [
+            11,
+            12,
+            0.0
+          ],
+          [
+            12,
+            17,
+            0.0
+          ],
+          [
+            13,
+            17,
+            2172.2
+          ],
+          [
+            14,
+            4,
+            237.6
+          ],
+          [
+            14,
+            15,
+            730.8
+          ],
+          [
+            15,
+            6,
+            730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
+          ]
+        ]
+      },
+      "action_narrative": "Tidak ada lagi augmenting path. Max flow = 3.296,9 skr/jam. Min cut berisi E12 Jl. Surapati sisi utara Gasibu (3 -> 8), E09 Jl. Japati (sisi utara Telkom) (6 -> 7) dengan total kapasitas 3.296,9 skr/jam, sama dengan max flow."
+    },
+    {
+      "step": 64,
       "event_type": "UPDATE_CAPACITY_EVENT",
       "mutations": {
         "target_edge": [
@@ -3767,7 +4044,7 @@
       "action_narrative": "Kapasitas E04 Jl. Wirayuda Barat (sisi barat taman) (14 -> 4) berubah dari 1.032,2 jadi 2.732,4 skr/jam. 11.00 E04 Jl. Wirayuda Barat (sisi barat taman): Pasar bubar, lapak dibongkar, kapasitas kembali normal."
     },
     {
-      "step": 63,
+      "step": 65,
       "event_type": "FLOW_KEPT",
       "mutations": {
         "target_edge": [
@@ -3779,7 +4056,7 @@
       "action_narrative": "Aliran lama di E04 Jl. Wirayuda Barat (sisi barat taman) (14 -> 4) masih muat di kapasitas baru, jadi aliran 3.296,9 skr/jam dipertahankan dan hanya dicari tambahan."
     },
     {
-      "step": 64,
+      "step": 66,
       "event_type": "MIN_CUT_FOUND",
       "mutations": {
         "max_flow": 3296.9,
@@ -3806,7 +4083,8 @@
           4,
           6,
           14,
-          15
+          15,
+          16
         ],
         "edge_flows": [
           [
@@ -3817,11 +4095,16 @@
           [
             0,
             2,
-            2328.5
+            1013.8
+          ],
+          [
+            0,
+            16,
+            1314.7
           ],
           [
             1,
-            2,
+            16,
             0.0
           ],
           [
@@ -3876,7 +4159,7 @@
           ],
           [
             9,
-            16,
+            17,
             1124.7
           ],
           [
@@ -3896,12 +4179,12 @@
           ],
           [
             12,
-            16,
+            17,
             0.0
           ],
           [
             13,
-            16,
+            17,
             2172.2
           ],
           [
@@ -3918,13 +4201,18 @@
             15,
             6,
             730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
           ]
         ]
       },
       "action_narrative": "Tidak ada lagi augmenting path. Max flow = 3.296,9 skr/jam. Min cut berisi E12 Jl. Surapati sisi utara Gasibu (3 -> 8), E09 Jl. Japati (sisi utara Telkom) (6 -> 7) dengan total kapasitas 3.296,9 skr/jam, sama dengan max flow."
     },
     {
-      "step": 65,
+      "step": 67,
       "event_type": "UPDATE_CAPACITY_EVENT",
       "mutations": {
         "target_edge": [
@@ -3937,7 +4225,7 @@
       "action_narrative": "Kapasitas E05 Jl. Wirayuda Barat (ujung selatan) (4 -> 3) berubah dari 1.032,2 jadi 2.732,4 skr/jam. 11.00 E05 Jl. Wirayuda Barat (ujung selatan): Pasar bubar, lapak dibongkar, kapasitas kembali normal."
     },
     {
-      "step": 66,
+      "step": 68,
       "event_type": "FLOW_KEPT",
       "mutations": {
         "target_edge": [
@@ -3949,7 +4237,7 @@
       "action_narrative": "Aliran lama di E05 Jl. Wirayuda Barat (ujung selatan) (4 -> 3) masih muat di kapasitas baru, jadi aliran 3.296,9 skr/jam dipertahankan dan hanya dicari tambahan."
     },
     {
-      "step": 67,
+      "step": 69,
       "event_type": "MIN_CUT_FOUND",
       "mutations": {
         "max_flow": 3296.9,
@@ -3976,7 +4264,8 @@
           4,
           6,
           14,
-          15
+          15,
+          16
         ],
         "edge_flows": [
           [
@@ -3987,11 +4276,16 @@
           [
             0,
             2,
-            2328.5
+            1013.8
+          ],
+          [
+            0,
+            16,
+            1314.7
           ],
           [
             1,
-            2,
+            16,
             0.0
           ],
           [
@@ -4046,7 +4340,7 @@
           ],
           [
             9,
-            16,
+            17,
             1124.7
           ],
           [
@@ -4066,12 +4360,12 @@
           ],
           [
             12,
-            16,
+            17,
             0.0
           ],
           [
             13,
-            16,
+            17,
             2172.2
           ],
           [
@@ -4088,13 +4382,18 @@
             15,
             6,
             730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
           ]
         ]
       },
       "action_narrative": "Tidak ada lagi augmenting path. Max flow = 3.296,9 skr/jam. Min cut berisi E12 Jl. Surapati sisi utara Gasibu (3 -> 8), E09 Jl. Japati (sisi utara Telkom) (6 -> 7) dengan total kapasitas 3.296,9 skr/jam, sama dengan max flow."
     },
     {
-      "step": 68,
+      "step": 70,
       "event_type": "UPDATE_CAPACITY_EVENT",
       "mutations": {
         "target_edge": [
@@ -4107,7 +4406,7 @@
       "action_narrative": "Kapasitas E06 Jl. Wirayuda Timur (sisi timur taman) (15 -> 6) berubah dari 1.032,2 jadi 2.732,4 skr/jam. 11.00 E06 Jl. Wirayuda Timur (sisi timur taman): Pasar bubar, lapak dibongkar, kapasitas kembali normal."
     },
     {
-      "step": 69,
+      "step": 71,
       "event_type": "FLOW_KEPT",
       "mutations": {
         "target_edge": [
@@ -4119,7 +4418,7 @@
       "action_narrative": "Aliran lama di E06 Jl. Wirayuda Timur (sisi timur taman) (15 -> 6) masih muat di kapasitas baru, jadi aliran 3.296,9 skr/jam dipertahankan dan hanya dicari tambahan."
     },
     {
-      "step": 70,
+      "step": 72,
       "event_type": "MIN_CUT_FOUND",
       "mutations": {
         "max_flow": 3296.9,
@@ -4146,7 +4445,8 @@
           4,
           6,
           14,
-          15
+          15,
+          16
         ],
         "edge_flows": [
           [
@@ -4157,11 +4457,16 @@
           [
             0,
             2,
-            2328.5
+            1013.8
+          ],
+          [
+            0,
+            16,
+            1314.7
           ],
           [
             1,
-            2,
+            16,
             0.0
           ],
           [
@@ -4216,7 +4521,7 @@
           ],
           [
             9,
-            16,
+            17,
             1124.7
           ],
           [
@@ -4236,12 +4541,12 @@
           ],
           [
             12,
-            16,
+            17,
             0.0
           ],
           [
             13,
-            16,
+            17,
             2172.2
           ],
           [
@@ -4258,13 +4563,18 @@
             15,
             6,
             730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
           ]
         ]
       },
       "action_narrative": "Tidak ada lagi augmenting path. Max flow = 3.296,9 skr/jam. Min cut berisi E12 Jl. Surapati sisi utara Gasibu (3 -> 8), E09 Jl. Japati (sisi utara Telkom) (6 -> 7) dengan total kapasitas 3.296,9 skr/jam, sama dengan max flow."
     },
     {
-      "step": 71,
+      "step": 73,
       "event_type": "UPDATE_CAPACITY_EVENT",
       "mutations": {
         "target_edge": [
@@ -4277,7 +4587,7 @@
       "action_narrative": "Kapasitas E22 Jl. Singaperbangsa (memotong koridor taman) (14 -> 15) berubah dari 857,8 jadi 1.135,4 skr/jam. 11.00 E22 Jl. Singaperbangsa (memotong koridor taman): Pasar bubar, lapak dibongkar, kapasitas kembali normal."
     },
     {
-      "step": 72,
+      "step": 74,
       "event_type": "FLOW_KEPT",
       "mutations": {
         "target_edge": [
@@ -4289,7 +4599,7 @@
       "action_narrative": "Aliran lama di E22 Jl. Singaperbangsa (memotong koridor taman) (14 -> 15) masih muat di kapasitas baru, jadi aliran 3.296,9 skr/jam dipertahankan dan hanya dicari tambahan."
     },
     {
-      "step": 73,
+      "step": 75,
       "event_type": "MIN_CUT_FOUND",
       "mutations": {
         "max_flow": 3296.9,
@@ -4316,7 +4626,8 @@
           4,
           6,
           14,
-          15
+          15,
+          16
         ],
         "edge_flows": [
           [
@@ -4327,11 +4638,16 @@
           [
             0,
             2,
-            2328.5
+            1013.8
+          ],
+          [
+            0,
+            16,
+            1314.7
           ],
           [
             1,
-            2,
+            16,
             0.0
           ],
           [
@@ -4386,7 +4702,7 @@
           ],
           [
             9,
-            16,
+            17,
             1124.7
           ],
           [
@@ -4406,12 +4722,12 @@
           ],
           [
             12,
-            16,
+            17,
             0.0
           ],
           [
             13,
-            16,
+            17,
             2172.2
           ],
           [
@@ -4428,13 +4744,18 @@
             15,
             6,
             730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
           ]
         ]
       },
       "action_narrative": "Tidak ada lagi augmenting path. Max flow = 3.296,9 skr/jam. Min cut berisi E12 Jl. Surapati sisi utara Gasibu (3 -> 8), E09 Jl. Japati (sisi utara Telkom) (6 -> 7) dengan total kapasitas 3.296,9 skr/jam, sama dengan max flow."
     },
     {
-      "step": 74,
+      "step": 76,
       "event_type": "UPDATE_CAPACITY_EVENT",
       "mutations": {
         "target_edge": [
@@ -4447,7 +4768,7 @@
       "action_narrative": "Kapasitas E08 Jl. Haji Hasan (penghubung antarsisi taman) (5 -> 4) berubah dari 1.032,2 jadi 1.366,2 skr/jam. 11.00 E08 Jl. Haji Hasan (penghubung antarsisi taman): Pasar bubar, lapak dibongkar, kapasitas kembali normal."
     },
     {
-      "step": 75,
+      "step": 77,
       "event_type": "FLOW_KEPT",
       "mutations": {
         "target_edge": [
@@ -4459,7 +4780,7 @@
       "action_narrative": "Aliran lama di E08 Jl. Haji Hasan (penghubung antarsisi taman) (5 -> 4) masih muat di kapasitas baru, jadi aliran 3.296,9 skr/jam dipertahankan dan hanya dicari tambahan."
     },
     {
-      "step": 76,
+      "step": 78,
       "event_type": "MIN_CUT_FOUND",
       "mutations": {
         "max_flow": 3296.9,
@@ -4486,7 +4807,8 @@
           4,
           6,
           14,
-          15
+          15,
+          16
         ],
         "edge_flows": [
           [
@@ -4497,11 +4819,16 @@
           [
             0,
             2,
-            2328.5
+            1013.8
+          ],
+          [
+            0,
+            16,
+            1314.7
           ],
           [
             1,
-            2,
+            16,
             0.0
           ],
           [
@@ -4556,7 +4883,7 @@
           ],
           [
             9,
-            16,
+            17,
             1124.7
           ],
           [
@@ -4576,12 +4903,12 @@
           ],
           [
             12,
-            16,
+            17,
             0.0
           ],
           [
             13,
-            16,
+            17,
             2172.2
           ],
           [
@@ -4598,13 +4925,18 @@
             15,
             6,
             730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
           ]
         ]
       },
       "action_narrative": "Tidak ada lagi augmenting path. Max flow = 3.296,9 skr/jam. Min cut berisi E12 Jl. Surapati sisi utara Gasibu (3 -> 8), E09 Jl. Japati (sisi utara Telkom) (6 -> 7) dengan total kapasitas 3.296,9 skr/jam, sama dengan max flow."
     },
     {
-      "step": 77,
+      "step": 79,
       "event_type": "UPDATE_CAPACITY_EVENT",
       "mutations": {
         "target_edge": [
@@ -4617,7 +4949,7 @@
       "action_narrative": "Kapasitas E07 Jl. Wirayuda Timur depan Telkom (portal saat pasar) (6 -> 5) berubah dari 0,0 jadi 2.732,4 skr/jam. 11.00 E07 Jl. Wirayuda Timur depan Telkom (portal saat pasar): Pasar bubar, lapak dibongkar, kapasitas kembali normal."
     },
     {
-      "step": 78,
+      "step": 80,
       "event_type": "FLOW_KEPT",
       "mutations": {
         "target_edge": [
@@ -4629,7 +4961,7 @@
       "action_narrative": "Aliran lama di E07 Jl. Wirayuda Timur depan Telkom (portal saat pasar) (6 -> 5) masih muat di kapasitas baru, jadi aliran 3.296,9 skr/jam dipertahankan dan hanya dicari tambahan."
     },
     {
-      "step": 79,
+      "step": 81,
       "event_type": "MIN_CUT_FOUND",
       "mutations": {
         "max_flow": 3296.9,
@@ -4653,7 +4985,8 @@
           5,
           6,
           14,
-          15
+          15,
+          16
         ],
         "edge_flows": [
           [
@@ -4664,11 +4997,16 @@
           [
             0,
             2,
-            2328.5
+            1013.8
+          ],
+          [
+            0,
+            16,
+            1314.7
           ],
           [
             1,
-            2,
+            16,
             0.0
           ],
           [
@@ -4723,7 +5061,7 @@
           ],
           [
             9,
-            16,
+            17,
             1124.7
           ],
           [
@@ -4743,12 +5081,12 @@
           ],
           [
             12,
-            16,
+            17,
             0.0
           ],
           [
             13,
-            16,
+            17,
             2172.2
           ],
           [
@@ -4765,13 +5103,18 @@
             15,
             6,
             730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
           ]
         ]
       },
       "action_narrative": "Tidak ada lagi augmenting path. Max flow = 3.296,9 skr/jam. Min cut berisi E12 Jl. Surapati sisi utara Gasibu (3 -> 8), E09 Jl. Japati (sisi utara Telkom) (6 -> 7) dengan total kapasitas 3.296,9 skr/jam, sama dengan max flow."
     },
     {
-      "step": 80,
+      "step": 82,
       "event_type": "UPDATE_CAPACITY_EVENT",
       "mutations": {
         "target_edge": [
@@ -4784,7 +5127,7 @@
       "action_narrative": "Kapasitas E11 Jl. Surapati (turunan flyover - Wirayuda Barat) (2 -> 3) berubah dari 4.086,7 jadi 4.324,3 skr/jam. 11.00 E11 Jl. Surapati (turunan flyover - Wirayuda Barat): Pasar bubar, lapak dibongkar, kapasitas kembali normal."
     },
     {
-      "step": 81,
+      "step": 83,
       "event_type": "FLOW_KEPT",
       "mutations": {
         "target_edge": [
@@ -4796,7 +5139,7 @@
       "action_narrative": "Aliran lama di E11 Jl. Surapati (turunan flyover - Wirayuda Barat) (2 -> 3) masih muat di kapasitas baru, jadi aliran 3.296,9 skr/jam dipertahankan dan hanya dicari tambahan."
     },
     {
-      "step": 82,
+      "step": 84,
       "event_type": "MIN_CUT_FOUND",
       "mutations": {
         "max_flow": 3296.9,
@@ -4820,7 +5163,8 @@
           5,
           6,
           14,
-          15
+          15,
+          16
         ],
         "edge_flows": [
           [
@@ -4831,11 +5175,16 @@
           [
             0,
             2,
-            2328.5
+            1013.8
+          ],
+          [
+            0,
+            16,
+            1314.7
           ],
           [
             1,
-            2,
+            16,
             0.0
           ],
           [
@@ -4890,7 +5239,7 @@
           ],
           [
             9,
-            16,
+            17,
             1124.7
           ],
           [
@@ -4910,12 +5259,12 @@
           ],
           [
             12,
-            16,
+            17,
             0.0
           ],
           [
             13,
-            16,
+            17,
             2172.2
           ],
           [
@@ -4932,13 +5281,18 @@
             15,
             6,
             730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
           ]
         ]
       },
       "action_narrative": "Tidak ada lagi augmenting path. Max flow = 3.296,9 skr/jam. Min cut berisi E12 Jl. Surapati sisi utara Gasibu (3 -> 8), E09 Jl. Japati (sisi utara Telkom) (6 -> 7) dengan total kapasitas 3.296,9 skr/jam, sama dengan max flow."
     },
     {
-      "step": 83,
+      "step": 85,
       "event_type": "UPDATE_CAPACITY_EVENT",
       "mutations": {
         "target_edge": [
@@ -4951,7 +5305,7 @@
       "action_narrative": "Kapasitas E12 Jl. Surapati sisi utara Gasibu (3 -> 8) berubah dari 2.566,1 jadi 4.324,3 skr/jam. 11.00 E12 Jl. Surapati sisi utara Gasibu: Pasar bubar, lapak dibongkar, kapasitas kembali normal."
     },
     {
-      "step": 84,
+      "step": 86,
       "event_type": "FLOW_KEPT",
       "mutations": {
         "target_edge": [
@@ -4963,14 +5317,15 @@
       "action_narrative": "Aliran lama di E12 Jl. Surapati sisi utara Gasibu (3 -> 8) masih muat di kapasitas baru, jadi aliran 3.296,9 skr/jam dipertahankan dan hanya dicari tambahan."
     },
     {
-      "step": 85,
+      "step": 87,
       "event_type": "LEVEL_GRAPH_BUILT",
       "mutations": {
-        "phase": 5,
+        "phase": 6,
         "level": {
           "0": 0,
           "1": 1,
           "2": 1,
+          "16": 1,
           "14": 2,
           "3": 2,
           "4": 3,
@@ -4980,64 +5335,14 @@
           "9": 4,
           "10": 4,
           "5": 5,
-          "16": 5,
+          "17": 5,
           "7": 5,
           "13": 5,
           "11": 5,
           "12": 6
         }
       },
-      "action_narrative": "Fase Dinic ke-5: level graph dibangun dengan BFS, tujuan ada di level 5."
-    },
-    {
-      "step": 86,
-      "event_type": "AUGMENTING_PATH_FOUND",
-      "mutations": {
-        "path": [
-          0,
-          2,
-          3,
-          8,
-          9,
-          16
-        ],
-        "flow_added": 889.0999999999999,
-        "current_max_flow": 4186.0,
-        "bottleneck_edge": [
-          8,
-          9
-        ],
-        "fase": "perbaikan",
-        "dinic_phase": 5
-      },
-      "action_narrative": "Fase Dinic ke-5, jalur 0 -> 2 -> 3 -> 8 -> 9 -> 16. Busur kritis E13 Jl. Surapati depan Telkom (8 -> 9) menahan aliran tambahan 889,1 skr/jam, total aliran naik dari 3.296,9 jadi 4.186,0 skr/jam."
-    },
-    {
-      "step": 87,
-      "event_type": "LEVEL_GRAPH_BUILT",
-      "mutations": {
-        "phase": 6,
-        "level": {
-          "0": 0,
-          "1": 1,
-          "2": 1,
-          "14": 2,
-          "3": 2,
-          "4": 3,
-          "15": 3,
-          "8": 3,
-          "6": 4,
-          "10": 4,
-          "5": 5,
-          "13": 5,
-          "11": 5,
-          "16": 6,
-          "12": 6,
-          "9": 7,
-          "7": 8
-        }
-      },
-      "action_narrative": "Fase Dinic ke-6: level graph dibangun dengan BFS, tujuan ada di level 6."
+      "action_narrative": "Fase Dinic ke-6: level graph dibangun dengan BFS, tujuan ada di level 5."
     },
     {
       "step": 88,
@@ -5048,9 +5353,60 @@
           2,
           3,
           8,
+          9,
+          17
+        ],
+        "flow_added": 889.0999999999999,
+        "current_max_flow": 4186.0,
+        "bottleneck_edge": [
+          8,
+          9
+        ],
+        "fase": "perbaikan",
+        "dinic_phase": 6
+      },
+      "action_narrative": "Fase Dinic ke-6, jalur 0 -> 2 -> 3 -> 8 -> 9 -> 17. Edge kritis E13 Jl. Surapati depan Telkom (8 -> 9) menahan aliran tambahan 889,1 skr/jam, total aliran naik dari 3.296,9 jadi 4.186,0 skr/jam."
+    },
+    {
+      "step": 89,
+      "event_type": "LEVEL_GRAPH_BUILT",
+      "mutations": {
+        "phase": 7,
+        "level": {
+          "0": 0,
+          "1": 1,
+          "2": 1,
+          "16": 1,
+          "14": 2,
+          "3": 2,
+          "4": 3,
+          "15": 3,
+          "8": 3,
+          "6": 4,
+          "10": 4,
+          "5": 5,
+          "13": 5,
+          "11": 5,
+          "17": 6,
+          "12": 6,
+          "9": 7,
+          "7": 8
+        }
+      },
+      "action_narrative": "Fase Dinic ke-7: level graph dibangun dengan BFS, tujuan ada di level 6."
+    },
+    {
+      "step": 90,
+      "event_type": "AUGMENTING_PATH_FOUND",
+      "mutations": {
+        "path": [
+          0,
+          2,
+          3,
+          8,
           10,
           13,
-          16
+          17
         ],
         "flow_added": 552.3000000000002,
         "current_max_flow": 4738.3,
@@ -5059,12 +5415,12 @@
           10
         ],
         "fase": "perbaikan",
-        "dinic_phase": 6
+        "dinic_phase": 7
       },
-      "action_narrative": "Fase Dinic ke-6, jalur 0 -> 2 -> 3 -> 8 -> 10 -> 13 -> 16. Busur kritis E14 Belokan Surapati ke Jl. Sentot Alibasyah (8 -> 10) menahan aliran tambahan 552,3 skr/jam, total aliran naik dari 4.186,0 jadi 4.738,3 skr/jam."
+      "action_narrative": "Fase Dinic ke-7, jalur 0 -> 2 -> 3 -> 8 -> 10 -> 13 -> 17. Edge kritis E14 Belokan Surapati ke Jl. Sentot Alibasyah (8 -> 10) menahan aliran tambahan 552,3 skr/jam, total aliran naik dari 4.186,0 jadi 4.738,3 skr/jam."
     },
     {
-      "step": 89,
+      "step": 91,
       "event_type": "MIN_CUT_FOUND",
       "mutations": {
         "max_flow": 4738.3,
@@ -5093,7 +5449,8 @@
           6,
           8,
           14,
-          15
+          15,
+          16
         ],
         "edge_flows": [
           [
@@ -5104,11 +5461,16 @@
           [
             0,
             2,
-            3769.9
+            2455.2
+          ],
+          [
+            0,
+            16,
+            1314.7
           ],
           [
             1,
-            2,
+            16,
             0.0
           ],
           [
@@ -5163,7 +5525,7 @@
           ],
           [
             9,
-            16,
+            17,
             2013.8
           ],
           [
@@ -5183,12 +5545,12 @@
           ],
           [
             12,
-            16,
+            17,
             0.0
           ],
           [
             13,
-            16,
+            17,
             2724.5
           ],
           [
@@ -5205,13 +5567,18 @@
             15,
             6,
             730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
           ]
         ]
       },
       "action_narrative": "Tidak ada lagi augmenting path. Max flow = 4.738,3 skr/jam. Min cut berisi E09 Jl. Japati (sisi utara Telkom) (6 -> 7), E13 Jl. Surapati depan Telkom (8 -> 9), E14 Belokan Surapati ke Jl. Sentot Alibasyah (8 -> 10) dengan total kapasitas 4.738,3 skr/jam, sama dengan max flow."
     },
     {
-      "step": 90,
+      "step": 92,
       "event_type": "UPDATE_CAPACITY_EVENT",
       "mutations": {
         "target_edge": [
@@ -5224,7 +5591,7 @@
       "action_narrative": "Kapasitas E13 Jl. Surapati depan Telkom (8 -> 9) berubah dari 1.283,0 jadi 2.882,9 skr/jam. 11.00 E13 Jl. Surapati depan Telkom: Pasar bubar, lapak dibongkar, kapasitas kembali normal."
     },
     {
-      "step": 91,
+      "step": 93,
       "event_type": "FLOW_KEPT",
       "mutations": {
         "target_edge": [
@@ -5236,14 +5603,15 @@
       "action_narrative": "Aliran lama di E13 Jl. Surapati depan Telkom (8 -> 9) masih muat di kapasitas baru, jadi aliran 4.738,3 skr/jam dipertahankan dan hanya dicari tambahan."
     },
     {
-      "step": 92,
+      "step": 94,
       "event_type": "LEVEL_GRAPH_BUILT",
       "mutations": {
-        "phase": 7,
+        "phase": 8,
         "level": {
           "0": 0,
           "1": 1,
           "2": 1,
+          "16": 1,
           "14": 2,
           "3": 2,
           "4": 3,
@@ -5252,7 +5620,7 @@
           "6": 4,
           "9": 4,
           "5": 5,
-          "16": 5,
+          "17": 5,
           "7": 5,
           "13": 6,
           "10": 7,
@@ -5260,10 +5628,10 @@
           "12": 9
         }
       },
-      "action_narrative": "Fase Dinic ke-7: level graph dibangun dengan BFS, tujuan ada di level 5."
+      "action_narrative": "Fase Dinic ke-8: level graph dibangun dengan BFS, tujuan ada di level 5."
     },
     {
-      "step": 93,
+      "step": 95,
       "event_type": "AUGMENTING_PATH_FOUND",
       "mutations": {
         "path": [
@@ -5272,7 +5640,7 @@
           3,
           8,
           9,
-          16
+          17
         ],
         "flow_added": 316.8000000000002,
         "current_max_flow": 5055.1,
@@ -5281,12 +5649,12 @@
           8
         ],
         "fase": "perbaikan",
-        "dinic_phase": 7
+        "dinic_phase": 8
       },
-      "action_narrative": "Fase Dinic ke-7, jalur 0 -> 2 -> 3 -> 8 -> 9 -> 16. Busur kritis E12 Jl. Surapati sisi utara Gasibu (3 -> 8) menahan aliran tambahan 316,8 skr/jam, total aliran naik dari 4.738,3 jadi 5.055,1 skr/jam."
+      "action_narrative": "Fase Dinic ke-8, jalur 0 -> 2 -> 3 -> 8 -> 9 -> 17. Edge kritis E12 Jl. Surapati sisi utara Gasibu (3 -> 8) menahan aliran tambahan 316,8 skr/jam, total aliran naik dari 4.738,3 jadi 5.055,1 skr/jam."
     },
     {
-      "step": 94,
+      "step": 96,
       "event_type": "MIN_CUT_FOUND",
       "mutations": {
         "max_flow": 5055.1,
@@ -5310,7 +5678,8 @@
           5,
           6,
           14,
-          15
+          15,
+          16
         ],
         "edge_flows": [
           [
@@ -5321,11 +5690,16 @@
           [
             0,
             2,
-            4086.7
+            2772.0
+          ],
+          [
+            0,
+            16,
+            1314.7
           ],
           [
             1,
-            2,
+            16,
             0.0
           ],
           [
@@ -5380,7 +5754,7 @@
           ],
           [
             9,
-            16,
+            17,
             2330.6
           ],
           [
@@ -5400,12 +5774,12 @@
           ],
           [
             12,
-            16,
+            17,
             0.0
           ],
           [
             13,
-            16,
+            17,
             2724.5
           ],
           [
@@ -5422,13 +5796,18 @@
             15,
             6,
             730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
           ]
         ]
       },
       "action_narrative": "Tidak ada lagi augmenting path. Max flow = 5.055,1 skr/jam. Min cut berisi E12 Jl. Surapati sisi utara Gasibu (3 -> 8), E09 Jl. Japati (sisi utara Telkom) (6 -> 7) dengan total kapasitas 5.055,1 skr/jam, sama dengan max flow."
     },
     {
-      "step": 95,
+      "step": 97,
       "event_type": "UPDATE_CAPACITY_EVENT",
       "mutations": {
         "target_edge": [
@@ -5441,7 +5820,7 @@
       "action_narrative": "Kapasitas E16 Jl. Surapati jalur lambat sisi Gasibu (10 -> 11) berubah dari 1.032,2 jadi 1.305,5 skr/jam. 11.00 E16 Jl. Surapati jalur lambat sisi Gasibu: Pasar bubar, lapak dibongkar, kapasitas kembali normal."
     },
     {
-      "step": 96,
+      "step": 98,
       "event_type": "FLOW_KEPT",
       "mutations": {
         "target_edge": [
@@ -5453,7 +5832,7 @@
       "action_narrative": "Aliran lama di E16 Jl. Surapati jalur lambat sisi Gasibu (10 -> 11) masih muat di kapasitas baru, jadi aliran 5.055,1 skr/jam dipertahankan dan hanya dicari tambahan."
     },
     {
-      "step": 97,
+      "step": 99,
       "event_type": "MIN_CUT_FOUND",
       "mutations": {
         "max_flow": 5055.1,
@@ -5477,7 +5856,8 @@
           5,
           6,
           14,
-          15
+          15,
+          16
         ],
         "edge_flows": [
           [
@@ -5488,11 +5868,16 @@
           [
             0,
             2,
-            4086.7
+            2772.0
+          ],
+          [
+            0,
+            16,
+            1314.7
           ],
           [
             1,
-            2,
+            16,
             0.0
           ],
           [
@@ -5547,7 +5932,7 @@
           ],
           [
             9,
-            16,
+            17,
             2330.6
           ],
           [
@@ -5567,12 +5952,12 @@
           ],
           [
             12,
-            16,
+            17,
             0.0
           ],
           [
             13,
-            16,
+            17,
             2724.5
           ],
           [
@@ -5589,13 +5974,18 @@
             15,
             6,
             730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
           ]
         ]
       },
       "action_narrative": "Tidak ada lagi augmenting path. Max flow = 5.055,1 skr/jam. Min cut berisi E12 Jl. Surapati sisi utara Gasibu (3 -> 8), E09 Jl. Japati (sisi utara Telkom) (6 -> 7) dengan total kapasitas 5.055,1 skr/jam, sama dengan max flow."
     },
     {
-      "step": 98,
+      "step": 100,
       "event_type": "UPDATE_CAPACITY_EVENT",
       "mutations": {
         "target_edge": [
@@ -5608,7 +5998,7 @@
       "action_narrative": "Kapasitas E01 Jl. Dipatiukur (masuk dari arah Monumen Perjuangan) (0 -> 1) berubah dari 1.131,0 jadi 1.247,0 skr/jam. 11.00 E01 Jl. Dipatiukur (masuk dari arah Monumen Perjuangan): Pasar bubar, lapak dibongkar, kapasitas kembali normal."
     },
     {
-      "step": 99,
+      "step": 101,
       "event_type": "FLOW_KEPT",
       "mutations": {
         "target_edge": [
@@ -5620,7 +6010,7 @@
       "action_narrative": "Aliran lama di E01 Jl. Dipatiukur (masuk dari arah Monumen Perjuangan) (0 -> 1) masih muat di kapasitas baru, jadi aliran 5.055,1 skr/jam dipertahankan dan hanya dicari tambahan."
     },
     {
-      "step": 100,
+      "step": 102,
       "event_type": "MIN_CUT_FOUND",
       "mutations": {
         "max_flow": 5055.1,
@@ -5644,7 +6034,8 @@
           5,
           6,
           14,
-          15
+          15,
+          16
         ],
         "edge_flows": [
           [
@@ -5655,11 +6046,16 @@
           [
             0,
             2,
-            4086.7
+            2772.0
+          ],
+          [
+            0,
+            16,
+            1314.7
           ],
           [
             1,
-            2,
+            16,
             0.0
           ],
           [
@@ -5714,7 +6110,7 @@
           ],
           [
             9,
-            16,
+            17,
             2330.6
           ],
           [
@@ -5734,12 +6130,12 @@
           ],
           [
             12,
-            16,
+            17,
             0.0
           ],
           [
             13,
-            16,
+            17,
             2724.5
           ],
           [
@@ -5756,13 +6152,18 @@
             15,
             6,
             730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
           ]
         ]
       },
       "action_narrative": "Tidak ada lagi augmenting path. Max flow = 5.055,1 skr/jam. Min cut berisi E12 Jl. Surapati sisi utara Gasibu (3 -> 8), E09 Jl. Japati (sisi utara Telkom) (6 -> 7) dengan total kapasitas 5.055,1 skr/jam, sama dengan max flow."
     },
     {
-      "step": 101,
+      "step": 103,
       "event_type": "UPDATE_CAPACITY_EVENT",
       "mutations": {
         "target_edge": [
@@ -5775,7 +6176,7 @@
       "action_narrative": "Kapasitas E21 Jl. Singaperbangsa (dari Dipatiukur ke koridor taman) (1 -> 14) berubah dari 984,0 jadi 1.135,4 skr/jam. 11.00 E21 Jl. Singaperbangsa (dari Dipatiukur ke koridor taman): Pasar bubar, lapak dibongkar, kapasitas kembali normal."
     },
     {
-      "step": 102,
+      "step": 104,
       "event_type": "FLOW_KEPT",
       "mutations": {
         "target_edge": [
@@ -5787,7 +6188,7 @@
       "action_narrative": "Aliran lama di E21 Jl. Singaperbangsa (dari Dipatiukur ke koridor taman) (1 -> 14) masih muat di kapasitas baru, jadi aliran 5.055,1 skr/jam dipertahankan dan hanya dicari tambahan."
     },
     {
-      "step": 103,
+      "step": 105,
       "event_type": "MIN_CUT_FOUND",
       "mutations": {
         "max_flow": 5055.1,
@@ -5811,7 +6212,8 @@
           5,
           6,
           14,
-          15
+          15,
+          16
         ],
         "edge_flows": [
           [
@@ -5822,11 +6224,16 @@
           [
             0,
             2,
-            4086.7
+            2772.0
+          ],
+          [
+            0,
+            16,
+            1314.7
           ],
           [
             1,
-            2,
+            16,
             0.0
           ],
           [
@@ -5881,7 +6288,7 @@
           ],
           [
             9,
-            16,
+            17,
             2330.6
           ],
           [
@@ -5901,12 +6308,12 @@
           ],
           [
             12,
-            16,
+            17,
             0.0
           ],
           [
             13,
-            16,
+            17,
             2724.5
           ],
           [
@@ -5923,13 +6330,18 @@
             15,
             6,
             730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
           ]
         ]
       },
       "action_narrative": "Tidak ada lagi augmenting path. Max flow = 5.055,1 skr/jam. Min cut berisi E12 Jl. Surapati sisi utara Gasibu (3 -> 8), E09 Jl. Japati (sisi utara Telkom) (6 -> 7) dengan total kapasitas 5.055,1 skr/jam, sama dengan max flow."
     },
     {
-      "step": 104,
+      "step": 106,
       "event_type": "UPDATE_CAPACITY_EVENT",
       "mutations": {
         "target_edge": [
@@ -5942,7 +6354,7 @@
       "action_narrative": "Kapasitas E14 Belokan Surapati ke Jl. Sentot Alibasyah (8 -> 10) berubah dari 2.724,5 jadi 2.882,9 skr/jam. 11.00 E14 Belokan Surapati ke Jl. Sentot Alibasyah: Pasar bubar, lapak dibongkar, kapasitas kembali normal."
     },
     {
-      "step": 105,
+      "step": 107,
       "event_type": "FLOW_KEPT",
       "mutations": {
         "target_edge": [
@@ -5954,7 +6366,7 @@
       "action_narrative": "Aliran lama di E14 Belokan Surapati ke Jl. Sentot Alibasyah (8 -> 10) masih muat di kapasitas baru, jadi aliran 5.055,1 skr/jam dipertahankan dan hanya dicari tambahan."
     },
     {
-      "step": 106,
+      "step": 108,
       "event_type": "MIN_CUT_FOUND",
       "mutations": {
         "max_flow": 5055.1,
@@ -5978,7 +6390,8 @@
           5,
           6,
           14,
-          15
+          15,
+          16
         ],
         "edge_flows": [
           [
@@ -5989,11 +6402,16 @@
           [
             0,
             2,
-            4086.7
+            2772.0
+          ],
+          [
+            0,
+            16,
+            1314.7
           ],
           [
             1,
-            2,
+            16,
             0.0
           ],
           [
@@ -6048,7 +6466,7 @@
           ],
           [
             9,
-            16,
+            17,
             2330.6
           ],
           [
@@ -6068,12 +6486,12 @@
           ],
           [
             12,
-            16,
+            17,
             0.0
           ],
           [
             13,
-            16,
+            17,
             2724.5
           ],
           [
@@ -6090,13 +6508,18 @@
             15,
             6,
             730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
           ]
         ]
       },
       "action_narrative": "Tidak ada lagi augmenting path. Max flow = 5.055,1 skr/jam. Min cut berisi E12 Jl. Surapati sisi utara Gasibu (3 -> 8), E09 Jl. Japati (sisi utara Telkom) (6 -> 7) dengan total kapasitas 5.055,1 skr/jam, sama dengan max flow."
     },
     {
-      "step": 107,
+      "step": 109,
       "event_type": "UPDATE_CAPACITY_EVENT",
       "mutations": {
         "target_edge": [
@@ -6109,7 +6532,7 @@
       "action_narrative": "Kapasitas E15 Jl. Sentot Alibasyah (sisi timur Gasibu) (10 -> 13) berubah dari 2.724,5 jadi 2.882,9 skr/jam. 11.00 E15 Jl. Sentot Alibasyah (sisi timur Gasibu): Pasar bubar, lapak dibongkar, kapasitas kembali normal."
     },
     {
-      "step": 108,
+      "step": 110,
       "event_type": "FLOW_KEPT",
       "mutations": {
         "target_edge": [
@@ -6121,7 +6544,7 @@
       "action_narrative": "Aliran lama di E15 Jl. Sentot Alibasyah (sisi timur Gasibu) (10 -> 13) masih muat di kapasitas baru, jadi aliran 5.055,1 skr/jam dipertahankan dan hanya dicari tambahan."
     },
     {
-      "step": 109,
+      "step": 111,
       "event_type": "MIN_CUT_FOUND",
       "mutations": {
         "max_flow": 5055.1,
@@ -6145,7 +6568,8 @@
           5,
           6,
           14,
-          15
+          15,
+          16
         ],
         "edge_flows": [
           [
@@ -6156,11 +6580,16 @@
           [
             0,
             2,
-            4086.7
+            2772.0
+          ],
+          [
+            0,
+            16,
+            1314.7
           ],
           [
             1,
-            2,
+            16,
             0.0
           ],
           [
@@ -6215,7 +6644,7 @@
           ],
           [
             9,
-            16,
+            17,
             2330.6
           ],
           [
@@ -6235,12 +6664,12 @@
           ],
           [
             12,
-            16,
+            17,
             0.0
           ],
           [
             13,
-            16,
+            17,
             2724.5
           ],
           [
@@ -6257,13 +6686,18 @@
             15,
             6,
             730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
           ]
         ]
       },
       "action_narrative": "Tidak ada lagi augmenting path. Max flow = 5.055,1 skr/jam. Min cut berisi E12 Jl. Surapati sisi utara Gasibu (3 -> 8), E09 Jl. Japati (sisi utara Telkom) (6 -> 7) dengan total kapasitas 5.055,1 skr/jam, sama dengan max flow."
     },
     {
-      "step": 110,
+      "step": 112,
       "event_type": "UPDATE_CAPACITY_EVENT",
       "mutations": {
         "target_edge": [
@@ -6276,7 +6710,7 @@
       "action_narrative": "Kapasitas E17 Jl. Majapahit (sisi barat Gasibu) (11 -> 12) berubah dari 2.724,5 jadi 2.882,9 skr/jam. 11.00 E17 Jl. Majapahit (sisi barat Gasibu): Pasar bubar, lapak dibongkar, kapasitas kembali normal."
     },
     {
-      "step": 111,
+      "step": 113,
       "event_type": "FLOW_KEPT",
       "mutations": {
         "target_edge": [
@@ -6288,7 +6722,7 @@
       "action_narrative": "Aliran lama di E17 Jl. Majapahit (sisi barat Gasibu) (11 -> 12) masih muat di kapasitas baru, jadi aliran 5.055,1 skr/jam dipertahankan dan hanya dicari tambahan."
     },
     {
-      "step": 112,
+      "step": 114,
       "event_type": "MIN_CUT_FOUND",
       "mutations": {
         "max_flow": 5055.1,
@@ -6312,7 +6746,8 @@
           5,
           6,
           14,
-          15
+          15,
+          16
         ],
         "edge_flows": [
           [
@@ -6323,11 +6758,16 @@
           [
             0,
             2,
-            4086.7
+            2772.0
+          ],
+          [
+            0,
+            16,
+            1314.7
           ],
           [
             1,
-            2,
+            16,
             0.0
           ],
           [
@@ -6382,7 +6822,7 @@
           ],
           [
             9,
-            16,
+            17,
             2330.6
           ],
           [
@@ -6402,12 +6842,12 @@
           ],
           [
             12,
-            16,
+            17,
             0.0
           ],
           [
             13,
-            16,
+            17,
             2724.5
           ],
           [
@@ -6424,38 +6864,43 @@
             15,
             6,
             730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
           ]
         ]
       },
       "action_narrative": "Tidak ada lagi augmenting path. Max flow = 5.055,1 skr/jam. Min cut berisi E12 Jl. Surapati sisi utara Gasibu (3 -> 8), E09 Jl. Japati (sisi utara Telkom) (6 -> 7) dengan total kapasitas 5.055,1 skr/jam, sama dengan max flow."
-    },
-    {
-      "step": 113,
-      "event_type": "UPDATE_CAPACITY_EVENT",
-      "mutations": {
-        "target_edge": [
-          13,
-          16
-        ],
-        "old_capacity": 2724.5,
-        "new_capacity": 2882.9
-      },
-      "action_narrative": "Kapasitas E19 Jl. Diponegoro arah timur dan Jl. Cisangkuy (13 -> 16) berubah dari 2.724,5 jadi 2.882,9 skr/jam. 11.00 E19 Jl. Diponegoro arah timur dan Jl. Cisangkuy: Pasar bubar, lapak dibongkar, kapasitas kembali normal."
-    },
-    {
-      "step": 114,
-      "event_type": "FLOW_KEPT",
-      "mutations": {
-        "target_edge": [
-          13,
-          16
-        ],
-        "current_max_flow": 5055.1
-      },
-      "action_narrative": "Aliran lama di E19 Jl. Diponegoro arah timur dan Jl. Cisangkuy (13 -> 16) masih muat di kapasitas baru, jadi aliran 5.055,1 skr/jam dipertahankan dan hanya dicari tambahan."
     },
     {
       "step": 115,
+      "event_type": "UPDATE_CAPACITY_EVENT",
+      "mutations": {
+        "target_edge": [
+          13,
+          17
+        ],
+        "old_capacity": 2724.5,
+        "new_capacity": 2882.9
+      },
+      "action_narrative": "Kapasitas E19 Jl. Diponegoro arah timur dan Jl. Cisangkuy (13 -> 17) berubah dari 2.724,5 jadi 2.882,9 skr/jam. 11.00 E19 Jl. Diponegoro arah timur dan Jl. Cisangkuy: Pasar bubar, lapak dibongkar, kapasitas kembali normal."
+    },
+    {
+      "step": 116,
+      "event_type": "FLOW_KEPT",
+      "mutations": {
+        "target_edge": [
+          13,
+          17
+        ],
+        "current_max_flow": 5055.1
+      },
+      "action_narrative": "Aliran lama di E19 Jl. Diponegoro arah timur dan Jl. Cisangkuy (13 -> 17) masih muat di kapasitas baru, jadi aliran 5.055,1 skr/jam dipertahankan dan hanya dicari tambahan."
+    },
+    {
+      "step": 117,
       "event_type": "MIN_CUT_FOUND",
       "mutations": {
         "max_flow": 5055.1,
@@ -6479,7 +6924,8 @@
           5,
           6,
           14,
-          15
+          15,
+          16
         ],
         "edge_flows": [
           [
@@ -6490,11 +6936,16 @@
           [
             0,
             2,
-            4086.7
+            2772.0
+          ],
+          [
+            0,
+            16,
+            1314.7
           ],
           [
             1,
-            2,
+            16,
             0.0
           ],
           [
@@ -6549,7 +7000,7 @@
           ],
           [
             9,
-            16,
+            17,
             2330.6
           ],
           [
@@ -6569,12 +7020,12 @@
           ],
           [
             12,
-            16,
+            17,
             0.0
           ],
           [
             13,
-            16,
+            17,
             2724.5
           ],
           [
@@ -6591,38 +7042,43 @@
             15,
             6,
             730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
           ]
         ]
       },
       "action_narrative": "Tidak ada lagi augmenting path. Max flow = 5.055,1 skr/jam. Min cut berisi E12 Jl. Surapati sisi utara Gasibu (3 -> 8), E09 Jl. Japati (sisi utara Telkom) (6 -> 7) dengan total kapasitas 5.055,1 skr/jam, sama dengan max flow."
     },
     {
-      "step": 116,
+      "step": 118,
       "event_type": "UPDATE_CAPACITY_EVENT",
       "mutations": {
         "target_edge": [
           12,
-          16
+          17
         ],
         "old_capacity": 2724.5,
         "new_capacity": 2882.9
       },
-      "action_narrative": "Kapasitas E20 Jl. Diponegoro arah barat (Cilamaya - Sulanjana) (12 -> 16) berubah dari 2.724,5 jadi 2.882,9 skr/jam. 11.00 E20 Jl. Diponegoro arah barat (Cilamaya - Sulanjana): Pasar bubar, lapak dibongkar, kapasitas kembali normal."
+      "action_narrative": "Kapasitas E20 Jl. Diponegoro arah barat (Cilamaya - Sulanjana) (12 -> 17) berubah dari 2.724,5 jadi 2.882,9 skr/jam. 11.00 E20 Jl. Diponegoro arah barat (Cilamaya - Sulanjana): Pasar bubar, lapak dibongkar, kapasitas kembali normal."
     },
     {
-      "step": 117,
+      "step": 119,
       "event_type": "FLOW_KEPT",
       "mutations": {
         "target_edge": [
           12,
-          16
+          17
         ],
         "current_max_flow": 5055.1
       },
-      "action_narrative": "Aliran lama di E20 Jl. Diponegoro arah barat (Cilamaya - Sulanjana) (12 -> 16) masih muat di kapasitas baru, jadi aliran 5.055,1 skr/jam dipertahankan dan hanya dicari tambahan."
+      "action_narrative": "Aliran lama di E20 Jl. Diponegoro arah barat (Cilamaya - Sulanjana) (12 -> 17) masih muat di kapasitas baru, jadi aliran 5.055,1 skr/jam dipertahankan dan hanya dicari tambahan."
     },
     {
-      "step": 118,
+      "step": 120,
       "event_type": "MIN_CUT_FOUND",
       "mutations": {
         "max_flow": 5055.1,
@@ -6646,7 +7102,8 @@
           5,
           6,
           14,
-          15
+          15,
+          16
         ],
         "edge_flows": [
           [
@@ -6657,11 +7114,16 @@
           [
             0,
             2,
-            4086.7
+            2772.0
+          ],
+          [
+            0,
+            16,
+            1314.7
           ],
           [
             1,
-            2,
+            16,
             0.0
           ],
           [
@@ -6716,7 +7178,7 @@
           ],
           [
             9,
-            16,
+            17,
             2330.6
           ],
           [
@@ -6736,12 +7198,12 @@
           ],
           [
             12,
-            16,
+            17,
             0.0
           ],
           [
             13,
-            16,
+            17,
             2724.5
           ],
           [
@@ -6758,6 +7220,11 @@
             15,
             6,
             730.8
+          ],
+          [
+            16,
+            2,
+            1314.7
           ]
         ]
       },

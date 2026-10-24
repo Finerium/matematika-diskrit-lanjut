@@ -278,6 +278,7 @@ def test_audit_sota_algorithm():
 
 ## Tambahan Kelompok: Kasus 4 Pasar Tumpah Gasibu
 
-Skenario jaringan jalan nyata Gasibu, algoritma max flow (baseline Ford-Fulkerson/Edmonds-Karp, SOTA Push-Relabel,
-pembanding Dinic dinamis), runner `scripts/run_maxflow.py`, benchmark `scripts/run_benchmark_maxflow.py`, dan
-`tests/test_maxflow.py` dijelaskan di [KASUS_04_GASIBU.md](KASUS_04_GASIBU.md).
+Skenario jaringan jalan nyata Gasibu, empat algoritma max flow (baseline Edmonds-Karp dan Ford-Fulkerson DFS, SOTA
+Push-Relabel dan Dinic dinamis), runner `scripts/run_maxflow.py`, analisis `scripts/analisis_kasus4.py`, benchmark
+`scripts/run_benchmark_maxflow.py` dan `scripts/run_benchmark_skala.py`, serta `tests/test_maxflow.py` dijelaskan di
+[KASUS_04_GASIBU.md](KASUS_04_GASIBU.md).

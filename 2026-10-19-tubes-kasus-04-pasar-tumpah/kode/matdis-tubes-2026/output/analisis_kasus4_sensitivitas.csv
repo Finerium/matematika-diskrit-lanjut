@@ -1,0 +1,7 @@
+kondisi,edge_dilepas,max_flow_awal,max_flow_baru,kenaikan,pembatas_berikutnya
+normal,E12,5055.1,5459.7,404.6,E21 + E11
+normal,E09 + E10,5055.1,5459.7,404.6,E21 + E11
+normal,E12 + E09 + E10,5055.1,5459.7,404.6,E21 + E11
+pasar,E12,3296.9,4738.3,1441.4,E09 + E13 + E14
+pasar,E09 + E10,3296.9,3423.9,127.0,E12 + E22
+pasar,E12 + E09 + E10,3296.9,4865.3,1568.4,E13 + E14 + E22

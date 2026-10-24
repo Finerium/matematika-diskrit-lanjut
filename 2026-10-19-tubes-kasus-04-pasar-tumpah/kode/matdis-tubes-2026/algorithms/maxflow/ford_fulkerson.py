@@ -68,7 +68,7 @@ class FordFulkerson(BaseGraphAlgorithm):
         return self.graph.nodes[node].get("label", f"Node {node}")
 
     def edge_text(self, u, v) -> str:
-        """Nama busur untuk narasi. Busur residual balik (v -> u) disebut sebagai pembatalan aliran."""
+        """Nama edge untuk narasi. Edge residual balik (v -> u) disebut sebagai pembatalan aliran."""
         if self.graph.has_edge(u, v):
             return self.model.get_edge_label(u, v)
         return f"arah balik {self.model.get_edge_label(v, u)} (pembatalan aliran)"
@@ -95,11 +95,15 @@ class FordFulkerson(BaseGraphAlgorithm):
                     queue.append(v)
         return False
 
+    def _cari_jalur(self, source, sink, parent) -> bool:
+        """Cara mencari augmenting path. Edmonds-Karp memakai BFS, varian DFS meng-override method ini."""
+        return self._bfs(source, sink, parent)
+
     def _augment_bfs(self, source, sink, fase: str):
-        """Cari augmenting path terpendek (jumlah busur) berulang kali sampai tidak ada lagi."""
+        """Cari augmenting path berulang kali sampai tidak ada lagi (BFS = jalur dengan edge paling sedikit)."""
         while True:
             parent = {}
-            if not self._bfs(source, sink, parent):
+            if not self._cari_jalur(source, sink, parent):
                 break
             path = [sink]
             while path[-1] != source:

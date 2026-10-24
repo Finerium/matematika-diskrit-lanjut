@@ -1,0 +1,4 @@
+kondisi,max_flow_semua,min_cut_semua,max_flow_kendaraan_berat,min_cut_kendaraan_berat,hanya_mobil_dan_motor
+normal,5055.1,E12 + E09,4324.3,E11,730.8
+pasar,3296.9,E12 + E09,2566.1,E12,730.8
+penataan,4817.5,E12 + E09,4086.7,E11,730.8

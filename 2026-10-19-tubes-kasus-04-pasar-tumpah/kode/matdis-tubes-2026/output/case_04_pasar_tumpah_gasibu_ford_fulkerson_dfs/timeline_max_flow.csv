@@ -1,0 +1,36 @@
+step,time,edge,old_capacity,new_capacity,max_flow,min_cut,description
+0,-,-,,,5055.1,E12; E09,Kondisi awal
+1,06.00,E04 Jl. Wirayuda Barat (sisi barat taman),2732.4,1032.2,5055.1,E12; E09,"06.00 E04 Jl. Wirayuda Barat (sisi barat taman): Lapak dan pembeli menutup satu lajur, hambatan samping sangat tinggi (aktivitas pasar)."
+2,06.00,E05 Jl. Wirayuda Barat (ujung selatan),2732.4,1032.2,5055.1,E12; E09,"06.00 E05 Jl. Wirayuda Barat (ujung selatan): Lapak dan pembeli menutup satu lajur, hambatan samping sangat tinggi."
+3,06.00,E06 Jl. Wirayuda Timur (sisi timur taman),2732.4,1032.2,5055.1,E12; E09,"06.00 E06 Jl. Wirayuda Timur (sisi timur taman): Lapak dan pembeli menutup satu lajur, hambatan samping sangat tinggi."
+4,06.00,E22 Jl. Singaperbangsa (memotong koridor taman),1135.4,857.8,5055.1,E12; E09,"06.00 E22 Jl. Singaperbangsa (memotong koridor taman): Ruas ini memotong koridor taman di tengah area pasar, hambatan samping sangat tinggi."
+5,06.15,E08 Jl. Haji Hasan (penghubung antarsisi taman),1366.2,1032.2,5055.1,E12; E09,"06.15 E08 Jl. Haji Hasan (penghubung antarsisi taman): Penghubung di tengah area pasar, hambatan samping sangat tinggi."
+6,06.30,E07 Jl. Wirayuda Timur depan Telkom (portal saat pasar),2732.4,0.0,5055.1,E12; E09,06.30 E07 Jl. Wirayuda Timur depan Telkom (portal saat pasar): Portal ditutup di depan Telkom selama pasar berlangsung.
+7,07.00,E11 Jl. Surapati (turunan flyover - Wirayuda Barat),4324.3,4086.7,5055.1,E12; E09,"07.00 E11 Jl. Surapati (turunan flyover - Wirayuda Barat): Parkir motor di bahu jalan dekat lampu lalu lintas, hambatan samping tinggi."
+8,07.00,E12 Jl. Surapati sisi utara Gasibu,4324.3,2566.1,3296.9,E12; E09,"07.00 E12 Jl. Surapati sisi utara Gasibu: Lajur kiri dipakai parkir dan titik keluar masuk parkir, pengunjung menyeberang dari taman ke Gasibu."
+9,07.15,E13 Jl. Surapati depan Telkom,2882.9,1283.0,3296.9,E12; E09,"07.15 E13 Jl. Surapati depan Telkom: Pedagang dan parkir mengambil badan jalan depan Telkom, tersisa satu lajur."
+10,07.15,E16 Jl. Surapati jalur lambat sisi Gasibu,1305.5,1032.2,3296.9,E12; E09,07.15 E16 Jl. Surapati jalur lambat sisi Gasibu: Titik keluar masuk parkir Surapati menyatu dengan jalur lambat.
+11,07.30,E01 Jl. Dipatiukur (masuk dari arah Monumen Perjuangan),1247.0,1131.0,3296.9,E12; E09,"07.30 E01 Jl. Dipatiukur (masuk dari arah Monumen Perjuangan): Pengunjung Monju dan parkir di Jl. Dipatiukur, hambatan samping naik ke tinggi."
+12,07.30,E21 Jl. Singaperbangsa (dari Dipatiukur ke koridor taman),1135.4,984.0,3296.9,E12; E09,"07.30 E21 Jl. Singaperbangsa (dari Dipatiukur ke koridor taman): Pengunjung parkir dan berjalan di Jl. Singaperbangsa menuju area pasar, hambatan samping tinggi."
+13,07.30,E14 Belokan Surapati ke Jl. Sentot Alibasyah,2882.9,2724.5,3296.9,E12; E09,07.30 E14 Belokan Surapati ke Jl. Sentot Alibasyah: Kendaraan berhenti menurunkan pengunjung di dekat simpang.
+14,07.30,E15 Jl. Sentot Alibasyah (sisi timur Gasibu),2882.9,2724.5,3296.9,E12; E09,07.30 E15 Jl. Sentot Alibasyah (sisi timur Gasibu): Parkir dan pejalan kaki di sisi Gasibu.
+15,07.30,E17 Jl. Majapahit (sisi barat Gasibu),2882.9,2724.5,3296.9,E12; E09,07.30 E17 Jl. Majapahit (sisi barat Gasibu): Parkir dan pejalan kaki di sisi Gasibu.
+16,07.30,E19 Jl. Diponegoro arah timur dan Jl. Cisangkuy,2882.9,2724.5,3296.9,E12; E09,07.30 E19 Jl. Diponegoro arah timur dan Jl. Cisangkuy: Pejalan kaki dan kendaraan keluar kawasan.
+17,07.30,E20 Jl. Diponegoro arah barat (Cilamaya - Sulanjana),2882.9,2724.5,3296.9,E12; E09,07.30 E20 Jl. Diponegoro arah barat (Cilamaya - Sulanjana): Pejalan kaki dan kendaraan keluar kawasan.
+18,11.00,E04 Jl. Wirayuda Barat (sisi barat taman),1032.2,2732.4,3296.9,E12; E09,"11.00 E04 Jl. Wirayuda Barat (sisi barat taman): Pasar bubar, lapak dibongkar, kapasitas kembali normal."
+19,11.00,E05 Jl. Wirayuda Barat (ujung selatan),1032.2,2732.4,3296.9,E12; E09,"11.00 E05 Jl. Wirayuda Barat (ujung selatan): Pasar bubar, lapak dibongkar, kapasitas kembali normal."
+20,11.00,E06 Jl. Wirayuda Timur (sisi timur taman),1032.2,2732.4,3296.9,E12; E09,"11.00 E06 Jl. Wirayuda Timur (sisi timur taman): Pasar bubar, lapak dibongkar, kapasitas kembali normal."
+21,11.00,E22 Jl. Singaperbangsa (memotong koridor taman),857.8,1135.4,3296.9,E12; E09,"11.00 E22 Jl. Singaperbangsa (memotong koridor taman): Pasar bubar, lapak dibongkar, kapasitas kembali normal."
+22,11.00,E08 Jl. Haji Hasan (penghubung antarsisi taman),1032.2,1366.2,3296.9,E12; E09,"11.00 E08 Jl. Haji Hasan (penghubung antarsisi taman): Pasar bubar, lapak dibongkar, kapasitas kembali normal."
+23,11.00,E07 Jl. Wirayuda Timur depan Telkom (portal saat pasar),0.0,2732.4,3296.9,E12; E09,"11.00 E07 Jl. Wirayuda Timur depan Telkom (portal saat pasar): Pasar bubar, lapak dibongkar, kapasitas kembali normal."
+24,11.00,E11 Jl. Surapati (turunan flyover - Wirayuda Barat),4086.7,4324.3,3296.9,E12; E09,"11.00 E11 Jl. Surapati (turunan flyover - Wirayuda Barat): Pasar bubar, lapak dibongkar, kapasitas kembali normal."
+25,11.00,E12 Jl. Surapati sisi utara Gasibu,2566.1,4324.3,4738.3,E09; E13; E14,"11.00 E12 Jl. Surapati sisi utara Gasibu: Pasar bubar, lapak dibongkar, kapasitas kembali normal."
+26,11.00,E13 Jl. Surapati depan Telkom,1283.0,2882.9,5055.1,E12; E09,"11.00 E13 Jl. Surapati depan Telkom: Pasar bubar, lapak dibongkar, kapasitas kembali normal."
+27,11.00,E16 Jl. Surapati jalur lambat sisi Gasibu,1032.2,1305.5,5055.1,E12; E09,"11.00 E16 Jl. Surapati jalur lambat sisi Gasibu: Pasar bubar, lapak dibongkar, kapasitas kembali normal."
+28,11.00,E01 Jl. Dipatiukur (masuk dari arah Monumen Perjuangan),1131.0,1247.0,5055.1,E12; E09,"11.00 E01 Jl. Dipatiukur (masuk dari arah Monumen Perjuangan): Pasar bubar, lapak dibongkar, kapasitas kembali normal."
+29,11.00,E21 Jl. Singaperbangsa (dari Dipatiukur ke koridor taman),984.0,1135.4,5055.1,E12; E09,"11.00 E21 Jl. Singaperbangsa (dari Dipatiukur ke koridor taman): Pasar bubar, lapak dibongkar, kapasitas kembali normal."
+30,11.00,E14 Belokan Surapati ke Jl. Sentot Alibasyah,2724.5,2882.9,5055.1,E12; E09,"11.00 E14 Belokan Surapati ke Jl. Sentot Alibasyah: Pasar bubar, lapak dibongkar, kapasitas kembali normal."
+31,11.00,E15 Jl. Sentot Alibasyah (sisi timur Gasibu),2724.5,2882.9,5055.1,E12; E09,"11.00 E15 Jl. Sentot Alibasyah (sisi timur Gasibu): Pasar bubar, lapak dibongkar, kapasitas kembali normal."
+32,11.00,E17 Jl. Majapahit (sisi barat Gasibu),2724.5,2882.9,5055.1,E12; E09,"11.00 E17 Jl. Majapahit (sisi barat Gasibu): Pasar bubar, lapak dibongkar, kapasitas kembali normal."
+33,11.00,E19 Jl. Diponegoro arah timur dan Jl. Cisangkuy,2724.5,2882.9,5055.1,E12; E09,"11.00 E19 Jl. Diponegoro arah timur dan Jl. Cisangkuy: Pasar bubar, lapak dibongkar, kapasitas kembali normal."
+34,11.00,E20 Jl. Diponegoro arah barat (Cilamaya - Sulanjana),2724.5,2882.9,5055.1,E12; E09,"11.00 E20 Jl. Diponegoro arah barat (Cilamaya - Sulanjana): Pasar bubar, lapak dibongkar, kapasitas kembali normal."

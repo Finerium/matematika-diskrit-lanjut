@@ -17,7 +17,7 @@ from algorithms.registry import AlgorithmRegistry
 from cases.scenario_loader import ScenarioLoader
 from config.settings import CASES_DIR, OUTPUT_DIR
 
-KEYS = ["ford_fulkerson", "push_relabel", "dynamic_dinic"]
+KEYS = ["ford_fulkerson", "ford_fulkerson_dfs", "push_relabel", "dynamic_dinic"]
 
 
 def sekali(yaml_path, key):
@@ -65,11 +65,11 @@ def main(argv=None):
                 "initial_ms": round(statistics.median(awal), 4), "events_ms": round(statistics.median(event), 4),
                 "final_max_flow": round(solver.max_flow, 1),
             })
-    print(f"\n{'Case':<40} {'Algorithm':<14} {'Ev':>3} {'Steps':>6} {'Aug':>5} {'Push':>5} {'Relab':>6} "
+    print(f"\n{'Case':<40} {'Algorithm':<17} {'Ev':>3} {'Steps':>6} {'Aug':>5} {'Push':>5} {'Relab':>6} "
           f"{'Init ms':>9} {'Event ms':>9} {'MaxFlow':>9}")
-    print("-" * 115)
+    print("-" * 118)
     for r in rows:
-        print(f"{r['case']:<40} {r['algorithm']:<14} {r['events']:>3} {r['steps']:>6} {r['augmenting_paths']:>5} "
+        print(f"{r['case']:<40} {r['algorithm']:<17} {r['events']:>3} {r['steps']:>6} {r['augmenting_paths']:>5} "
               f"{r['push']:>5} {r['relabel']:>6} {r['initial_ms']:>9.3f} {r['events_ms']:>9.3f} "
               f"{r['final_max_flow']:>9.1f}")
     out = OUTPUT_DIR / "benchmark_maxflow.csv"

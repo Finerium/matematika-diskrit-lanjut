@@ -8,15 +8,15 @@ class PushRelabel(FordFulkerson):
     """SOTA: Push-Relabel FIFO (Goldberg dan Tarjan, 1988) yang bisa melanjutkan aliran lama.
 
     Push-Relabel tidak mencari jalur utuh seperti Ford-Fulkerson. Algoritma memegang preflow
-    (aliran masuk simpul boleh lebih besar dari aliran keluar), lalu kelebihan (excess) di tiap
-    simpul didorong (push) ke tetangga yang labelnya tepat satu lebih rendah. Simpul yang tidak bisa
+    (aliran masuk node boleh lebih besar dari aliran keluar), lalu kelebihan (excess) di tiap
+    node didorong (push) ke tetangga yang labelnya tepat satu lebih rendah. Node yang tidak bisa
     mendorong labelnya dinaikkan (relabel). Label awal memakai global relabeling, yaitu jarak BFS
     ke sink di residual graph.
 
     Override handle_dynamic_event(): aliran lama tidak dibuang.
     - Kapasitas turun di bawah aliran edge (u, v): kelebihan dipindah jadi excess di u, kekurangan di v
       ditutup dengan mengurangi aliran di jalur v -> sink.
-    - Busur dari source diisi penuh lagi (preflow), label dihitung ulang, lalu excess didorong sampai habis.
+    - Edge dari source diisi penuh lagi (preflow), label dihitung ulang, lalu excess didorong sampai habis.
     Hasilnya tetap max flow, tetapi kerjanya jauh lebih sedikit daripada menghitung dari nol.
     """
 
@@ -31,7 +31,7 @@ class PushRelabel(FordFulkerson):
 
     # ------------------------------------------------------------------ bagian push-relabel
     def _global_relabel(self, source, sink):
-        """Label = jarak BFS ke sink di residual graph. Simpul yang tidak bisa ke sink diberi n + jarak ke source."""
+        """Label = jarak BFS ke sink di residual graph. Node yang tidak bisa ke sink diberi n + jarak ke source."""
         n = self.graph.number_of_nodes()
         tinggi = {x: 2 * n for x in self.graph.nodes()}
         for awal, dasar in [(sink, 0), (source, n)]:
@@ -51,7 +51,7 @@ class PushRelabel(FordFulkerson):
         self.log_step(
             event_type="GLOBAL_RELABEL",
             state_mutations={"height": {str(k): v for k, v in tinggi.items()}},
-            narrative="Label tinggi semua simpul dihitung ulang dari jarak BFS ke tujuan di residual graph.",
+            narrative="Label tinggi semua node dihitung ulang dari jarak BFS ke tujuan di residual graph.",
         )
 
     def _saturate_source(self, source, sink, aktif):
@@ -119,8 +119,8 @@ class PushRelabel(FordFulkerson):
             state_mutations={"source": source_node, "sink": sink_node, "max_flow": 0.0,
                              "total_edges": self.graph.number_of_edges()},
             narrative=(
-                f"Semua aliran diset 0. Busur yang keluar dari {self.label(source_node)} langsung diisi penuh "
-                f"(preflow), lalu kelebihan di tiap simpul didorong ke arah {self.label(sink_node)}."
+                f"Semua aliran diset 0. Edge yang keluar dari {self.label(source_node)} langsung diisi penuh "
+                f"(preflow), lalu kelebihan di tiap node didorong ke arah {self.label(sink_node)}."
             ),
         )
         aktif = deque()
@@ -177,7 +177,7 @@ class PushRelabel(FordFulkerson):
         return self._finish(source, sink)
 
     def _jalur_aliran(self, dari, tujuan):
-        """BFS di edge beraliran positif dari simpul dari sampai menyentuh salah satu simpul tujuan."""
+        """BFS di edge beraliran positif dari node asal sampai menyentuh salah satu node tujuan."""
         parent = {dari: None}
         queue = deque([dari])
         akhir = None

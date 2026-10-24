@@ -36,16 +36,16 @@ def run_single(yaml_path, algorithm_override=None, gambar=True):
     folder.mkdir(parents=True, exist_ok=True)
     viz = MaxFlowSnapshotVisualizer(G)
 
-    def label_busur(u, v):
+    def label_edge(u, v):
         return G[u][v].get("label", f"{u}->{v}")
 
     def cut_text():
-        # busur berkapasitas 0 (ruas ditutup) ikut himpunan potong tapi tidak menyumbang kapasitas
-        return "; ".join(label_busur(u, v).split(" ")[0] for u, v in solver.min_cut_edges
+        # edge berkapasitas 0 (ruas ditutup) ikut himpunan potong tapi tidak menyumbang kapasitas
+        return "; ".join(label_edge(u, v).split(" ")[0] for u, v in solver.min_cut_edges
                          if G[u][v].get("capacity", 0.0) > 0)
 
     print(f"=== {meta['title']} ===")
-    print(f"Algoritma: {nama} | simpul: {G.number_of_nodes()} | busur: {G.number_of_edges()}")
+    print(f"Algoritma: {nama} | node: {G.number_of_nodes()} | edge: {G.number_of_edges()}")
     _, nilai = solver.run(s, t)
     baris = [{"step": 0, "time": "-", "edge": "-", "old_capacity": "", "new_capacity": "",
               "max_flow": round(nilai, 1), "min_cut": cut_text(), "description": "Kondisi awal"}]
@@ -59,14 +59,14 @@ def run_single(yaml_path, algorithm_override=None, gambar=True):
         lama = G[u][v].get("capacity", 0.0)
         _, nilai = solver.handle_dynamic_event({"edge": (u, v), "new_capacity": ev["new_capacity"],
                                                 "description": ev.get("description", ""), "start": s, "goal": t})
-        baris.append({"step": k, "time": ev.get("time", ""), "edge": label_busur(u, v), "old_capacity": lama,
+        baris.append({"step": k, "time": ev.get("time", ""), "edge": label_edge(u, v), "old_capacity": lama,
                       "new_capacity": ev["new_capacity"], "max_flow": round(nilai, 1), "min_cut": cut_text(),
                       "description": ev.get("description", "")})
         tanda = "  <- berubah" if abs(nilai - sebelumnya) > 1e-6 else ""
-        print(f"[{ev.get('time', k):>5}] {label_busur(u, v).split(' ')[0]:<4} {angka(lama):>8} -> "
+        print(f"[{ev.get('time', k):>5}] {label_edge(u, v).split(' ')[0]:<4} {angka(lama):>8} -> "
               f"{angka(ev['new_capacity']):>8} | max flow = {angka(nilai):>8}{tanda}")
         if gambar and abs(nilai - sebelumnya) > 1e-6:
-            viz.save(folder / f"{k:02d}_event.png", f"Event {k} ({ev.get('time', '')}): {label_busur(u, v)}",
+            viz.save(folder / f"{k:02d}_event.png", f"Event {k} ({ev.get('time', '')}): {label_edge(u, v)}",
                      solver.flow, solver.min_cut_edges, nilai, highlighted_edge=(u, v))
         sebelumnya = nilai
     if gambar:

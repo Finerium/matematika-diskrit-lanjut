@@ -1,4 +1,4 @@
-"""Tes kebenaran algoritma max flow (baseline Ford-Fulkerson/Edmonds-Karp, SOTA Push-Relabel, dan Dinic).
+"""Tes kebenaran algoritma max flow (baseline Edmonds-Karp dan Ford-Fulkerson DFS, SOTA Push-Relabel, dan Dinic).
 
 Pembanding: networkx.maximum_flow_value. Yang dicek di setiap skenario dan setiap event:
 nilai max flow, batas kapasitas, konservasi aliran, dan teorema max-flow min-cut.
@@ -15,7 +15,7 @@ from config.settings import CASES_DIR
 from core.graph_model import SpatialGraphModel
 from tests.test_scaffolding import SOTAScaffoldingAuditor
 
-MAXFLOW_KEYS = ["ford_fulkerson", "push_relabel", "dynamic_dinic"]
+MAXFLOW_KEYS = ["ford_fulkerson", "ford_fulkerson_dfs", "push_relabel", "dynamic_dinic"]
 SCENARIOS = sorted(p for p in CASES_DIR.glob("*.yaml") if "DYNAMIC_EDGE_CAPACITY" in p.read_text(encoding="utf-8"))
 GASIBU = CASES_DIR / "case_04_pasar_tumpah_gasibu.yaml"
 
@@ -82,7 +82,7 @@ def test_hasil_kasus_gasibu():
 
 
 def test_min_cut_sama_di_semua_algoritma():
-    """Min cut yang dilaporkan (sisi S paling dekat ke source) harus sama untuk ketiga algoritma setelah run()
+    """Min cut yang dilaporkan (sisi S paling dekat ke source) harus sama untuk keempat algoritma setelah run()
     dan setelah setiap event. Skenario penataan berakhir di 4.817,5 (angka slide)."""
     for yaml_path, akhir in [(GASIBU, 5055.1), (CASES_DIR / "case_04_pasar_tumpah_gasibu_penataan.yaml", 4817.5)]:
         jejak = {}
@@ -99,7 +99,7 @@ def test_min_cut_sama_di_semua_algoritma():
                 catat.append((sorted(solver.min_cut_edges), sorted(solver.source_side)))
             assert nilai == pytest.approx(akhir, abs=0.05)
             jejak[key] = catat
-        assert jejak["ford_fulkerson"] == jejak["push_relabel"] == jejak["dynamic_dinic"]
+        assert jejak["ford_fulkerson"] == jejak["ford_fulkerson_dfs"] == jejak["push_relabel"] == jejak["dynamic_dinic"]
 
 
 @pytest.mark.parametrize("key", MAXFLOW_KEYS)
@@ -145,3 +145,20 @@ def test_sota_lebih_hemat_dari_baseline():
                                          "new_capacity": event["new_capacity"], "start": s, "goal": t})
         langkah[key] = sum(1 for d in solver.delta_logs if d["event_type"] == "AUGMENTING_PATH_FOUND")
     assert langkah["dynamic_dinic"] < langkah["ford_fulkerson"]
+
+
+def test_analisis_kendaraan_berat():
+    """Subgraf bus/truk (heavy_vehicle: true) dicek ke networkx, angkanya dipakai di laporan."""
+    from scripts.analisis_kasus4 import akses_kendaraan_berat, kondisi
+    data, kap = kondisi()
+    hasil = {r["kondisi"]: r for r in akses_kendaraan_berat(data, kap)}
+    harapan = {"normal": (5055.1, 4324.3), "pasar": (3296.9, 2566.1), "penataan": (4817.5, 4086.7)}
+    s, t = data["execution_plan"]["start_node"], data["execution_plan"]["goal_node"]
+    for nama, (semua, berat) in harapan.items():
+        assert hasil[nama]["max_flow_semua"] == pytest.approx(semua, abs=0.05)
+        assert hasil[nama]["max_flow_kendaraan_berat"] == pytest.approx(berat, abs=0.05)
+        G = nx.DiGraph()
+        for e in data["edges"]:
+            if e["heavy_vehicle"]:
+                G.add_edge(e["from"], e["to"], capacity=kap[nama][e["label"].split(" ")[0]])
+        assert nx.maximum_flow_value(G, s, t) == pytest.approx(berat, abs=1e-6)

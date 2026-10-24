@@ -54,17 +54,20 @@ Kasus 4 Pasar Tumpah (Max Flow), dikerjakan berlima. Folder [`2026-10-19-tubes-k
 berisi starter kit dari dosen ([trisgelar/matdis-tubes-2026](https://github.com/trisgelar/matdis-tubes-2026)) yang
 dilengkapi bagian max flow:
 
-- skenario jaringan jalan nyata Gasibu - Monumen Perjuangan dari OpenStreetMap (17 simpul, 22 busur berarah,
-  kapasitas skr/jam menurut PKJI 2014) dengan 34 event perubahan kapasitas dari lapak buka sampai pasar bubar;
-- baseline Ford-Fulkerson (Edmonds-Karp), SOTA Push-Relabel yang melanjutkan aliran lama saat kapasitas berubah,
-  dan Dinic dinamis sebagai pembanding;
-- runner `scripts/run_maxflow.py`, benchmark `scripts/run_benchmark_maxflow.py`, dan `tests/test_maxflow.py`
-  (72 tes lulus, hasil dicocokkan dengan networkx).
+- skenario jaringan jalan nyata Gasibu - Monumen Perjuangan dari OpenStreetMap (18 node, 24 edge berarah,
+  kapasitas skr/jam menurut PKJI 2014, tiga pintu masuk termasuk Flyover Pasupati dari arah Pasteur) dengan
+  34 event perubahan kapasitas dari lapak buka sampai pasar bubar;
+- baseline Edmonds-Karp dan Ford-Fulkerson DFS, SOTA Push-Relabel dan Dinic dinamis yang melanjutkan aliran lama
+  saat kapasitas berubah;
+- analisis subgraf bus dan truk (jalan arteri dan kolektor) dan sensitivitas tiap edge di `scripts/analisis_kasus4.py`;
+- runner `scripts/run_maxflow.py`, benchmark `scripts/run_benchmark_maxflow.py` dan `scripts/run_benchmark_skala.py`
+  (graf kisi sampai 402 node), dan `tests/test_maxflow.py` (83 tes lulus, hasil dicocokkan dengan networkx).
 
-Hasil sementara: max flow normal 5.055,1 skr/jam, saat puncak pasar 3.296,9 skr/jam (turun 34,8%), min cut di
-Jl. Surapati sisi utara Gasibu dan Jl. Japati. Penjelasan lengkap ada di
-`kode/matdis-tubes-2026/KASUS_04_GASIBU.md`. Aset presentasi (fishbone, peta, slide) dan skrip pembuatnya disimpan
-lokal karena memuat kliping berita dan identitas kelompok.
+Hasil: max flow normal 5.055,1 skr/jam, saat puncak pasar 3.296,9 skr/jam (turun 34,8%), setelah usulan penataan
+4.817,5 skr/jam. Min cut di Jl. Surapati sisi utara Gasibu dan Jl. Japati, sesuai pola lalu lintas biasanya di
+Google Maps hari Minggu. Dinic dinamis paling cepat di semua benchmark. Penjelasan lengkap ada di
+`kode/matdis-tubes-2026/KASUS_04_GASIBU.md`. Laporan, rencana kerja, aset presentasi (fishbone, peta, slide), dan
+skrip pembuatnya disimpan lokal karena memuat kliping berita dan identitas kelompok.
 
 ## Struktur
 
