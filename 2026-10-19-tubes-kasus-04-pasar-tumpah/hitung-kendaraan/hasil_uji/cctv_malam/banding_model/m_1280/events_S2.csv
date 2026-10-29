@@ -1,0 +1,15 @@
+video,titik,garis,edge_model,track_id,frame,detik,waktu,kelas_coco,kelas_pkji,arah,conf_rata,kamera_geser
+S2_20261029-184158.ts,S2,L1,S2->V_Singaperbangsa,24,96,3.92,2026-10-29T18:41:51.920+07:00,car,KR,negatif,0.435,tidak
+S2_20261029-184158.ts,S2,L1,S2->V_Singaperbangsa,3,137,5.56,2026-10-29T18:41:53.560+07:00,car,KR,positif,0.773,tidak
+S2_20261029-184158.ts,S2,L1,S2->V_Singaperbangsa,85,229,9.24,2026-10-29T18:41:57.240+07:00,car,KR,positif,0.68,tidak
+S2_20261029-184158.ts,S2,L1,S2->V_Singaperbangsa,235,321,13.04,2026-10-29T18:42:01.040+07:00,car,KR,positif,0.631,tidak
+S2_20261029-184158.ts,S2,L1,S2->V_Singaperbangsa,347,446,18.08,2026-10-29T18:42:06.080+07:00,car,KR,positif,0.682,tidak
+S2_20261029-184158.ts,S2,L1,S2->V_Singaperbangsa,641,896,36.4,2026-10-29T18:42:24.400+07:00,car,KR,negatif,0.64,tidak
+S2_20261029-184158.ts,S2,L1,S2->V_Singaperbangsa,699,934,37.92,2026-10-29T18:42:25.920+07:00,car,KR,positif,0.416,tidak
+S2_20261029-184158.ts,S2,L1,S2->V_Singaperbangsa,741,1109,45.0,2026-10-29T18:42:33.000+07:00,car,KR,negatif,0.501,tidak
+S2_20261029-184158.ts,S2,L1,S2->V_Singaperbangsa,799,1525,61.96,2026-10-29T18:42:49.960+07:00,bus,KB,positif,0.476,tidak
+S2_20261029-184158.ts,S2,L1,S2->V_Singaperbangsa,884,1604,65.12,2026-10-29T18:42:53.120+07:00,motorcycle,SM,positif,0.358,tidak
+S2_20261029-184158.ts,S2,L1,S2->V_Singaperbangsa,1166,1994,82.8,2026-10-29T18:43:10.800+07:00,motorcycle,SM,positif,0.369,tidak
+S2_20261029-184158.ts,S2,L1,S2->V_Singaperbangsa,1176,2012,83.52,2026-10-29T18:43:11.520+07:00,motorcycle,SM,positif,0.354,tidak
+S2_20261029-184158.ts,S2,L1,S2->V_Singaperbangsa,993,2095,86.88,2026-10-29T18:43:14.880+07:00,car,KR,positif,0.73,tidak
+S2_20261029-184158.ts,S2,L1,S2->V_Singaperbangsa,1344,2186,90.64,2026-10-29T18:43:18.640+07:00,car,KR,positif,0.511,tidak

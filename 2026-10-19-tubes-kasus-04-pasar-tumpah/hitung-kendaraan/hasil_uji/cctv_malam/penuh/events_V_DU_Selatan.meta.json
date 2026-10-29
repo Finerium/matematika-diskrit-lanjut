@@ -1,0 +1,58 @@
+{
+  "titik": "V_DU_Selatan",
+  "cctv": {
+    "nama": "CCTV DAGO 1-CIKAPAYANG 01",
+    "url": "https://pelindung.bandung.go.id:3443/video/HIKSVISION/Dagcik.m3u8"
+  },
+  "garis": [
+    {
+      "id": "L1",
+      "edge_model": "V_DU_Selatan->V_Singaperbangsa",
+      "koordinat": [
+        [
+          500,
+          160
+        ],
+        [
+          300,
+          440
+        ]
+      ],
+      "arah_dihitung": "negatif"
+    }
+  ],
+  "bobot": "yolo26s.pt",
+  "tracker": "bytetrack.yaml",
+  "imgsz": 640,
+  "conf": 0.1,
+  "kelas": [
+    1,
+    2,
+    3,
+    5,
+    7
+  ],
+  "min_frame_track": 5,
+  "device": "mps",
+  "ultralytics": "8.4.192",
+  "lama_proses_detik": 229.5,
+  "frame_per_detik_proses": 37.5,
+  "bagian": [
+    {
+      "video": "data/video/uji_malam/V_DU_Selatan/V_DU_Selatan_20261029-184158.ts",
+      "mulai": "2026-10-29T18:41:46+07:00",
+      "fps": 23.894,
+      "frame_diproses": 8602,
+      "frame_rusak": 0,
+      "durasi_detik": 360.002,
+      "ukuran": [
+        640,
+        480
+      ],
+      "kamera_geser": [],
+      "inlier_min": 28,
+      "geser_maks_px": 0.99
+    }
+  ],
+  "dibuat": "2026-10-29T20:17:36+07:00"
+}

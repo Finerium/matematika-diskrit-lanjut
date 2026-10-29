@@ -1,0 +1,113 @@
+# Config uji CCTV malam Kamis 29 Okt 2026 (sekitar 18.45-18.52 WIB), 7 titik CCTV direkam bersamaan 6 menit.
+# Salinan config utama, bedanya video diarahkan ke data/video/uji_malam/ dan titik T2 (tanpa CCTV) dibuang.
+interval_menit: 1            # rekaman uji cuma 6 menit, interval dibuat 1 menit
+model:
+  bobot: yolo26s.pt          # dipilih dari uji 29 Okt: paling banyak menangkap kendaraan dan paling cepat
+  imgsz: 640                 # sama dengan resolusi CCTV 640x480; titik beresolusi besar punya imgsz sendiri
+  conf: 0.1                  # bawaan tracking Ultralytics, ByteTrack butuh deteksi conf rendah
+  tracker: bytetrack.yaml    # diset eksplisit, default Ultralytics sekarang bukan ByteTrack
+  kelas: [1, 2, 3, 5, 7]     # bicycle, car, motorcycle, bus, truck
+  kedalaman_asal: 0.2        # sebelum melintas, kendaraan harus pernah >= 0,2 x tinggi kotaknya di sisi asal
+  min_frame_track: 5         # track yang lebih pendek dari ini dianggap deteksi palsu
+
+# Isi tiap titik:
+#   cctv      nama dan url stream di pelindung.bandung.go.id; null = direkam pakai HP
+#   video     file video titik ini, boleh pola (*) kalau rekamannya terpotong jadi beberapa bagian
+#   mulai     jam mulai video HP; untuk CCTV biarkan null, jamnya diambil dari file .json hasil rekam_cctv.py
+#   garis     satu kamera boleh punya beberapa garis hitung, satu garis = satu edge di graf
+#             koordinat dan arah_dihitung diisi lewat kalibrasi.py
+#             arah_dihitung = sisi garis tempat kendaraan DATANG untuk arah yang sesuai edge
+#   ekr       SM dan KB WAJIB diisi dari tabel ekr PKJI 2014 sesuai tipe jalan, jangan pakai angka dari chat AI
+#   antrean   catatan lapangan, daftar [mulai, selesai] saat ada antrean di hulu titik; null = belum dicatat
+titik:
+  - id: S1
+    cctv: {nama: "CCTV ITB KEBUN BINATANG 01", url: "https://pelindung.bandung.go.id:3443/video/DAHUA/ITBKebun.m3u8"}
+    imgsz: 1280                         # video kamera ini 1280x720
+    video: data/video/uji_malam/S1/*.ts
+    mulai: null
+    tipe_jalan: null
+    ekr: {KR: 1.0, SM: null, KB: null}
+    antrean: null
+    garis:
+      - id: L1
+        edge_model: S1->V_Cikapayang
+        koordinat: [[600, 456], [980, 420]]
+        arah_dihitung: positif
+
+  - id: S2
+    cctv: {nama: "CCTV DIPATIUKUR SEKELOA 02", url: "https://pelindung.bandung.go.id:3443/video/HIKSVISION/Dipaunp.m3u8"}
+    video: data/video/uji_malam/S2/*.ts
+    mulai: null
+    tipe_jalan: null
+    ekr: {KR: 1.0, SM: null, KB: null}
+    antrean: null
+    garis:
+      - id: L1
+        edge_model: S2->V_Singaperbangsa
+        koordinat: [[100, 350], [330, 290]]
+        arah_dihitung: negatif
+
+  - id: V_Sulanjana
+    cctv: {nama: "CCTV TAMAN SARI - WS 01", url: "https://pelindung.bandung.go.id:3443/video/DAHUA/Tamansr.m3u8"}
+    video: data/video/uji_malam/V_Sulanjana/*.ts
+    mulai: null
+    tipe_jalan: null
+    ekr: {KR: 1.0, SM: null, KB: null}
+    antrean: null
+    garis:
+      - id: L1
+        edge_model: V_Sulanjana->V_Djuanda_Diponegoro
+        koordinat: [[240, 395], [490, 340]]
+        arah_dihitung: positif
+
+  - id: V_DU_Selatan
+    cctv: {nama: "CCTV DAGO 1-CIKAPAYANG 01", url: "https://pelindung.bandung.go.id:3443/video/HIKSVISION/Dagcik.m3u8"}
+    video: data/video/uji_malam/V_DU_Selatan/*.ts
+    mulai: null
+    tipe_jalan: null
+    ekr: {KR: 1.0, SM: null, KB: null}
+    antrean: null
+    garis:
+      - id: L1
+        edge_model: V_DU_Selatan->V_Singaperbangsa
+        koordinat: [[500, 160], [300, 440]]
+        arah_dihitung: negatif
+
+  - id: V_Djuanda_Hasanuddin
+    cctv: {nama: "CCTV DAGO 2-SMA 1 01", url: "https://pelindung.bandung.go.id:3443/video/HIKSVISION/Dagsm.m3u8"}
+    video: data/video/uji_malam/V_Djuanda_Hasanuddin/*.ts
+    mulai: null
+    tipe_jalan: null
+    ekr: {KR: 1.0, SM: null, KB: null}
+    antrean: null
+    garis:
+      - id: L1
+        edge_model: V_Djuanda_Hasanuddin->V_Djuanda_Diponegoro
+        koordinat: [[180, 330], [520, 200]]
+        arah_dihitung: negatif
+
+  - id: V_Surapati_Merak
+    cctv: {nama: "CCTV GASIBU_01", url: "https://pelindung.bandung.go.id:3443/video/DAHUA/GASIBU.m3u8"}
+    video: data/video/uji_malam/V_Surapati_Merak/*.ts
+    mulai: null
+    tipe_jalan: null
+    ekr: {KR: 1.0, SM: null, KB: null}
+    antrean: null
+    garis:
+      - id: L1
+        edge_model: V_Surapati_Merak->T1
+        koordinat: [[185, 375], [639, 400]]
+        arah_dihitung: positif
+
+  - id: T1
+    cctv: {nama: "CCTV PHH MUSTOFA-PUSDAI 02", url: "https://pelindung.bandung.go.id:3443/video/HIKSVISION/Muspusdai.m3u8"}
+    video: data/video/uji_malam/T1/*.ts
+    mulai: null
+    tipe_jalan: null
+    ekr: {KR: 1.0, SM: null, KB: null}
+    antrean: null
+    garis:
+      - id: L1
+        edge_model: V_Surapati_Gagak->T1
+        koordinat: [[225, 206], [375, 177]]
+        arah_dihitung: negatif

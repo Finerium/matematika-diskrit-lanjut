@@ -1,0 +1,11 @@
+titik,garis,arah,kelas,manual,otomatis,error_persen,target_persen,lulus
+V_Djuanda_Hasanuddin,L1,negatif,KB,0.0,0,0.0,,
+V_Djuanda_Hasanuddin,L1,negatif,KR,12.0,11,8.3,,
+V_Djuanda_Hasanuddin,L1,negatif,KTB,0.0,0,0.0,,
+V_Djuanda_Hasanuddin,L1,negatif,SM,2.0,0,100.0,15,tidak
+V_Djuanda_Hasanuddin,L1,negatif,TOTAL,14.0,11,21.4,10,tidak
+V_Djuanda_Hasanuddin,L1,positif,KB,1.0,1,0.0,,
+V_Djuanda_Hasanuddin,L1,positif,KR,11.0,5,54.5,,
+V_Djuanda_Hasanuddin,L1,positif,KTB,0.0,0,0.0,,
+V_Djuanda_Hasanuddin,L1,positif,SM,17.0,0,100.0,15,tidak
+V_Djuanda_Hasanuddin,L1,positif,TOTAL,29.0,6,79.3,10,tidak

@@ -1,0 +1,27 @@
+# 24 kamera di tabel 7.1 spec graf kelompok (29 Okt 2026). Dipakai cek_cctv.py saja, bukan untuk hitung.
+titik:
+  - {id: "S1", cctv: {nama: "CCTV ITB KEBUN BINATANG 01", url: "https://pelindung.bandung.go.id:3443/video/DAHUA/ITBKebun.m3u8"}}
+  - {id: "S1", cctv: {nama: "CCTV ITB KEBUN BINATANG 02", url: "https://pelindung.bandung.go.id:3443/video/DAHUA/ITBKebu.m3u8"}}
+  - {id: "S1", cctv: {nama: "CCTV ITB KEBUN BINATANG 03", url: "https://pelindung.bandung.go.id:3443/video/DAHUA/ITBKeb.m3u8"}}
+  - {id: "V_Cikapayang", cctv: {nama: "TAMAN PASUPATI_01", url: "https://pelindung.bandung.go.id:3443/video/DPKP3/tamanpasupatisatu.m3u8"}}
+  - {id: "V_Cikapayang", cctv: {nama: "TAMAN PASUPATI_02", url: "https://pelindung.bandung.go.id:3443/video/DPKP3/tamanpasupatidua.m3u8"}}
+  - {id: "V_Cikapayang", cctv: {nama: "TAMAN SKETPARK_01", url: "https://pelindung.bandung.go.id:3443/video/DPKP3/tamansketparksatu.m3u8"}}
+  - {id: "V_Cikapayang", cctv: {nama: "TAMAN SKETPARK_03", url: "https://pelindung.bandung.go.id:3443/video/DPKP3/tamansketparktiga.m3u8"}}
+  - {id: "V_Sulanjana", cctv: {nama: "CCTV TAMAN SARI - WS 01", url: "https://pelindung.bandung.go.id:3443/video/DAHUA/Tamansr.m3u8"}}
+  - {id: "V_Sulanjana", cctv: {nama: "CCTV TAMAN SARI - WS 02", url: "https://pelindung.bandung.go.id:3443/video/DAHUA/Tamansri.m3u8"}}
+  - {id: "S2", cctv: {nama: "CCTV DIPATIUKUR SEKELOA 01", url: "https://pelindung.bandung.go.id:3443/video/HIKSVISION/Dipaunpad.m3u8"}}
+  - {id: "S2", cctv: {nama: "CCTV DIPATIUKUR SEKELOA 02", url: "https://pelindung.bandung.go.id:3443/video/HIKSVISION/Dipaunp.m3u8"}}
+  - {id: "V_Djuanda_Hasanuddin", cctv: {nama: "CCTV DAGO 2-SMA 1 01", url: "https://pelindung.bandung.go.id:3443/video/HIKSVISION/Dagsm.m3u8"}}
+  - {id: "V_Djuanda_Hasanuddin", cctv: {nama: "CCTV DAGO 2-SMA 1 02", url: "https://pelindung.bandung.go.id:3443/video/HIKSVISION/Dagsma.m3u8"}}
+  - {id: "V_DU_Selatan", cctv: {nama: "CCTV DAGO 1-CIKAPAYANG 01", url: "https://pelindung.bandung.go.id:3443/video/HIKSVISION/Dagcik.m3u8"}}
+  - {id: "V_DU_Selatan", cctv: {nama: "TM CIKAPAYANG DAGO_04", url: "https://pelindung.bandung.go.id:3443/video/DPKP3/cikapayangempat.m3u8"}}
+  - {id: "V_Djuanda_Diponegoro", cctv: {nama: "SP SULANJANA", url: "https://pelindung.bandung.go.id:3443/video/DISHUB/spsulanjana.m3u8"}}
+  - {id: "V_Surapati_Merak", cctv: {nama: "CCTV GASIBU_01", url: "https://pelindung.bandung.go.id:3443/video/DAHUA/GASIBU.m3u8"}}
+  - {id: "V_Surapati_Merak", cctv: {nama: "CCTV GASIBU_02", url: "https://pelindung.bandung.go.id:3443/video/DAHUA/GASI.m3u8"}}
+  - {id: "V_Surapati_Merak", cctv: {nama: "SP TELKOM - Gasibu", url: "https://pelindung.bandung.go.id:3443/video/DISHUB/sptelkom.m3u8"}}
+  - {id: "V_Cisangkuy", cctv: {nama: "TAMAN LANSIA", url: "https://pelindung.bandung.go.id:3443/video/DPKP3/tamanlansiasatu.m3u8"}}
+  - {id: "V_Cisangkuy", cctv: {nama: "Taman Pustaka Bunga_03", url: "https://pelindung.bandung.go.id:3443/video/DPKP3/tamanpustakatiga.m3u8"}}
+  - {id: "T1 & T2", cctv: {nama: "CCTV PHH MUSTOFA-PUSDAI 01", url: "https://pelindung.bandung.go.id:3443/video/HIKSVISION/Muspus.m3u8"}}
+  - {id: "T1 & T2", cctv: {nama: "CCTV PHH MUSTOFA-PUSDAI 02", url: "https://pelindung.bandung.go.id:3443/video/HIKSVISION/Muspusdai.m3u8"}}
+  - {id: "T1 & T2", cctv: {nama: "CCTV PUSDAI 01", url: "https://pelindung.bandung.go.id:3443/video/DAHUA/Pusdai.m3u8"}}
+  - {id: "T1 & T2", cctv: {nama: "CCTV PUSDAI 02", url: "https://pelindung.bandung.go.id:3443/video/DAHUA/Pusda.m3u8"}}

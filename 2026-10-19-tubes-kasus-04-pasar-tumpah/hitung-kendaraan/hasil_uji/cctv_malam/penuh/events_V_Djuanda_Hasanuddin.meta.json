@@ -1,0 +1,58 @@
+{
+  "titik": "V_Djuanda_Hasanuddin",
+  "cctv": {
+    "nama": "CCTV DAGO 2-SMA 1 01",
+    "url": "https://pelindung.bandung.go.id:3443/video/HIKSVISION/Dagsm.m3u8"
+  },
+  "garis": [
+    {
+      "id": "L1",
+      "edge_model": "V_Djuanda_Hasanuddin->V_Djuanda_Diponegoro",
+      "koordinat": [
+        [
+          180,
+          330
+        ],
+        [
+          520,
+          200
+        ]
+      ],
+      "arah_dihitung": "negatif"
+    }
+  ],
+  "bobot": "yolo26s.pt",
+  "tracker": "bytetrack.yaml",
+  "imgsz": 640,
+  "conf": 0.1,
+  "kelas": [
+    1,
+    2,
+    3,
+    5,
+    7
+  ],
+  "min_frame_track": 5,
+  "device": "mps",
+  "ultralytics": "8.4.192",
+  "lama_proses_detik": 210.9,
+  "frame_per_detik_proses": 39.3,
+  "bagian": [
+    {
+      "video": "data/video/uji_malam/V_Djuanda_Hasanuddin/V_Djuanda_Hasanuddin_20261029-184158.ts",
+      "mulai": "2026-10-29T18:41:49+07:00",
+      "fps": 24.573,
+      "frame_diproses": 8282,
+      "frame_rusak": 0,
+      "durasi_detik": 360.037,
+      "ukuran": [
+        640,
+        480
+      ],
+      "kamera_geser": [],
+      "inlier_min": 46,
+      "geser_maks_px": 2.69
+    }
+  ],
+  "dibuat": "2026-10-29T20:21:07+07:00"
+}

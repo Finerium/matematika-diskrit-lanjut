@@ -1,0 +1,13 @@
+# Daftar 10 CCTV usulan awal kelompok (29 Okt 2026), satu per node graf. Dipakai cek_cctv.py saja, bukan untuk hitung.
+# Pengganti untuk CCTV yang mati ada di titik_hitung.yaml.
+titik:
+  - {id: S1, cctv: {nama: "CCTV ITB KEBUN BINATANG 03", url: "https://pelindung.bandung.go.id:3443/video/DAHUA/ITBKeb.m3u8"}}
+  - {id: V_Cikapayang, cctv: {nama: "TAMAN PASUPATI_01", url: "https://pelindung.bandung.go.id:3443/video/DPKP3/tamanpasupatisatu.m3u8"}}
+  - {id: V_Sulanjana, cctv: {nama: "CCTV TAMAN SARI - WS 01", url: "https://pelindung.bandung.go.id:3443/video/DAHUA/Tamansr.m3u8"}}
+  - {id: S2, cctv: {nama: "CCTV DIPATIUKUR SEKELOA 01", url: "https://pelindung.bandung.go.id:3443/video/HIKSVISION/Dipaunpad.m3u8"}}
+  - {id: V_Djuanda_Hasanuddin, cctv: {nama: "CCTV DAGO 2-SMA 1 01", url: "https://pelindung.bandung.go.id:3443/video/HIKSVISION/Dagsm.m3u8"}}
+  - {id: V_DU_Selatan, cctv: {nama: "CCTV DAGO 1-CIKAPAYANG 01", url: "https://pelindung.bandung.go.id:3443/video/HIKSVISION/Dagcik.m3u8"}}
+  - {id: V_Djuanda_Diponegoro, cctv: {nama: "SP SULANJANA", url: "https://pelindung.bandung.go.id:3443/video/DISHUB/spsulanjana.m3u8"}}
+  - {id: V_Surapati_Merak, cctv: {nama: "CCTV GASIBU_01", url: "https://pelindung.bandung.go.id:3443/video/DAHUA/GASIBU.m3u8"}}
+  - {id: V_Cisangkuy, cctv: {nama: "TAMAN LANSIA", url: "https://pelindung.bandung.go.id:3443/video/DPKP3/tamanlansiasatu.m3u8"}}
+  - {id: T1, cctv: {nama: "CCTV PHH MUSTOFA-PUSDAI 01", url: "https://pelindung.bandung.go.id:3443/video/HIKSVISION/Muspus.m3u8"}}

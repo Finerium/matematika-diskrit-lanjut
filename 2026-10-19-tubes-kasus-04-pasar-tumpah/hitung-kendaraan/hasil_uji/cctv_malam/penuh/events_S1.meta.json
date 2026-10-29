@@ -1,0 +1,58 @@
+{
+  "titik": "S1",
+  "cctv": {
+    "nama": "CCTV ITB KEBUN BINATANG 01",
+    "url": "https://pelindung.bandung.go.id:3443/video/DAHUA/ITBKebun.m3u8"
+  },
+  "garis": [
+    {
+      "id": "L1",
+      "edge_model": "S1->V_Cikapayang",
+      "koordinat": [
+        [
+          600,
+          456
+        ],
+        [
+          980,
+          420
+        ]
+      ],
+      "arah_dihitung": "positif"
+    }
+  ],
+  "bobot": "yolo26s.pt",
+  "tracker": "bytetrack.yaml",
+  "imgsz": 1280,
+  "conf": 0.1,
+  "kelas": [
+    1,
+    2,
+    3,
+    5,
+    7
+  ],
+  "min_frame_track": 5,
+  "device": "mps",
+  "ultralytics": "8.4.192",
+  "lama_proses_detik": 421.2,
+  "frame_per_detik_proses": 21.0,
+  "bagian": [
+    {
+      "video": "data/video/uji_malam/S1/S1_20261029-184158.ts",
+      "mulai": "2026-10-29T18:41:48+07:00",
+      "fps": 24.668,
+      "frame_diproses": 8835,
+      "frame_rusak": 0,
+      "durasi_detik": 360.024,
+      "ukuran": [
+        1280,
+        720
+      ],
+      "kamera_geser": [],
+      "inlier_min": 136,
+      "geser_maks_px": 0.92
+    }
+  ],
+  "dibuat": "2026-10-29T20:06:50+07:00"
+}

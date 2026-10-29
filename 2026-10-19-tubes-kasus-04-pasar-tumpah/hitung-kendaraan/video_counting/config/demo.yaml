@@ -1,0 +1,24 @@
+# Config uji pakai video contoh Intel (car-detection.mp4, CC-BY-4.0), bukan data Gasibu.
+interval_menit: 0.25         # video contoh cuma 30 detik, jadi interval dibuat 15 detik
+model:
+  bobot: yolo26s.pt
+  imgsz: 1280
+  conf: 0.25
+  tracker: bytetrack.yaml
+  kelas: [1, 2, 3, 5, 7]
+  min_frame_track: 5
+
+titik:
+  - id: DEMO
+    cctv: null
+    video: data/video/DEMO_car-detection.mp4
+    mulai: "2026-10-29T08:00:00+07:00"  # jam karangan, video contoh tidak punya jam asli
+    tipe_jalan: null
+    ekr: {KR: 1.0, SM: null, KB: null}  # sengaja dibiarkan null, skr tidak dihitung di demo
+    antrean: null
+    cek_kamera: false  # video tegak lurus dari atas, isinya aspal polos tanpa titik fitur, deteksi kamera geser tidak bisa
+    garis:
+      - id: L1
+        edge_model: "-"
+        koordinat: [[0, 216], [767, 216]]
+        arah_dihitung: positif

@@ -1,0 +1,3 @@
+video,titik,garis,edge_model,track_id,frame,detik,waktu,kelas_coco,kelas_pkji,arah,conf_rata,kamera_geser
+DEMO_car-detection.mp4,DEMO,L1,-,11,198,15.84,2026-10-29T08:00:15.840+07:00,car,KR,negatif,0.848,tidak
+DEMO_car-detection.mp4,DEMO,L1,-,18,220,17.6,2026-10-29T08:00:17.600+07:00,car,KR,positif,0.628,tidak

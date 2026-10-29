@@ -69,6 +69,14 @@ Google Maps hari Minggu. Dinic dinamis paling cepat di semua benchmark. Penjelas
 `kode/matdis-tubes-2026/KASUS_04_GASIBU.md`. Laporan, rencana kerja, aset presentasi (fishbone, peta, slide), dan
 skrip pembuatnya disimpan lokal karena memuat kliping berita dan identitas kelompok.
 
+Folder [`2026-10-19-tubes-kasus-04-pasar-tumpah/hitung-kendaraan/`](2026-10-19-tubes-kasus-04-pasar-tumpah/hitung-kendaraan/)
+berisi program hitung kendaraan dari video untuk mengukur arus nyata di node graf kelompok (source S1 Pasupati dan S2
+Dipatiukur, sink T1 PUSDAI dan T2 Diponegoro Timur): cek dan rekam stream CCTV pelindung.bandung.go.id, deteksi dan
+tracking YOLO26 + ByteTrack, hitung lintasan garis per edge, rekap kend/jam per interval, dan validasi dengan hitungan
+manual (20 tes lulus). Uji 29 Oktober 2026 malam: 7 CCTV direkam bersamaan, yolo26s dengan input 640 dipilih dari
+perbandingan model, kendaraan yang menghadap kamera terhitung tepat (14 dari 14), sedangkan motor yang menjauhi kamera
+di malam hari hampir tidak terdeteksi. Detailnya di README folder itu.
+
 ## Struktur
 
 Repo ini hanya berisi kode dan output program. Laporan `.docx` dan `.pdf`, dokumentasi `.txt`, arsip `.zip`, dan

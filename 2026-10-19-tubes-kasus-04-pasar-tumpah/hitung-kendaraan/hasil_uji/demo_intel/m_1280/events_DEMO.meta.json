@@ -1,0 +1,55 @@
+{
+  "titik": "DEMO",
+  "cctv": null,
+  "garis": [
+    {
+      "id": "L1",
+      "edge_model": "-",
+      "koordinat": [
+        [
+          0,
+          216
+        ],
+        [
+          767,
+          216
+        ]
+      ],
+      "arah_dihitung": "positif"
+    }
+  ],
+  "bobot": "yolo26m.pt",
+  "tracker": "bytetrack.yaml",
+  "imgsz": 1280,
+  "conf": 0.25,
+  "kelas": [
+    1,
+    2,
+    3,
+    5,
+    7
+  ],
+  "min_frame_track": 5,
+  "device": "mps",
+  "ultralytics": "8.4.192",
+  "lama_proses_detik": 38.3,
+  "frame_per_detik_proses": 9.8,
+  "bagian": [
+    {
+      "video": "data/video/DEMO_car-detection.mp4",
+      "mulai": "2026-10-29T08:00:00+07:00",
+      "fps": 12.5,
+      "frame_diproses": 377,
+      "frame_rusak": 0,
+      "durasi_detik": 30.16,
+      "ukuran": [
+        768,
+        432
+      ],
+      "kamera_geser": [],
+      "inlier_min": null,
+      "geser_maks_px": null
+    }
+  ],
+  "dibuat": "2026-10-29T20:01:34+07:00"
+}

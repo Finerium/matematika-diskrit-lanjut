@@ -1,0 +1,17 @@
+video,titik,garis,edge_model,track_id,frame,detik,waktu,kelas_coco,kelas_pkji,arah,conf_rata,kamera_geser
+S2_20261029-184158.ts,S2,L1,S2->V_Singaperbangsa,2,136,5.52,2026-10-29T18:41:53.520+07:00,car,KR,positif,0.85,tidak
+S2_20261029-184158.ts,S2,L1,S2->V_Singaperbangsa,176,180,7.28,2026-10-29T18:41:55.280+07:00,motorcycle,SM,negatif,0.43,tidak
+S2_20261029-184158.ts,S2,L1,S2->V_Singaperbangsa,80,228,9.2,2026-10-29T18:41:57.200+07:00,car,KR,positif,0.716,tidak
+S2_20261029-184158.ts,S2,L1,S2->V_Singaperbangsa,285,321,13.04,2026-10-29T18:42:01.040+07:00,car,KR,positif,0.643,tidak
+S2_20261029-184158.ts,S2,L1,S2->V_Singaperbangsa,383,362,14.68,2026-10-29T18:42:02.680+07:00,car,KR,negatif,0.649,tidak
+S2_20261029-184158.ts,S2,L1,S2->V_Singaperbangsa,396,444,18.0,2026-10-29T18:42:06.000+07:00,car,KR,positif,0.756,tidak
+S2_20261029-184158.ts,S2,L1,S2->V_Singaperbangsa,760,894,36.32,2026-10-29T18:42:24.320+07:00,car,KR,negatif,0.539,tidak
+S2_20261029-184158.ts,S2,L1,S2->V_Singaperbangsa,894,1109,45.0,2026-10-29T18:42:33.000+07:00,car,KR,negatif,0.507,tidak
+S2_20261029-184158.ts,S2,L1,S2->V_Singaperbangsa,1018,1525,61.96,2026-10-29T18:42:49.960+07:00,car,KR,positif,0.533,tidak
+S2_20261029-184158.ts,S2,L1,S2->V_Singaperbangsa,1142,1605,65.16,2026-10-29T18:42:53.160+07:00,motorcycle,SM,positif,0.39,tidak
+S2_20261029-184158.ts,S2,L1,S2->V_Singaperbangsa,1390,1965,81.64,2026-10-29T18:43:09.640+07:00,car,KR,negatif,0.528,tidak
+S2_20261029-184158.ts,S2,L1,S2->V_Singaperbangsa,1484,1994,82.8,2026-10-29T18:43:10.800+07:00,motorcycle,SM,positif,0.417,tidak
+S2_20261029-184158.ts,S2,L1,S2->V_Singaperbangsa,1301,2100,87.08,2026-10-29T18:43:15.080+07:00,car,KR,positif,0.761,tidak
+S2_20261029-184158.ts,S2,L1,S2->V_Singaperbangsa,1751,2177,90.28,2026-10-29T18:43:18.280+07:00,car,KR,negatif,0.44,tidak
+S2_20261029-184158.ts,S2,L1,S2->V_Singaperbangsa,1633,2185,90.6,2026-10-29T18:43:18.600+07:00,car,KR,positif,0.614,tidak
+S2_20261029-184158.ts,S2,L1,S2->V_Singaperbangsa,1815,2280,94.44,2026-10-29T18:43:22.440+07:00,motorcycle,SM,positif,0.388,tidak

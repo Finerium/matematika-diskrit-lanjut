@@ -1,0 +1,12 @@
+# video mentah, video beranotasi, dan bobot model tidak masuk repo publik (besar, dan video bisa memuat wajah atau plat)
+data/video/
+models/
+*.mp4
+*.ts
+# dokumentasi uji (laporan docx/pdf, potongan frame CCTV) disimpan lokal
+dokumentasi/
+__pycache__/
+.DS_Store
+
+# jejak kotak per frame besar, cukup disimpan lokal
+hasil_uji/**/jejak_*.csv
