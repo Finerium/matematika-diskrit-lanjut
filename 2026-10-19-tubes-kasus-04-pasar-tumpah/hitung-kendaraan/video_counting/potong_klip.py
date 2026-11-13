@@ -12,7 +12,7 @@ from pathlib import Path
 
 import yaml
 
-from hitung import CONFIG, ROOT, daftar_video
+from hitung import CONFIG, ROOT, IkutKamera, ambil_frame, daftar_video, pindah
 from kalibrasi import gambar_garis
 
 
@@ -27,6 +27,7 @@ def main():
     a = ap.parse_args()
 
     import cv2
+    import numpy as np
     cfg = yaml.safe_load(a.config.read_text())
     t = next((t for t in cfg["titik"] if t["id"] == a.titik), None)
     if t is None:
@@ -35,6 +36,9 @@ def main():
     if video is None:
         raise SystemExit(f"video {a.video or ''} titik {a.titik} tidak ketemu di {t['video']}")
     garis = [g for g in t.get("garis") or [] if g.get("koordinat")]
+    # titik ikut_kamera: koordinat garis ada di frame acuan, jadi tiap frame garis dipindah lewat homografi seperti
+    # di hitung.py. Frame yang tidak cocok ke acuan digambar tanpa garis.
+    ikut = IkutKamera(ambil_frame(video, t["ikut_kamera"])) if t.get("ikut_kamera") is not None else None
 
     cap = cv2.VideoCapture(str(video))
     fps = cap.get(cv2.CAP_PROP_FPS) or 25
@@ -50,8 +54,10 @@ def main():
             break
         if not ok or img is None or detik < a.mulai:
             continue
-        for g in garis:
-            gambar_garis(img, g["koordinat"], g.get("arah_dihitung"), f"{g['id']} {g['edge_model']}")
+        H = ikut.ke_acuan(img, detik) if ikut else None
+        for g in garis if not ikut or H is not None else []:
+            k = g["koordinat"] if H is None else pindah(np.linalg.inv(H), g["koordinat"])
+            gambar_garis(img, k, g.get("arah_dihitung"), f"{g['id']} {g['edge_model']}")
         cv2.rectangle(img, (0, 0), (170, 30), (0, 0, 0), -1)
         cv2.putText(img, f"detik {detik:7.1f}", (6, 22), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
         if tulis is None:

@@ -31,6 +31,11 @@ titik:
       # menurut OSM), menghadap ke barat menyusuri Jl. Singaperbangsa (jalan lurus di tengah gambar, penuh lapak).
       # Video ini tanpa GPS, jadi arah hadap kamera disimpulkan dari peta OSM dan pola jejak kendaraan (arus utama
       # bolak-balik antara jalan lurus di tengah dan lengan kanan); perlu dicek ulang oleh perekam.
+      # Dicek ulang 14 Nov (langit mendung, bayangan tidak bisa dipakai): ujung trotoar kuning taman di kanan jalan
+      # lurus berhenti sekitar 60-70 m di depan (ujung taman di Jl. Wirayuda Barat), bangunan biru dan rumah putih di
+      # kanan jauh cocok dengan dua bangunan OSM di utara Jl. Singaperbangsa, dan arus terbanyak datang dari kanan
+      # sesuai Jl. Wirayuda Timur yang satu arah ke selatan. Tidak ada jalan panjang ke arah timur yang cocok kalau
+      # kamera dibalik. Kesimpulan: kanan gambar = utara, arah_dihitung positif sudah benar.
       # Jalan melintang di depan kamera = Jl. Wirayuda Timur: kanan gambar = utara menuju mulut Jl. Titiran,
       # kiri gambar = selatan (searah ke selatan). Edge V_Singaperbangsa->V_Titiran di graf lewat Singaperbangsa lalu
       # belok ke utara di Wirayuda Timur, jadi garis dipasang melintang lengan kanan (utara).

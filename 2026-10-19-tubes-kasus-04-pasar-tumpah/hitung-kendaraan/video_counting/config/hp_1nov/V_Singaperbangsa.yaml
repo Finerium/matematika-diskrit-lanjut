@@ -18,19 +18,30 @@ titik:
     # acuannya 5 detik pertama, jadi hampir semua kendaraan akan ditandai kamera_geser dan dibuang dari rekap
     # (uji menit 5: 41 dari 50). Garis L1 sengaja dibuat panjang supaya tetap melintang jalan walau gambar bergeser.
     cek_kamera: false
+    # ikut_kamera dicoba 14 Nov dan TIDAK dipakai: HP di-zoom dan digeser jauh setelah detik 200, frame tidak cocok lagi
+    # ke frame acuan, sehingga 78% video tertanda kamera_geser (hasil uji di data/lapangan/hp_1nov/V_Singaperbangsa/
+    # uji_ikut_kamera_14nov).
     video: /Users/ghaisan/Downloads/dipatiukur-singaperbangsa.mp4
     # creation_time metadata 2026-11-01 01:44:59 UTC = 08:44:59 WIB. Metadata HP bisa jam mulai atau jam selesai
     # rekaman (durasi 901 detik), jadi kalau itu jam selesai, jam mulai sebenarnya sekitar 08:29:58 WIB.
+    # Cek 14 Nov: bus Metro Jabar Trans putih yang lurus ke selatan di V_Hasanuddin (detik 187 dan 215) lewat di sini
+    # sekitar 648 detik video kemudian (detik 834 dan 859). Kalau creation_time dianggap jam mulai, bus menempuh
+    # sekitar 70 m antarkamera dalam 3 detik (tidak masuk akal); kalau jam selesai, 13-14 detik (masuk akal). Jadi
+    # creation_time = jam selesai, rekaman ini sebenarnya 08:29:59-08:44:59 WIB.
     mulai: "2026-11-01T08:44:59+07:00"
     tipe_jalan: null
     ekr: {KR: 1.0, SM: null, KB: null}
     antrean: null
     garis:
-      # Kamera di trotoar timur Jl. Dipatiukur, sekitar 45 m utara simpang (GPS video -6.8952, 107.6170), menghadap
-      # ke barat ke pagar proyek. Mulut Jl. Singaperbangsa dan ruas DU Selatan tidak masuk gambar.
-      # searah = ke selatan menuju simpang (lajur dekat kamera, gerak ke kiri gambar)
-      # lawan  = ke utara keluar simpang (lajur dekat pagar, gerak ke kanan), bukan edge di graf
+      # Dikoreksi 14 Nov: kamera di trotoar BARAT Jl. Dipatiukur, sekitar 43 m utara simpang, menghadap ke SELATAN ke
+      # arah simpang (GPS video 13-16 m di barat garis tengah jalan di OSM, gedung pink Rabbani dan lampu lalu lintas
+      # simpang tampak di latar). Kendaraan yang mendekat kamera (tampak depan, bergerak ke kiri) = ke UTARA; yang
+      # menjauh (tampak belakang, bergerak ke kanan) = ke SELATAN. Arah lama (negatif) terbalik, events penuh/ tetap
+      # dipakai, hanya arah searah yang ditukar.
+      # PERINGATAN: hitungan otomatis arah selatan di titik ini tidak layak dipakai. Cek manual 14 Nov (detik 668-900):
+      # dari 38 lintasan positif hanya sekitar 4 yang benar kendaraan menjauh; sisanya kotak hantu di bayangan/pohon,
+      # ID tracker pindah ke kendaraan lain, dan kendaraan mendekat yang ikut terhitung karena HP goyang/zoom.
       - id: L1
         edge_model: S2->V_Singaperbangsa
         koordinat: [[730, 380], [800, 740]]
-        arah_dihitung: negatif
+        arah_dihitung: positif

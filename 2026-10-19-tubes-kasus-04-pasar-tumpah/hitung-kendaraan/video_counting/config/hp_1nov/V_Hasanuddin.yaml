@@ -26,16 +26,30 @@ titik:
     video: /Users/ghaisan/Downloads/dipatiukur-hasanuddin.mp4
     # creation_time metadata 2026-11-01 01:55:44 UTC = 08:55:44 WIB. Metadata HP bisa jam mulai atau jam selesai
     # rekaman (durasi 910 detik), jadi kalau itu jam selesai, jam mulai sebenarnya sekitar 08:40:34 WIB.
+    # Cek 14 Nov (dua bus yang sama terlihat di sini lalu di V_Singaperbangsa): creation_time = jam selesai, rekaman ini
+    # sebenarnya 08:40:34-08:55:44 WIB. `mulai` dibiarkan apa adanya supaya kolom waktu di events lama tetap sebanding.
     mulai: "2026-11-01T08:55:44+07:00"
     tipe_jalan: null
     ekr: {KR: 1.0, SM: null, KB: null}
     antrean: null
     garis:
+      # Dikoreksi 14 Nov (hanya label, garis dan events penuh2/ tetap): kamera di sudut barat laut simpang menghadap ke
+      # tenggara. Kaki utara Dipatiukur (dari S2) di kiri, Jl. Hasanuddin di kanan dekat kamera, kaki selatan Dipatiukur
+      # (ke V_Singaperbangsa) di kanan jauh. Label lama salah: L1 negatif dulu ditulis V_Hasanuddin->V_Djuanda_Hasanuddin
+      # padahal arus Dipatiukur ke UTARA, dan L2 positif dulu ditulis S2->V_Singaperbangsa padahal arus BELOK ke
+      # Jl. Hasanuddin. Cek silang: L1 negatif di jendela 08:40:54-08:42:54 dan 08:42:54-08:44:46 = 44 dan 50, hitungan
+      # arah utara di V_Singaperbangsa pada jam yang sama = 41 dan 56.
+      # L1 negatif = Dipatiukur ke utara (keluar simpang ke arah S2). Bukan edge graf, hanya pembanding.
       - id: L1
-        edge_model: V_Hasanuddin->V_Djuanda_Hasanuddin
+        edge_model: Dipatiukur_arah_utara (bukan edge graf)
         koordinat: [[550, 600], [550, 1100]]
         arah_dihitung: negatif
+      # L2 positif = kendaraan dari S2 yang belok kanan masuk Jl. Hasanuddin (makin besar, keluar di kanan bawah).
       - id: L2
-        edge_model: S2->V_Singaperbangsa
+        edge_model: V_Hasanuddin->V_Djuanda_Hasanuddin
         koordinat: [[1450, 680], [1450, 1080]]
         arah_dihitung: positif
+      # S2->V_Singaperbangsa (lurus ke selatan) TIDAK bisa dihitung otomatis di video ini: kendaraannya jauh, lewat di
+      # depan deretan mobil parkir, dan hanya terlacak sepotong-sepotong. Dua garis yang dicoba 14 Nov gagal (x 1450
+      # y 590-680: tidak menangkap apa pun; x 1565 y 520-600: menghitung motor parkir yang terdeteksi berulang dengan ID
+      # baru). Hitung manual 14 Nov: 0 kendaraan di detik 20-140 dan sekitar 1 (bus) di detik 140-252.
