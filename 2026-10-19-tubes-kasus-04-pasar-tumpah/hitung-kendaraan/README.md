@@ -123,3 +123,25 @@ artinya arah itu sama dengan arah edge di graf.
   (pengendaranya terbaca sebagai person). Uji siang hari diperlukan sebelum data Minggu dipakai.
 - CSV hasil uji ada di `hasil_uji/`. Laporan uji lengkap (docx dan pdf) dan video anotasi disimpan lokal di
   `dokumentasi/`.
+
+## Pemeriksaan rekaman HP 14 November 2026
+
+Arah kamera dan label tiap garis di enam rekaman HP 1 November dicek ulang dari frame video, bayangan, tag lokasi, dan peta
+OSM. Titiran sudah benar. Di Singaperbangsa arahnya terbalik sehingga `arah_dihitung` dibalik. Garis L2 di Hasanuddin ternyata
+menghitung kendaraan yang belok masuk Jl. Hasanuddin, jadi labelnya sekarang `V_Hasanuddin->V_Djuanda_Hasanuddin`, sedangkan L1
+adalah arus Dipatiukur ke utara yang bukan edge graf.
+
+Edge `S2->V_Singaperbangsa` belum bisa diukur andal dari kedua video karena arus lurus ke selatan kecil dan sering tertutup
+antrean. Hitungan manual dua menit di video Singaperbangsa memberi 7 kendaraan yang yakin sedangkan program mencatat 21.
+
+Jam `creation_time` di video HP Android ternyata jam selesai rekam. Ini terlihat dari bus yang muncul di dua video, jadi rentang
+rekaman sebenarnya 15 menit sebelum jam itu.
+
+Sebagai pembanding, klip 1 tiap titik dihitung secara visual oleh AI dari frame video (ini bukan validasi manusia). Di garis
+edge, program sekitar 7 sampai 10% lebih sedikit dari hitungan visual. Motor kurang 13 sampai 14% karena motor di lajur jauh
+tertutup mobil, dan kendaraan besar terlalu banyak (29 lawan 7) karena angkot dan mobil boks terbaca truck atau bus. Rinciannya
+ada di `hasil_hitung/hp_1nov/cek_visual_ai_klip1.csv` dan `banding_visual_ai_klip1.csv`.
+
+Rekap dibuat ulang dengan `python video_counting/rekap_hp_1nov.py`. Kolom `dipakai_sebagai_arus_edge` menandai baris yang boleh
+dipakai sebagai arus edge graf. Template validasi hitung manual oleh dua orang ada di `data/lapangan/manual_template.csv` dengan
+panduannya di `data/lapangan/PANDUAN_VALIDASI.md`, sedangkan klip validasinya disimpan lokal karena besar.

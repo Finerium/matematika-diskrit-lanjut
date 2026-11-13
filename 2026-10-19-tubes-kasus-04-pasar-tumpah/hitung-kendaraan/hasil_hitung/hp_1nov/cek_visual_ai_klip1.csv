@@ -1,0 +1,19 @@
+titik,garis,arah,video,klip_mulai_detik,klip_selesai_detik,penghitung,KR,SM,KB,KTB
+V_Singaperbangsa,L1,negatif,dipatiukur-singaperbangsa.mp4,20,140,AI visual,19,57,1,1
+V_Singaperbangsa,L1,positif,dipatiukur-singaperbangsa.mp4,20,140,AI visual,18,31,0,0
+V_Hasanuddin,L1,negatif,dipatiukur-hasanuddin.mp4,150,270,AI visual,13,43,0,4
+V_Hasanuddin,L1,positif,dipatiukur-hasanuddin.mp4,150,270,AI visual,16,28,2,0
+V_Hasanuddin,L2,positif,dipatiukur-hasanuddin.mp4,150,270,AI visual,4,16,0,0
+V_Hasanuddin,L2,negatif,dipatiukur-hasanuddin.mp4,150,270,AI visual,1,27,0,4
+V_Cilamaya,L2,negatif,diponegoro-cilamaya.mp4,140,260,AI visual,21,41,2,8
+V_Cilamaya,L2,positif,diponegoro-cilamaya.mp4,140,260,AI visual,4,3,0,0
+V_Cisanggarung,L1,negatif,cimandiri-cisanggarung.mp4,380,500,AI visual,16,52,0,2
+V_Cisanggarung,L1,positif,cimandiri-cisanggarung.mp4,380,500,AI visual,15,15,0,0
+V_Surapati_Gagak,L1,negatif,gagak-surapati.mp4,340,460,AI visual,0,17,0,0
+V_Surapati_Gagak,L1,positif,gagak-surapati.mp4,340,460,AI visual,0,7,0,1
+V_Surapati_Gagak,L2,positif,gagak-surapati.mp4,340,460,AI visual,15,59,1,3
+V_Surapati_Gagak,L2,negatif,gagak-surapati.mp4,340,460,AI visual,0,12,0,1
+V_Surapati_Gagak,L3,positif,gagak-surapati.mp4,340,460,AI visual,25,58,1,2
+V_Surapati_Gagak,L3,negatif,gagak-surapati.mp4,340,460,AI visual,0,28,0,0
+V_Titiran,L1,positif,singaperbangsa-titiran.mp4,280,400,AI visual,0,6,0,0
+V_Titiran,L1,negatif,singaperbangsa-titiran.mp4,280,400,AI visual,5,20,0,1
