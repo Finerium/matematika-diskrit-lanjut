@@ -1,0 +1,58 @@
+# Config titik V_Surapati_Gagak (Simpang keluar Jl. Gagak ke Jl. Surapati), video HP Minggu 1 Nov 2026, sekitar 15 menit.
+# Format dan nilai model sama dengan titik_hitung.yaml.
+interval_menit: 5
+model:
+  bobot: yolo26s.pt          # dipilih dari uji 29 Okt: paling banyak menangkap kendaraan dan paling cepat
+  imgsz: 640                 # bawaan config utama; titik ini punya imgsz sendiri
+  conf: 0.1                  # bawaan tracking Ultralytics, ByteTrack butuh deteksi conf rendah
+  tracker: bytetrack.yaml    # diset eksplisit, default Ultralytics sekarang bukan ByteTrack
+  kelas: [1, 2, 3, 5, 7]     # bicycle, car, motorcycle, bus, truck
+  kedalaman_asal: 0.2        # sebelum melintas, kendaraan harus pernah >= 0,2 x tinggi kotaknya di sisi asal
+  min_frame_track: 5         # track yang lebih pendek dari ini dianggap deteksi palsu
+  agnostic_nms: true         # angkot di sini sempat tercatat dua ID truck (31844, 31854); NMS lintas kelas
+
+titik:
+  - id: V_Surapati_Gagak
+    cctv: null
+    imgsz: 1920                         # video HP ini 1920x1080 (bukan 1280x720)
+    # HP dipegang tangan dan gambarnya goyang terus (diukur dari bangunan tiap detik: geser mendatar -750..+215 px,
+    # tegak -335..+265 px, median lompatan 24 px per detik). Penjaga kamera akan menandai hampir semua kendaraan
+    # sebagai kamera_geser (uji menit 5: detik 5-60), jadi dimatikan seperti titik HP lain.
+    cek_kamera: false
+    # Karena goyang tegak (-335..+265 px) lebih besar dari lebar mulut Gagak, garis diam tidak bisa dipakai. Dengan
+    # ikut_kamera tiap frame dicocokkan ke frame acuan detik ke-2 (homografi ORB + RANSAC), titik kendaraan dipindah
+    # ke koordinat frame itu, jadi semua garis di bawah ditulis dalam koordinat frame detik ke-2 dan ikut gerak jalan.
+    ikut_kamera: 2
+    video: /Users/ghaisan/Downloads/gagak-surapati.mp4
+    # creation_time metadata 2026-11-01 04:00:54 UTC = 11:00:54 WIB. Metadata HP bisa jam mulai atau jam selesai
+    # rekaman (durasi 902 detik), jadi kalau itu jam selesai, jam mulai sebenarnya sekitar 10:45:52 WIB.
+    mulai: "2026-11-01T11:00:54+07:00"
+    tipe_jalan: null
+    ekr: {KR: 1.0, SM: null, KB: null}
+    antrean: null
+    garis:
+      # Kamera di sisi selatan Jl. Surapati (GPS video -6.8992, 107.6238), agak tinggi, menghadap utara ke mulut
+      # Jl. Gagak. Timur = kanan gambar. Koordinat di bawah = koordinat frame detik ke-2 (ikut_kamera).
+      # Surapati di titik ini dua arah: lajur dekat kamera arah barat (sering antre), lajur jauh arah timur.
+      # Dari jejak kendaraan 600-900 s yang sudah dipindah ke frame acuan, kendaraan keluar Gagak muncul di
+      # x 1180-1300, y 635-700 (celah antara warung papan putih di kanan warung SLIM dan kios bertenda biru di
+      # kanan), lalu bergerak ke kiri bawah dan memotong y 725 di x 1050-1200. Lalu lintas tembus Surapati arah
+      # timur di x 1000-1260 berada di y > 760, jadi tidak memotong L1.
+      # L1 = mulut Gagak, kendaraan keluar Gagak (datang dari atas). Garis [[660,705],[960,700]] dari pemeriksa
+      #      hanya kena 1 dari 31 kendaraan keluar di simulasi 600-900 s, karena mulutnya lebih ke kanan.
+      # L2 = Surapati timur mulut Gagak, arah timur (ke kanan) menuju PUSDAI; y 860-1180 = lajur arah timur di x 1650
+      #      (persentil 1-99 jejak: 896-1151), bawahnya memang di luar frame acuan tapi masuk gambar saat HP menunduk.
+      # L3 = Surapati barat mulut Gagak, arah timur (ke kanan); y 660-960 = lajur arah timur di x 500
+      #      (persentil 1-99: 708-936), lajur dekat yang antre tidak ikut. Arah lawan L2/L3 tidak dipakai.
+      - id: L1
+        edge_model: V_Gagak->V_Surapati_Gagak
+        koordinat: [[1000, 725], [1260, 725]]
+        arah_dihitung: negatif
+      - id: L2
+        edge_model: V_Surapati_Gagak->T1
+        koordinat: [[1650, 860], [1650, 1180]]
+        arah_dihitung: positif
+      - id: L3
+        edge_model: V_Surapati_Merak->V_Surapati_Gagak
+        koordinat: [[500, 660], [500, 960]]
+        arah_dihitung: positif

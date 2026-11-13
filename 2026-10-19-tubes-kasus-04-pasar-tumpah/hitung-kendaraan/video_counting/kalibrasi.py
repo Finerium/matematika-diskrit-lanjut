@@ -25,21 +25,7 @@ from pathlib import Path
 
 import yaml
 
-from hitung import CONFIG, ROOT, daftar_video, pilih_device, sisi
-
-
-def ambil_frame(video, detik):
-    import cv2
-    cap = cv2.VideoCapture(str(video))
-    cap.set(cv2.CAP_PROP_POS_MSEC, detik * 1000)
-    ok, img = cap.read()
-    if not ok:
-        cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
-        ok, img = cap.read()
-    cap.release()
-    if not ok:
-        raise SystemExit(f"video tidak bisa dibaca: {video}")
-    return img
+from hitung import CONFIG, ROOT, IkutKamera, ambil_frame, daftar_video, pilih_device, pindah, sisi
 
 
 def gambar_garis(img, koordinat, arah=None, label="", datang=None):
@@ -71,25 +57,34 @@ def kisi(img, jarak=50):
         cv2.putText(img, str(y), (2, y - 2), cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 255, 0), 1)
 
 
-def lintasan(img, video, cfg, detik):
-    """Gambar jejak titik acuan (tengah sisi bawah kotak) tiap kendaraan selama `detik` detik pertama."""
+def lintasan(img, video, cfg, detik, titik):
+    """Gambar jejak titik acuan (tengah sisi bawah kotak) tiap kendaraan selama `detik` detik pertama. Titik dengan
+    ikut_kamera: jejak dipindah ke koordinat frame acuan, sama seperti di hitung.py."""
     import cv2
     import numpy as np
     from ultralytics import YOLO
     m, device = cfg["model"], pilih_device("auto")
     model, jejak = YOLO(str(ROOT / "models" / m["bobot"])), {}
+    ikut = IkutKamera(ambil_frame(video, titik["ikut_kamera"])) if titik.get("ikut_kamera") is not None else None
     cap = cv2.VideoCapture(str(video))
     while cap.grab():
         ok, frame = cap.retrieve()
-        if cap.get(cv2.CAP_PROP_POS_MSEC) / 1000 > detik:
+        t = cap.get(cv2.CAP_PROP_POS_MSEC) / 1000
+        if t > detik:
             break
         if not ok or frame is None:
             continue
+        H = ikut.ke_acuan(frame, t) if ikut else None
+        if ikut and H is None:
+            continue
         b = model.track(frame, persist=True, tracker=m["tracker"], classes=m["kelas"], conf=m["conf"],
-                        imgsz=m["imgsz"], device=device, verbose=False)[0].boxes
+                        imgsz=titik.get("imgsz") or m["imgsz"], device=device, verbose=False)[0].boxes
         if b.id is not None:
             for i, (x1, _, x2, y2) in zip(b.id.int().tolist(), b.xyxy.tolist()):
-                jejak.setdefault(i, []).append((int((x1 + x2) / 2), int(y2)))
+                p = ((x1 + x2) / 2, y2)
+                if H is not None:
+                    p = pindah(H, [p])[0]
+                jejak.setdefault(i, []).append((int(p[0]), int(p[1])))
     cap.release()
     lapis = img.copy()
     for pts in jejak.values():
@@ -194,12 +189,14 @@ def main():
     video = next(iter(daftar_video(t)), None)
     if video is None:
         raise SystemExit(f"{a.titik}: belum ada video di {t['video']}")
+    if t.get("ikut_kamera") is not None:
+        a.detik = t["ikut_kamera"]  # garis titik ini dipasang di frame acuan
 
     if a.frame:
         import cv2
         img = ambil_frame(video, a.detik)
         if a.lintasan:
-            print(f"{lintasan(img, video, cfg, a.lintasan)} track dalam {a.lintasan:g} detik pertama")
+            print(f"{lintasan(img, video, cfg, a.lintasan, t)} track dalam {a.lintasan:g} detik pertama")
         kisi(img)
         for g in t.get("garis") or []:
             if g.get("koordinat"):

@@ -1,0 +1,41 @@
+# Config titik V_Hasanuddin (Simpang Dipatiukur - Hasanuddin), video HP Minggu 1 Nov 2026, sekitar 15 menit.
+# Format dan nilai model sama dengan titik_hitung.yaml.
+interval_menit: 5
+model:
+  bobot: yolo26s.pt          # dipilih dari uji 29 Okt: paling banyak menangkap kendaraan dan paling cepat
+  imgsz: 640                 # bawaan config utama; titik ini punya imgsz sendiri
+  conf: 0.1                  # bawaan tracking Ultralytics, ByteTrack butuh deteksi conf rendah
+  tracker: bytetrack.yaml    # diset eksplisit, default Ultralytics sekarang bukan ByteTrack
+  kelas: [1, 2, 3, 5, 7]     # bicycle, car, motorcycle, bus, truck
+  kedalaman_asal: 0.2        # sebelum melintas, kendaraan harus pernah >= 0,2 x tinggi kotaknya di sisi asal
+  min_frame_track: 5         # track yang lebih pendek dari ini dianggap deteksi palsu
+  agnostic_nms: true         # angkot sering dapat dua kotak (car + truck) yang dua-duanya melintas; NMS lintas kelas
+                             # menyisakan satu kotak saja (hasil pemeriksaan 13 Nov, sekitar 4 kasus hitung ganda)
+  iou_ganda: 0.5             # kendaraan dekat kamera sering dapat 2-3 kotak sekelas sekaligus (IoU 0,5-0,7, lolos NMS);
+                             # lintasan track yang kotaknya bertumpuk IoU >= 0,5 dengan track lain yang sudah melintas
+                             # ke arah yang sama di frame itu dibuang (uji klip 690-750 s: 5 kasus, semuanya ganda)
+
+titik:
+  - id: V_Hasanuddin
+    cctv: null
+    imgsz: 1920                         # video HP ini 1920x1080 (bukan 1280x720)
+    # Kamera HP dipegang tangan dan bergeser terus (diukur dari latar: kira-kira -120..+200 px mendatar, -60..+115 px
+    # tegak dibanding detik 2), jadi penjaga kamera menandai hampir seluruh video sebagai "kamera bergeser" dan
+    # agregasi.py akan membuang semua kendaraan. Penjaga dimatikan untuk titik ini; garis dibuat panjang supaya tahan geser.
+    cek_kamera: false
+    video: /Users/ghaisan/Downloads/dipatiukur-hasanuddin.mp4
+    # creation_time metadata 2026-11-01 01:55:44 UTC = 08:55:44 WIB. Metadata HP bisa jam mulai atau jam selesai
+    # rekaman (durasi 910 detik), jadi kalau itu jam selesai, jam mulai sebenarnya sekitar 08:40:34 WIB.
+    mulai: "2026-11-01T08:55:44+07:00"
+    tipe_jalan: null
+    ekr: {KR: 1.0, SM: null, KB: null}
+    antrean: null
+    garis:
+      - id: L1
+        edge_model: V_Hasanuddin->V_Djuanda_Hasanuddin
+        koordinat: [[550, 600], [550, 1100]]
+        arah_dihitung: negatif
+      - id: L2
+        edge_model: S2->V_Singaperbangsa
+        koordinat: [[1450, 680], [1450, 1080]]
+        arah_dihitung: positif

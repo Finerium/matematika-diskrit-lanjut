@@ -13,6 +13,7 @@ Contoh:
 """
 import argparse
 import csv
+import glob
 import json
 import math
 import time
@@ -29,6 +30,15 @@ NAMA_COCO = {1: "bicycle", 2: "car", 3: "motorcycle", 5: "bus", 7: "truck"}
 PKJI = {1: "KTB", 2: "KR", 3: "SM", 5: "KB", 7: "KB"}
 KOLOM = ["video", "titik", "garis", "edge_model", "track_id", "frame", "detik", "waktu", "kelas_coco", "kelas_pkji",
          "arah", "conf_rata", "kamera_geser"]
+
+
+def iou(a, b):
+    """Intersection over union dua kotak (x1, y1, x2, y2)."""
+    w, h = min(a[2], b[2]) - max(a[0], b[0]), min(a[3], b[3]) - max(a[1], b[1])
+    if w <= 0 or h <= 0:
+        return 0.0
+    irisan = w * h
+    return irisan / ((a[2] - a[0]) * (a[3] - a[1]) + (b[2] - b[0]) * (b[3] - b[1]) - irisan)
 
 
 def sisi(a, b, p):
@@ -74,14 +84,29 @@ class PenghitungGaris:
         t["dalam"][s] = max(t["dalam"][s], abs(jarak))
         t["akhir"] = (titik, s)
 
+    def buang_ganda(self, kotak, frame, iou_min):
+        """Satu kendaraan kadang dapat dua kotak sekaligus (angkot car + truck, motor dekat kamera) yang dua-duanya
+        melintas. Track yang melintas di frame ini ditandai ganda kalau kotaknya bertumpuk (IoU >= iou_min) dengan
+        kotak track lain di frame yang sama yang sudah melintas ke arah yang sama. kotak = {track_id: (x1, y1, x2, y2)}."""
+        for tid, k in kotak.items():
+            t = self.track.get(tid)
+            if not t or not t["lintas"] or t["lintas"][0] != frame:
+                continue
+            for tid2, k2 in kotak.items():
+                t2 = self.track.get(tid2)
+                if (tid2 != tid and t2 and t2["lintas"] and t2["lintas"][1] == t["lintas"][1]
+                        and not t2.get("ganda") and iou(k, k2) >= iou_min):
+                    t["ganda"] = True
+                    break
+
     def jumlah(self):
-        return Counter(t["lintas"][1] for t in self.track.values() if t["lintas"])
+        return Counter(t["lintas"][1] for t in self.track.values() if t["lintas"] and not t.get("ganda"))
 
     def events(self):
-        """Track pendek dibuang. Kelas track = kelas yang paling sering muncul selama track hidup."""
+        """Track pendek dan lintasan ganda dibuang. Kelas track = kelas yang paling sering muncul selama track hidup."""
         hasil = []
         for tid, t in self.track.items():
-            if t["lintas"] and t["n"] >= self.min_frame:
+            if t["lintas"] and t["n"] >= self.min_frame and not t.get("ganda"):
                 hasil.append({"track_id": tid, "frame": t["lintas"][0], "kelas": t["kelas"].most_common(1)[0][0],
                               "arah": t["lintas"][1], "conf_rata": round(t["conf"] / t["n"], 3)})
         return sorted(hasil, key=lambda e: e["frame"])
@@ -157,8 +182,86 @@ class PenjagaKamera:
         return hasil
 
 
+class IkutKamera:
+    """Untuk video HP yang dipegang tangan: posisi jalan di gambar berubah terus, jadi garis yang diam tidak bisa
+    dipakai. Tiap frame dicocokkan ke frame acuan (frame kalibrasi.py, bawaan detik ke-2) dengan titik fitur ORB +
+    RANSAC seperti PenjagaKamera, tapi hasilnya homografi penuh (geser, putar, zoom, miring). Titik kendaraan lalu
+    dipindah ke koordinat frame acuan sebelum dicek ke garis, jadi garis cukup dipasang sekali di frame acuan.
+    Frame yang tidak cocok (kamera menoleh jauh, gambar kabur) dilewati dan dicatat sebagai kamera_geser.
+    """
+
+    LEBAR = 640
+
+    def __init__(self, acuan, min_inlier=40):
+        import cv2
+        self.s = self.LEBAR / acuan.shape[1]
+        self.orb, self.bf = cv2.ORB_create(3000), cv2.BFMatcher(cv2.NORM_HAMMING)
+        self.acuan = self.orb.detectAndCompute(self._abu(acuan), None)
+        self.min_inlier = min_inlier
+        self.gagal = []  # detik tiap frame yang tidak cocok ke acuan
+
+    def _abu(self, img):
+        import cv2
+        return cv2.cvtColor(cv2.resize(img, None, fx=self.s, fy=self.s, interpolation=cv2.INTER_AREA),
+                            cv2.COLOR_BGR2GRAY)
+
+    def ke_acuan(self, img, detik):
+        """Homografi 3x3 dari piksel frame ini ke piksel frame acuan, None kalau tidak cocok."""
+        import cv2
+        import numpy as np
+        H = None
+        kp, des = self.orb.detectAndCompute(self._abu(img), None)
+        if des is not None and len(kp) >= self.min_inlier:
+            cocok = [m for m, n in (x for x in self.bf.knnMatch(des, self.acuan[1], k=2) if len(x) == 2)
+                     if m.distance < 0.75 * n.distance]
+            if len(cocok) >= self.min_inlier:
+                a = np.float32([kp[m.queryIdx].pt for m in cocok])
+                b = np.float32([self.acuan[0][m.trainIdx].pt for m in cocok])
+                H, mask = cv2.findHomography(a, b, cv2.RANSAC, 3.0)
+                # inlier sedikit atau skala tidak masuk akal (hasil cocok yang salah) dianggap gagal
+                if H is None or mask.sum() < self.min_inlier or not 0.5 < abs(np.linalg.det(H[:2, :2])) < 2:
+                    H = None
+        if H is None:
+            self.gagal.append(detik)
+            return None
+        S = np.diag([self.s, self.s, 1.0])
+        return np.linalg.inv(S) @ H @ S
+
+    def rentang(self, jeda=1.0):
+        """[mulai, selesai] saat frame tidak cocok ke acuan; kegagalan yang jaraknya < jeda detik digabung."""
+        hasil = []
+        for d in self.gagal:
+            if hasil and d - hasil[-1][1] < jeda:
+                hasil[-1][1] = d
+            else:
+                hasil.append([d, d])
+        return [[round(a, 2), round(z + 1 / 30, 2)] for a, z in hasil]
+
+
+def pindah(H, titik):
+    """Pindahkan daftar titik (x, y) dengan homografi H."""
+    import numpy as np
+    p = np.c_[np.float64(titik), np.ones(len(titik))] @ H.T
+    return p[:, :2] / p[:, 2:]
+
+
+def ambil_frame(video, detik):
+    import cv2
+    cap = cv2.VideoCapture(str(video))
+    cap.set(cv2.CAP_PROP_POS_MSEC, detik * 1000)
+    ok, img = cap.read()
+    if not ok:
+        cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
+        ok, img = cap.read()
+    cap.release()
+    if not ok:
+        raise SystemExit(f"video tidak bisa dibaca: {video}")
+    return img
+
+
 def daftar_video(titik):
-    return sorted(ROOT.glob(titik["video"]))
+    # glob.glob, bukan ROOT.glob: video HP ditulis sebagai path absolut (~/Downloads) dan pathlib menolak pola absolut
+    return sorted(Path(p) for p in glob.glob(str(ROOT / Path(titik["video"]).expanduser())))
 
 
 def info_video(video, titik):
@@ -200,11 +303,13 @@ def pilih_device(pilihan):
     return "mps" if torch.backends.mps.is_available() else "cpu"
 
 
-def gambar(r, garis, penghitung, geser):
+def gambar(r, garis, penghitung, geser, H_balik=None):
+    """H_balik (titik ikut_kamera): homografi frame acuan -> frame ini, supaya garis digambar menempel di jalan."""
     import cv2
     img = r.plot(line_width=1)
     for i, g in enumerate(garis):
-        a, b = [tuple(map(int, p)) for p in g["koordinat"]]
+        k = g["koordinat"] if H_balik is None else pindah(H_balik, g["koordinat"])
+        a, b = [tuple(map(int, p)) for p in k]
         cv2.line(img, a, b, (0, 255, 255), 2)
         cv2.putText(img, g["id"], (a[0] + 4, a[1] - 6), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 255), 2)
         n = penghitung[g["id"]].jumlah()
@@ -219,6 +324,7 @@ def gambar(r, garis, penghitung, geser):
 
 def proses(cfg, titik, device, detik, anotasi, bobot, keluar, imgsz=None, simpan_jejak=False):
     import cv2
+    import numpy as np
     import ultralytics
     from ultralytics import YOLO
 
@@ -238,6 +344,8 @@ def proses(cfg, titik, device, detik, anotasi, bobot, keluar, imgsz=None, simpan
         penghitung = {g["id"]: PenghitungGaris(g["koordinat"], m["min_frame_track"], m.get("kedalaman_asal", 0.2))
                       for g in garis}
         jaga = PenjagaKamera()
+        ikut = IkutKamera(ambil_frame(video, titik["ikut_kamera"])) if titik.get("ikut_kamera") is not None else None
+        terlihat = Counter()  # detik tiap garis tampak di gambar, dibobot bagian garis yang masuk (titik ikut_kamera)
         model = YOLO(str(ROOT / "models" / bobot))  # model baru tiap bagian supaya tracker mulai dari nol
         tulis = None
         if anotasi:
@@ -263,19 +371,36 @@ def proses(cfg, titik, device, detik, anotasi, bobot, keluar, imgsz=None, simpan
             if t >= cek_berikut and titik.get("cek_kamera", True):
                 jaga.cek(img, t)
                 cek_berikut = t + 1
+            H = H_balik = None
+            if ikut:
+                H = ikut.ke_acuan(img, t)
+                if H is not None:
+                    H_balik = np.linalg.inv(H)
+                    for g in garis:  # bagian garis yang masuk gambar, dari 11 titik sepanjang garis
+                        p = pindah(H_balik, np.linspace(*g["koordinat"], 11))
+                        terlihat[g["id"]] += ((p >= 0) & (p <= ukuran)).all(axis=1).mean() / fps
             r = model.track(img, persist=True, tracker=m["tracker"], classes=m["kelas"], conf=m["conf"],
-                            imgsz=imgsz, device=device, verbose=False)[0]
+                            imgsz=imgsz, device=device, agnostic_nms=m.get("agnostic_nms", False), verbose=False)[0]
             b = r.boxes
             if b.id is not None:
                 for k_id, k, (x1, y1, x2, y2), c in zip(b.id.int().tolist(), b.cls.int().tolist(), b.xyxy.tolist(),
                                                         b.conf.tolist()):
-                    for p in penghitung.values():
-                        p.update(k_id, frame, ((x1 + x2) / 2, y2), k, c, y2 - y1)  # acuan = tengah sisi bawah kotak
+                    kaki, tinggi = ((x1 + x2) / 2, y2), y2 - y1  # acuan = tengah sisi bawah kotak
+                    if H is not None:  # pindah ke koordinat frame acuan
+                        kaki, atas = pindah(H, [kaki, ((x1 + x2) / 2, y1)]).tolist()  # float biasa, bukan numpy
+                        kaki, tinggi = tuple(kaki), kaki[1] - atas[1]
+                    if not ikut or H is not None:  # frame yang tidak cocok ke acuan dilewati
+                        for p in penghitung.values():
+                            p.update(k_id, frame, kaki, k, c, tinggi)
                     if jejak:
                         jejak.writerow([video.name, frame, round(t, 3), k_id, NAMA_COCO.get(k, k), round(c, 3),
                                         *(round(v) for v in (x1, y1, x2, y2))])
+                if m.get("iou_ganda"):  # satu kendaraan dua kotak yang dua-duanya melintas = satu event
+                    kotak = dict(zip(b.id.int().tolist(), b.xyxy.tolist()))
+                    for p in penghitung.values():
+                        p.buang_ganda(kotak, frame, m["iou_ganda"])
             if tulis:
-                tulis.write(gambar(r, garis, penghitung, jaga.geser_sekarang()))
+                tulis.write(gambar(r, garis, penghitung, jaga.geser_sekarang() or (ikut and H is None), H_balik))
             if frame and frame % 1500 == 0:
                 print(f"  {video.name}: frame {frame}, {frame / (time.time() - t_bagian):.1f} frame/detik", flush=True)
         cap.release()
@@ -286,7 +411,7 @@ def proses(cfg, titik, device, detik, anotasi, bobot, keluar, imgsz=None, simpan
             print(f"  {video.name}: tidak ada frame yang bisa dibaca, dilewati")
             continue
 
-        geser = jaga.rentang()
+        geser = jaga.rentang() + (ikut.rentang() if ikut else [])
         for g in garis:
             for e in penghitung[g["id"]].events():
                 d = waktu_frame[e["frame"]]
@@ -297,11 +422,13 @@ def proses(cfg, titik, device, detik, anotasi, bobot, keluar, imgsz=None, simpan
                               "kelas_pkji": PKJI.get(e["kelas"], "?"), "arah": e["arah"], "conf_rata": e["conf_rata"],
                               "kamera_geser": "ya" if any(a <= d <= z for a, z in geser) else "tidak"})
         inlier = [c[2] for c in jaga.cek_list if c[2] is not None]
-        bagian.append({"video": str(video.relative_to(ROOT)), "mulai": mulai.isoformat(timespec="seconds"),
+        bagian.append({"video": str(video.relative_to(ROOT) if video.is_relative_to(ROOT) else video), "mulai": mulai.isoformat(timespec="seconds"),
                        "fps": round(fps, 3), "frame_diproses": n_frame, "frame_rusak": rusak,
                        "durasi_detik": round(waktu_frame[-1] + 1 / fps, 3), "ukuran": ukuran, "kamera_geser": geser,
                        "inlier_min": min(inlier, default=None),
                        "geser_maks_px": max((c[3] for c in jaga.cek_list), default=None)})
+        if ikut:  # arus per jam suatu garis = jumlah / detik garis itu tampak utuh
+            bagian[-1]["garis_terlihat_detik"] = {g["id"]: round(terlihat[g["id"]], 1) for g in garis}
         total_frame += n_frame
 
     if jejak:
@@ -315,7 +442,7 @@ def proses(cfg, titik, device, detik, anotasi, bobot, keluar, imgsz=None, simpan
         w.writeheader()
         w.writerows(baris)
     meta = {"titik": tid, "cctv": titik.get("cctv"), "garis": garis, "bobot": bobot, "tracker": m["tracker"],
-            "imgsz": imgsz, "conf": m["conf"], "kelas": m["kelas"], "min_frame_track": m["min_frame_track"],
+            "imgsz": imgsz, "conf": m["conf"], "agnostic_nms": m.get("agnostic_nms", False), "iou_ganda": m.get("iou_ganda"), "kelas": m["kelas"], "min_frame_track": m["min_frame_track"],
             "device": str(device), "ultralytics": ultralytics.__version__, "lama_proses_detik": round(lama, 1),
             "frame_per_detik_proses": round(total_frame / lama, 1), "bagian": bagian,
             "dibuat": datetime.now().astimezone().isoformat(timespec="seconds")}

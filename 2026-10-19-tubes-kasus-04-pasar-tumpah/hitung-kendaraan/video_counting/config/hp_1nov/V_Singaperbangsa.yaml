@@ -1,0 +1,36 @@
+# Config titik V_Singaperbangsa (Simpang Dipatiukur - Singaperbangsa), video HP Minggu 1 Nov 2026, sekitar 15 menit.
+# Format dan nilai model sama dengan titik_hitung.yaml.
+interval_menit: 5
+model:
+  bobot: yolo26s.pt          # dipilih dari uji 29 Okt: paling banyak menangkap kendaraan dan paling cepat
+  imgsz: 640                 # bawaan config utama; titik ini punya imgsz sendiri
+  conf: 0.1                  # bawaan tracking Ultralytics, ByteTrack butuh deteksi conf rendah
+  tracker: bytetrack.yaml    # diset eksplisit, default Ultralytics sekarang bukan ByteTrack
+  kelas: [1, 2, 3, 5, 7]     # bicycle, car, motorcycle, bus, truck
+  kedalaman_asal: 0.2        # sebelum melintas, kendaraan harus pernah >= 0,2 x tinggi kotaknya di sisi asal
+  min_frame_track: 5         # track yang lebih pendek dari ini dianggap deteksi palsu
+
+titik:
+  - id: V_Singaperbangsa
+    cctv: null
+    imgsz: 1280                         # video HP ini 1280x720
+    # HP dipegang tangan, gambar bergeser 50-150 piksel dari menit ke menit. Cek kamera bergeser dimatikan karena
+    # acuannya 5 detik pertama, jadi hampir semua kendaraan akan ditandai kamera_geser dan dibuang dari rekap
+    # (uji menit 5: 41 dari 50). Garis L1 sengaja dibuat panjang supaya tetap melintang jalan walau gambar bergeser.
+    cek_kamera: false
+    video: /Users/ghaisan/Downloads/dipatiukur-singaperbangsa.mp4
+    # creation_time metadata 2026-11-01 01:44:59 UTC = 08:44:59 WIB. Metadata HP bisa jam mulai atau jam selesai
+    # rekaman (durasi 901 detik), jadi kalau itu jam selesai, jam mulai sebenarnya sekitar 08:29:58 WIB.
+    mulai: "2026-11-01T08:44:59+07:00"
+    tipe_jalan: null
+    ekr: {KR: 1.0, SM: null, KB: null}
+    antrean: null
+    garis:
+      # Kamera di trotoar timur Jl. Dipatiukur, sekitar 45 m utara simpang (GPS video -6.8952, 107.6170), menghadap
+      # ke barat ke pagar proyek. Mulut Jl. Singaperbangsa dan ruas DU Selatan tidak masuk gambar.
+      # searah = ke selatan menuju simpang (lajur dekat kamera, gerak ke kiri gambar)
+      # lawan  = ke utara keluar simpang (lajur dekat pagar, gerak ke kanan), bukan edge di graf
+      - id: L1
+        edge_model: S2->V_Singaperbangsa
+        koordinat: [[730, 380], [800, 740]]
+        arah_dihitung: negatif

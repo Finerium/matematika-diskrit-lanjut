@@ -77,6 +77,13 @@ manual (20 tes lulus). Uji 29 Oktober 2026 malam: 7 CCTV direkam bersamaan, yolo
 perbandingan model, kendaraan yang menghadap kamera terhitung tepat (14 dari 14), sedangkan motor yang menjauhi kamera
 di malam hari hampir tidak terdeteksi. Detailnya di README folder itu.
 
+Pembaruan 13 sampai 14 November 2026: enam rekaman HP 15 menit tanggal 1 November (titik tanpa CCTV) sudah dihitung
+penuh dengan config per titik di `video_counting/config/hp_1nov/`, rekapnya di `hitung-kendaraan/hasil_hitung/hp_1nov/`
+(kend/jam per edge, arah, dan kelas, skr/jam menunggu ekr PKJI 2014). Karena HP dipegang tangan, `hitung.py` sekarang
+punya opsi `ikut_kamera` supaya garis hitung ikut bergeser bersama gambar (homografi ORB + RANSAC ke frame acuan), dan
+ada config CCTV 9 kamera untuk rekaman 13, 14, dan 15 November (`cctv_13nov.yaml`, `cctv_14nov_sabtu.yaml`,
+`cctv_15nov_minggu.yaml`), termasuk 2 kamera baru di jalur Gasibu Atas. 22 tes lulus.
+
 ## Struktur
 
 Repo ini hanya berisi kode dan output program. Laporan `.docx` dan `.pdf`, dokumentasi `.txt`, arsip `.zip`, dan

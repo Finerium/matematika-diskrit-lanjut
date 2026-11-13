@@ -9,7 +9,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from agregasi import jam_puncak, rekap, rentang_valid  # noqa: E402
-from hitung import CONFIG, PenghitungGaris, PenjagaKamera  # noqa: E402
+from hitung import CONFIG, IkutKamera, PenghitungGaris, PenjagaKamera, pindah  # noqa: E402
 from kalibrasi import simpan  # noqa: E402
 from validasi import bandingkan, error  # noqa: E402
 
@@ -88,6 +88,18 @@ def test_kelas_terbanyak_selama_track():
     for f, (xy, k) in enumerate([((100, 50), 2), ((100, 150), 7), ((100, 160), 2)]):
         p.update(1, f, xy, k, 0.8)
     assert [e["kelas"] for e in p.events()] == [2]  # car, bukan truck
+
+
+def test_satu_kendaraan_dua_kotak_dihitung_sekali():
+    p = PenghitungGaris(GARIS, 1)
+    # angkot dapat kotak car (1) dan truck (2) yang hampir sama; motor (3) di sebelahnya kotaknya tidak bertumpuk
+    for f, y in enumerate([50, 150]):
+        kotak = {1: (80, y - 40, 120, y), 2: (78, y - 42, 122, y), 3: (150, y - 40, 170, y)}
+        for tid, k in kotak.items():
+            p.update(tid, f, ((k[0] + k[2]) / 2, k[3]), 2, 0.9)
+        p.buang_ganda(kotak, f, 0.5)
+    ids = sorted(e["track_id"] for e in p.events())
+    assert len(ids) == 2 and ids[-1] == 3 and sum(p.jumlah().values()) == 2  # angkot sekali, motor sekali
 
 
 def ev(menit, kelas, arah="positif", garis="L1", geser="tidak"):
@@ -210,8 +222,24 @@ def test_penjaga_kamera():
     assert p.rentang() == [[10, 16]]
 
 
+def test_ikut_kamera():
+    if cv2 is None:
+        return
+    rng = np.random.default_rng(1)
+    latar = np.full((720, 1280, 3), 90, np.uint8)
+    for _ in range(300):
+        x, y, w, h = rng.integers(0, 1240), rng.integers(0, 680), rng.integers(10, 120), rng.integers(10, 120)
+        cv2.rectangle(latar, (int(x), int(y)), (int(x + w), int(y + h)), [int(c) for c in rng.integers(0, 255, 3)], -1)
+    ik = IkutKamera(latar)
+    geser = np.float64([[1, 0, -60], [0, 1, 35]])  # HP bergerak: gambar geser 60 px ke kiri dan 35 px ke bawah
+    H = ik.ke_acuan(cv2.warpAffine(latar, geser, (1280, 720)), 1.0)
+    assert np.abs(pindah(H, [(700, 400)]) - (760, 365)).max() < 3  # titik dikembalikan ke koordinat frame acuan
+    assert ik.ke_acuan(rng.integers(0, 255, (720, 1280, 3), np.uint8), 2.0) is None  # gambar lain: tidak cocok
+    assert ik.rentang() == [[2.0, 2.03]]
+
+
 if __name__ == "__main__":
     for nama, f in list(globals().items()):
         if nama.startswith("test_"):
             f()
-            print("lulus" if (cv2 or nama != "test_penjaga_kamera") else "dilewati", nama)
+            print("lulus" if (cv2 or nama not in ("test_penjaga_kamera", "test_ikut_kamera")) else "dilewati", nama)

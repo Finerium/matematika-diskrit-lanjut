@@ -1,0 +1,140 @@
+# Salinan cctv_13nov.yaml untuk rekaman minggu (15nov_minggu), garis hitung sama.
+# Config cuplikan CCTV situs, rekaman Jumat 13 Nov 2026 sore (7 kamera mulai 16.02 WIB, 2 kamera Gasibu Atas mulai
+# 18.26 WIB), tiap rekaman sekitar 1 menit di data/video/situs_13nov/. Satu titik per kamera.
+# Rekaman dibuat dengan ffmpeg langsung (bukan rekam_cctv.py), jadi tidak ada file .json; jam mulai diambil dari
+# rekam.log (jam ffmpeg dijalankan, ketelitian sekitar satu potongan HLS).
+# Kamera yang sama dengan uji 29 Okt memakai garis lama yang dicek ulang di frame siang. S2 dan T1_T2 kali ini
+# direkam dari kamera lain (Sekeloa 01 dan PHH Mustofa-PUSDAI 01), jadi garisnya dikalibrasi baru, begitu juga dua
+# kamera Gasibu Atas.
+# Cek ulang di frame siang: garis S1, V_Sulanjana, V_DU_Selatan, V_Djuanda_Hasanuddin tetap. Garis V_Surapati_Merak
+# ujung kirinya digeser dari x 185 ke 150 karena lajur ke timur (paling kiri, banyak motor) belum terbentang penuh.
+# S2: kamera Sekeloa CCTV-02 arah Unikom, dihitung arus menghadap kamera (ke selatan). T1_T2: kamera arah perempatan
+# Pahlawan, dihitung arus menjauhi kamera (ke timur). Gasibu: arus menjauhi kamera.
+interval_menit: 1
+model:
+  bobot: yolo26s.pt
+  imgsz: 640
+  conf: 0.1
+  tracker: bytetrack.yaml
+  kelas: [1, 2, 3, 5, 7]
+  kedalaman_asal: 0.2
+  min_frame_track: 5
+
+titik:
+  - id: S1
+    cctv: {nama: "CCTV ITB KEBUN BINATANG 01", url: "https://pelindung.bandung.go.id:3443/video/DAHUA/ITBKebun.m3u8"}
+    imgsz: 1280                         # video kamera ini 1280x720
+    video: data/video/15nov_minggu/S1_*.ts
+    mulai: "2026-11-13T16:02:12+07:00"
+    tipe_jalan: null
+    ekr: {KR: 1.0, SM: null, KB: null}
+    antrean: null
+    garis:
+      - id: L1
+        edge_model: S1->V_Cikapayang
+        koordinat: [[600, 456], [980, 420]]
+        arah_dihitung: positif
+
+  - id: S2
+    cctv: {nama: "CCTV DIPATIUKUR SEKELOA 01", url: "https://pelindung.bandung.go.id:3443/video/HIKSVISION/Dipaunpad.m3u8"}
+    video: data/video/15nov_minggu/S2_*.ts
+    mulai: "2026-11-13T16:02:12+07:00"
+    tipe_jalan: null
+    ekr: {KR: 1.0, SM: null, KB: null}
+    antrean: null
+    garis:
+      - id: L1
+        edge_model: S2->V_Singaperbangsa
+        koordinat: [[185, 285], [560, 190]]
+        arah_dihitung: negatif
+
+  - id: V_Sulanjana
+    cctv: {nama: "CCTV TAMAN SARI - WS 01", url: "https://pelindung.bandung.go.id:3443/video/DAHUA/Tamansr.m3u8"}
+    video: data/video/15nov_minggu/V_Sulanjana_*.ts
+    mulai: "2026-11-13T16:02:12+07:00"
+    tipe_jalan: null
+    ekr: {KR: 1.0, SM: null, KB: null}
+    antrean: null
+    garis:
+      - id: L1
+        edge_model: V_Sulanjana->V_Djuanda_Diponegoro
+        koordinat: [[240, 395], [490, 340]]
+        arah_dihitung: positif
+
+  - id: V_DU_Selatan
+    cctv: {nama: "CCTV DAGO 1-CIKAPAYANG 01", url: "https://pelindung.bandung.go.id:3443/video/HIKSVISION/Dagcik.m3u8"}
+    video: data/video/15nov_minggu/V_DU_Selatan_*.ts
+    mulai: "2026-11-13T16:02:12+07:00"
+    tipe_jalan: null
+    ekr: {KR: 1.0, SM: null, KB: null}
+    antrean: null
+    garis:
+      - id: L1
+        edge_model: V_DU_Selatan->V_Singaperbangsa
+        koordinat: [[500, 160], [300, 440]]
+        arah_dihitung: negatif
+
+  - id: V_Djuanda_Hasanuddin
+    cctv: {nama: "CCTV DAGO 2-SMA 1 01", url: "https://pelindung.bandung.go.id:3443/video/HIKSVISION/Dagsm.m3u8"}
+    video: data/video/15nov_minggu/V_Djuanda_Hasanuddin_*.ts
+    mulai: "2026-11-13T16:02:12+07:00"
+    tipe_jalan: null
+    ekr: {KR: 1.0, SM: null, KB: null}
+    antrean: null
+    garis:
+      - id: L1
+        edge_model: V_Djuanda_Hasanuddin->V_Djuanda_Diponegoro
+        koordinat: [[180, 330], [520, 200]]
+        arah_dihitung: negatif
+
+  - id: V_Surapati_Merak
+    cctv: {nama: "CCTV GASIBU_01", url: "https://pelindung.bandung.go.id:3443/video/DAHUA/GASIBU.m3u8"}
+    video: data/video/15nov_minggu/V_Surapati_Merak_*.ts
+    mulai: "2026-11-13T16:02:12+07:00"
+    tipe_jalan: null
+    ekr: {KR: 1.0, SM: null, KB: null}
+    antrean: null
+    garis:
+      - id: L1
+        edge_model: V_Surapati_Merak->T1
+        koordinat: [[150, 373], [639, 400]]
+        arah_dihitung: positif
+
+  - id: T1_T2
+    cctv: {nama: "CCTV PHH MUSTOFA-PUSDAI 01", url: "https://pelindung.bandung.go.id:3443/video/HIKSVISION/Muspus.m3u8"}
+    video: data/video/15nov_minggu/T1_T2_*.ts
+    mulai: "2026-11-13T16:02:12+07:00"
+    tipe_jalan: null
+    ekr: {KR: 1.0, SM: null, KB: null}
+    antrean: null
+    garis:
+      - id: L1
+        edge_model: V_Surapati_Gagak->T1
+        koordinat: [[230, 330], [520, 160]]
+        arah_dihitung: positif
+
+  - id: V_Gasibu_Barat
+    cctv: {nama: "CCTV JL. SURAPATI - GASIBU 01", url: "https://pelindung.bandung.go.id:3443/video/DAHUA/Surat.m3u8"}
+    video: data/video/15nov_minggu/V_Gasibu_Barat_*.ts
+    mulai: "2026-11-13T18:26:42+07:00"
+    tipe_jalan: null
+    ekr: {KR: 1.0, SM: null, KB: null}
+    antrean: null
+    garis:
+      - id: L1
+        edge_model: V_DU_Selatan->V_Gasibu_Barat
+        koordinat: [[318, 350], [703, 345]]
+        arah_dihitung: positif
+
+  - id: V_Gasibu_Timur
+    cctv: {nama: "CCTV LAPANG GASIBU 02", url: "https://pelindung.bandung.go.id:3443/video/HIKSVISION/lpgasibuu.m3u8"}
+    video: data/video/15nov_minggu/V_Gasibu_Timur_*.ts
+    mulai: "2026-11-13T18:26:42+07:00"
+    tipe_jalan: null
+    ekr: {KR: 1.0, SM: null, KB: null}
+    antrean: null
+    garis:
+      - id: L1
+        edge_model: V_Gasibu_Barat->V_Gasibu_Timur
+        koordinat: [[400, 205], [639, 330]]
+        arah_dihitung: positif

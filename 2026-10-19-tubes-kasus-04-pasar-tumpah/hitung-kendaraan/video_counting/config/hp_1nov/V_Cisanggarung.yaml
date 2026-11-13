@@ -1,0 +1,39 @@
+# Config titik V_Cisanggarung (Simpang Cimandiri - Cisanggarung), video HP Minggu 1 Nov 2026, sekitar 15 menit.
+# Format dan nilai model sama dengan titik_hitung.yaml, satu titik saja supaya tidak saling menimpa dengan titik lain.
+interval_menit: 5
+model:
+  bobot: yolo26s.pt          # dipilih dari uji 29 Okt: paling banyak menangkap kendaraan dan paling cepat
+  imgsz: 640                 # bawaan config utama; titik ini punya imgsz sendiri
+  conf: 0.1                  # bawaan tracking Ultralytics, ByteTrack butuh deteksi conf rendah
+  tracker: bytetrack.yaml    # diset eksplisit, default Ultralytics sekarang bukan ByteTrack
+  kelas: [1, 2, 3, 5, 7]     # bicycle, car, motorcycle, bus, truck
+  kedalaman_asal: 0.2        # sebelum melintas, kendaraan harus pernah >= 0,2 x tinggi kotaknya di sisi asal
+  min_frame_track: 5         # track yang lebih pendek dari ini dianggap deteksi palsu
+
+titik:
+  - id: V_Cisanggarung
+    cctv: null
+    imgsz: 1280                         # video HP ini 1280x720
+    # HP dipegang tangan dan bergeser terus (diukur dari latar: kira-kira -180..+145 px mendatar, -150..+110 px
+    # tegak, putar sampai 10 derajat dibanding detik 2), jadi penjaga kamera akan menandai hampir seluruh video sebagai
+    # "kamera bergeser" dan agregasi.py membuang semua kendaraan. Penjaga dimatikan; garis dibuat panjang supaya tahan geser.
+    cek_kamera: false
+    video: /Users/ghaisan/Downloads/cimandiri-cisanggarung.mp4
+    # creation_time metadata 2026-11-01 03:15:24 UTC = 10:15:24 WIB. Metadata HP bisa jam mulai atau jam selesai
+    # rekaman (durasi 905 detik), jadi kalau itu jam selesai, jam mulai sebenarnya sekitar 10:00:19 WIB.
+    mulai: "2026-11-01T10:15:24+07:00"
+    tipe_jalan: null
+    ekr: {KR: 1.0, SM: null, KB: null}
+    antrean: null
+    garis:
+      # Kamera di trotoar sudut utara simpang, menghadap kira-kira ke tenggara (dari arah bayangan jam 10 pagi).
+      # Kanan gambar = Jl. Cimandiri (dua arah), lurus ke depan = mulut Jl. Cisanggarung (ada median taman, terlihat
+      # dua arah), kiri = jalan dengan deretan cone, pulau segitiga bertiang lampu di kanan belakang.
+      # Percabangan ke Jl. Citarum dan Jl. Cimanuk/Cisangkuy ada sekitar 85 m di depan, tidak terlihat, jadi edge
+      # V_Cisanggarung->V_Citarum dan V_Cisanggarung->V_Cisangkuy tidak bisa dipisah dari video ini.
+      # searah = dari Cimandiri masuk simpang (lajur dekat kamera, gerak ke kiri gambar)
+      # lawan  = keluar simpang ke arah Cimandiri (lajur jauh, gerak ke kanan), bukan edge di graf
+      - id: L1
+        edge_model: V_Cimandiri->V_Cisanggarung
+        koordinat: [[1050, 400], [1050, 720]]
+        arah_dihitung: negatif

@@ -1,0 +1,36 @@
+# Config titik V_Cilamaya (Simpang Diponegoro - Cilamaya), rekaman HP Minggu 1 Nov 2026.
+# Format sama dengan titik_hitung.yaml, satu titik saja supaya tidak saling menimpa dengan titik lain.
+interval_menit: 5
+model:
+  bobot: yolo26s.pt          # dipilih dari uji 29 Okt: paling banyak menangkap kendaraan dan paling cepat
+  imgsz: 640                 # sama dengan resolusi CCTV 640x480; titik beresolusi besar punya imgsz sendiri
+  conf: 0.1                  # bawaan tracking Ultralytics, ByteTrack butuh deteksi conf rendah
+  tracker: bytetrack.yaml    # diset eksplisit, default Ultralytics sekarang bukan ByteTrack
+  kelas: [1, 2, 3, 5, 7]     # bicycle, car, motorcycle, bus, truck
+  kedalaman_asal: 0.2        # sebelum melintas, kendaraan harus pernah >= 0,2 x tinggi kotaknya di sisi asal
+  min_frame_track: 5         # track yang lebih pendek dari ini dianggap deteksi palsu
+
+titik:
+  - id: V_Cilamaya
+    cctv: null
+    imgsz: 1280                         # video HP 1280x720
+    # HP dipegang tangan, gambar bergeser sekitar 100 px mendatar dan 40 px tegak (dilihat dari tiang lampu).
+    # Penjaga kamera memakai 5 detik pertama sebagai acuan, jadi 683 dari 685 event ditandai kamera_geser dan
+    # akan dibuang agregasi.py. Penjaga dimatikan seperti titik HP lain; L2 tegak dan panjang jadi tetap aman.
+    cek_kamera: false
+    video: /Users/ghaisan/Downloads/diponegoro-cilamaya.mp4
+    mulai: "2026-11-01T09:46:34+07:00"  # creation_time 02:46:34 UTC; kalau HP mencatat jam selesai, mulainya 09:31:30
+    tipe_jalan: null
+    ekr: {KR: 1.0, SM: null, KB: null}
+    antrean: null
+    garis:
+      # L1 dimatikan: garisnya pendek dan hampir mendatar, menempel di ujung atas L2 di tengah kumpulan motor.
+      # Kendaraan yang bergerak mendatar di lajur jauh bergoyang melintasinya, jadi hitungannya (56/121) hanya noise.
+      # - id: L1                        # mulut Jl. Cilamaya di kanan jauh, kendaraan yang masuk Cilamaya (menjauhi kamera)
+      #   edge_model: V_Cilamaya->V_Cimandiri
+      #   koordinat: [[920, 470], [1100, 485]]
+      #   arah_dihitung: positif
+      - id: L2                          # lajur Diponegoro arah timur di kanan dekat, sebelum simpang (datang dari kanan)
+        edge_model: V_AriaJipang->V_Cilamaya
+        koordinat: [[1020, 500], [1020, 720]]
+        arah_dihitung: negatif

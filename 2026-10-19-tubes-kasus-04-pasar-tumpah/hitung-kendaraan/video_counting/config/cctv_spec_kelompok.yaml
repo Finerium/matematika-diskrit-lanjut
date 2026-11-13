@@ -1,4 +1,5 @@
-# 24 kamera di tabel 7.1 spec graf kelompok (29 Okt 2026). Dipakai cek_cctv.py saja, bukan untuk hitung.
+# 27 kamera di tabel 7.1 spec graf kelompok (25 kamera 29 Okt 2026, ditambah 2 kamera jalur Gasibu Atas 13 Nov 2026).
+# Dipakai cek_cctv.py saja, bukan untuk hitung.
 titik:
   - {id: "S1", cctv: {nama: "CCTV ITB KEBUN BINATANG 01", url: "https://pelindung.bandung.go.id:3443/video/DAHUA/ITBKebun.m3u8"}}
   - {id: "S1", cctv: {nama: "CCTV ITB KEBUN BINATANG 02", url: "https://pelindung.bandung.go.id:3443/video/DAHUA/ITBKebu.m3u8"}}
@@ -25,3 +26,5 @@ titik:
   - {id: "T1 & T2", cctv: {nama: "CCTV PHH MUSTOFA-PUSDAI 02", url: "https://pelindung.bandung.go.id:3443/video/HIKSVISION/Muspusdai.m3u8"}}
   - {id: "T1 & T2", cctv: {nama: "CCTV PUSDAI 01", url: "https://pelindung.bandung.go.id:3443/video/DAHUA/Pusdai.m3u8"}}
   - {id: "T1 & T2", cctv: {nama: "CCTV PUSDAI 02", url: "https://pelindung.bandung.go.id:3443/video/DAHUA/Pusda.m3u8"}}
+  - {id: "V_Gasibu_Barat", cctv: {nama: "CCTV JL. SURAPATI - GASIBU 01", url: "https://pelindung.bandung.go.id:3443/video/DAHUA/Surat.m3u8"}}
+  - {id: "V_Gasibu_Timur", cctv: {nama: "CCTV LAPANG GASIBU 02", url: "https://pelindung.bandung.go.id:3443/video/HIKSVISION/lpgasibuu.m3u8"}}

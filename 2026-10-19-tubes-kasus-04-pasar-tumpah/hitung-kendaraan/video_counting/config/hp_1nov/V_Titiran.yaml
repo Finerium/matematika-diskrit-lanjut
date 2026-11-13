@@ -1,0 +1,43 @@
+# Config titik V_Titiran (Simpang Singaperbangsa - Titiran), video HP Minggu 1 Nov 2026, sekitar 15 menit.
+# Format dan nilai model sama dengan titik_hitung.yaml.
+interval_menit: 5
+model:
+  bobot: yolo26s.pt          # dipilih dari uji 29 Okt: paling banyak menangkap kendaraan dan paling cepat
+  imgsz: 640                 # bawaan config utama; titik ini punya imgsz sendiri
+  conf: 0.1                  # bawaan tracking Ultralytics, ByteTrack butuh deteksi conf rendah
+  tracker: bytetrack.yaml    # diset eksplisit, default Ultralytics sekarang bukan ByteTrack
+  kelas: [1, 2, 3, 5, 7]     # bicycle, car, motorcycle, bus, truck
+  kedalaman_asal: 0.2        # sebelum melintas, kendaraan harus pernah >= 0,2 x tinggi kotaknya di sisi asal
+  min_frame_track: 5         # track yang lebih pendek dari ini dianggap deteksi palsu
+
+titik:
+  - id: V_Titiran
+    cctv: null
+    imgsz: 1280                         # video HP ini 1280x720
+    # HP dipegang tangan dan sering diputar: dibanding menit 5 gambar bergeser sampai sekitar 200 piksel mendatar dan
+    # 100 piksel tegak (paling jauh di menit 0-3, 7.5-8.5 dan 11-15). Penjaga kamera memakai 5 detik pertama sebagai
+    # acuan, jadi hampir semua kendaraan akan ditandai kamera_geser. Penjaga dimatikan; garis L1 dibuat tegak dan
+    # panjang supaya tetap melintang ruas walau gambar bergeser.
+    cek_kamera: false
+    video: /Users/ghaisan/Downloads/singaperbangsa-titiran.mp4
+    # creation_time metadata 2026-11-01 05:19:01 UTC = 12:19:01 WIB. Metadata HP bisa jam mulai atau jam selesai
+    # rekaman (durasi 901 detik), jadi kalau itu jam selesai, jam mulai sebenarnya sekitar 12:04:00 WIB.
+    mulai: "2026-11-01T12:19:01+07:00"
+    tipe_jalan: null
+    ekr: {KR: 1.0, SM: null, KB: null}
+    antrean: null
+    garis:
+      # Kamera di sisi timur simpang Jl. Singaperbangsa - Jl. Wirayuda Timur (sekitar 58 m selatan simpul V_Titiran
+      # menurut OSM), menghadap ke barat menyusuri Jl. Singaperbangsa (jalan lurus di tengah gambar, penuh lapak).
+      # Video ini tanpa GPS, jadi arah hadap kamera disimpulkan dari peta OSM dan pola jejak kendaraan (arus utama
+      # bolak-balik antara jalan lurus di tengah dan lengan kanan); perlu dicek ulang oleh perekam.
+      # Jalan melintang di depan kamera = Jl. Wirayuda Timur: kanan gambar = utara menuju mulut Jl. Titiran,
+      # kiri gambar = selatan (searah ke selatan). Edge V_Singaperbangsa->V_Titiran di graf lewat Singaperbangsa lalu
+      # belok ke utara di Wirayuda Timur, jadi garis dipasang melintang lengan kanan (utara).
+      # searah = bergerak ke kanan gambar (ke utara menuju Titiran), lawan = dari Titiran ke Singaperbangsa/selatan.
+      # V_Titiran->V_Merak dan V_Titiran->V_Tikukur tidak terlihat (mulai di mulut Jl. Titiran di luar gambar dan
+      # baru berpisah sekitar 200 m ke selatan di Jl. Titiran).
+      - id: L1
+        edge_model: V_Singaperbangsa->V_Titiran
+        koordinat: [[1000, 400], [1000, 715]]
+        arah_dihitung: positif

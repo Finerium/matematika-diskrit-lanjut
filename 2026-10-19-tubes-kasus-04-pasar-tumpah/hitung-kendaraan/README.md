@@ -96,6 +96,15 @@ artinya arah itu sama dengan arah edge di graf.
 - **Kamera bergeser** (PTZ diputar, kamera kesenggol, siaran mati) dideteksi otomatis tiap detik dengan pencocokan
   titik fitur ke latar 5 detik pertama. Rentang waktunya dicatat di meta, dan kendaraan di rentang itu tidak ikut
   rekap.
+- **Video HP yang dipegang tangan** (`ikut_kamera: <detik>` di config titik): tiap frame dicocokkan ke frame acuan
+  (homografi ORB + RANSAC) dan titik kendaraan dipindah ke koordinat frame acuan, jadi garis ikut bergerak bersama
+  jalan. Garis dipasang di frame acuan itu (kalibrasi.py otomatis memakainya). Frame yang tidak cocok dicatat sebagai
+  kamera bergeser, dan meta mencatat berapa detik tiap garis tampak di gambar (`garis_terlihat_detik`, dibobot
+  bagian garis yang masuk gambar), untuk menghitung arus per jam garis itu.
+- **Satu kendaraan dua kotak** (angkot dapat kotak car dan truck, kendaraan dekat kamera dapat 2-3 kotak): di blok
+  `model` config bisa diisi `agnostic_nms: true` (NMS lintas kelas) dan `iou_ganda: 0.5` (lintasan track yang kotaknya
+  bertumpuk IoU >= 0,5 dengan track lain yang sudah melintas ke arah yang sama di frame itu tidak dihitung). Bawaannya
+  mati; sekarang dipakai titik V_Hasanuddin.
 - **Yang diukur arus, bukan kapasitas.** Arus sama dengan kapasitas hanya di titik yang hulunya sedang antre.
 - Video mentah dan video beranotasi tidak masuk repo publik. Sumber CCTV ditulis di laporan.
 
