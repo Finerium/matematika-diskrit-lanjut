@@ -1,0 +1,60 @@
+{
+  "titik": "V_Sulanjana",
+  "cctv": {
+    "nama": "CCTV TAMAN SARI - WS 01",
+    "url": "https://pelindung.bandung.go.id:3443/video/DAHUA/Tamansr.m3u8"
+  },
+  "garis": [
+    {
+      "id": "L1",
+      "edge_model": "V_Sulanjana->V_Djuanda_Diponegoro",
+      "koordinat": [
+        [
+          240,
+          395
+        ],
+        [
+          490,
+          340
+        ]
+      ],
+      "arah_dihitung": "positif"
+    }
+  ],
+  "bobot": "yolo26s.pt",
+  "tracker": "bytetrack.yaml",
+  "imgsz": 640,
+  "conf": 0.1,
+  "agnostic_nms": false,
+  "iou_ganda": null,
+  "kelas": [
+    1,
+    2,
+    3,
+    5,
+    7
+  ],
+  "min_frame_track": 5,
+  "device": "mps",
+  "ultralytics": "8.4.192",
+  "lama_proses_detik": 904.0,
+  "frame_per_detik_proses": 38.6,
+  "bagian": [
+    {
+      "video": "data/video/14nov_sabtu/V_Sulanjana_20261114-073000.ts",
+      "mulai": "2026-11-14T07:29:53+07:00",
+      "fps": 19.665,
+      "frame_diproses": 34925,
+      "frame_rusak": 0,
+      "durasi_detik": 1800.009,
+      "ukuran": [
+        704,
+        576
+      ],
+      "kamera_geser": [],
+      "inlier_min": 2,
+      "geser_maks_px": 1313.36
+    }
+  ],
+  "dibuat": "2026-11-14T17:28:34+07:00"
+}

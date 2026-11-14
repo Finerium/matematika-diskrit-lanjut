@@ -1,0 +1,38 @@
+{
+  "S2/L1": [
+    "ya",
+    "motor terdeteksi baik; cek urutan frame detik 1300-1304: 3 kendaraan melintas, 3 tercatat, tidak ada hitung ganda. sekitar 10% frame memuat artefak decode stream"
+  ],
+  "T1_T2/L1": [
+    "tidak (motor tidak terdeteksi)",
+    "TIDAK LAYAK: 0 motor dalam 30 menit padahal motor terlihat banyak; dari sudut kamera yang curam ini yolo26s memberi conf motor 0,06-0,08 sehingga tidak pernah jadi track. Searah hanya 19 KR + 2 KB, bisa dipakai sebagai batas bawah arus mobil saja"
+  ],
+  "V_DU_Selatan/L1": [
+    "ya",
+    "garis melintang di dalam persimpangan Cikapayang, menghitung arus kanan ke kiri; cek urutan frame detik 1000-1008: 3 lintasan, 3 tercatat (termasuk bus), tidak ada hitung ganda. sekitar 11% frame memuat artefak decode. volume tinggi, sebaiknya divalidasi manual"
+  ],
+  "V_Gasibu_Timur/L1": [
+    "tidak (motor kurang hitung)",
+    "TIDAK LAYAK: motor yang melintas garis beberapa kali tidak terdeteksi (conf rendah pada pagi berkabut), KB 18 dari 96 tidak wajar (artefak decode dan mobil terbaca truck). KR bisa dipakai sebagai batas bawah"
+  ],
+  "V_Surapati_Merak/L1": [
+    "tidak (motor kurang hitung)",
+    "TIDAK LAYAK: hanya 30 SM dari 310 kendaraan searah, padahal motor terlihat banyak; sebagian besar motor conf < 0,25 sehingga tidak jadi track ByteTrack (new_track_thresh 0,25). KR + KB bisa jadi batas bawah"
+  ],
+  "V_Sulanjana/L1": [
+    "ya",
+    "layak dengan catatan: sebagian motor terlewat saat rapat, sampai sekitar 34% frame memuat artefak decode stream (Dahua), 471 frame tidak terbaca decoder"
+  ],
+  "V_Gasibu_Barat/L1": [
+    "tidak (rekaman rusak berat)",
+    "TIDAK LAYAK: stream rusak berat (sampai 58% frame berartefak, 6.225 frame tidak terbaca decoder sehingga video anotasi hanya 1.528 detik), 50 detik ditandai kamera_geser karena gambar hancur, motor dekat garis beberapa kali tidak terdeteksi"
+  ],
+  "V_Djuanda_Hasanuddin/L1": [
+    "ya",
+    "motor terdeteksi baik; KB mungkin berlebih (angkot dan minibus terbaca truck); sekitar 9% frame memuat artefak decode"
+  ],
+  "S1/L1": [
+    "tidak (motor tidak terdeteksi, arah perlu dicek)",
+    "TIDAK LAYAK: kabut pagi, motor hampir tidak terdeteksi (0 SM searah, 41 SM lawan dalam 30 menit), sampai 36% frame memuat artefak decode. Searah hanya 34 kendaraan lawan 351 menghadap kamera (13 Nov juga 1 lawan 16), jadi arah_dihitung S1 sebaiknya dicek ulang terhadap arah edge S1->V_Cikapayang"
+  ]
+}

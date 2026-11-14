@@ -145,3 +145,15 @@ ada di `hasil_hitung/hp_1nov/cek_visual_ai_klip1.csv` dan `banding_visual_ai_kli
 Rekap dibuat ulang dengan `python video_counting/rekap_hp_1nov.py`. Kolom `dipakai_sebagai_arus_edge` menandai baris yang boleh
 dipakai sebagai arus edge graf. Template validasi hitung manual oleh dua orang ada di `data/lapangan/manual_template.csv` dengan
 panduannya di `data/lapangan/PANDUAN_VALIDASI.md`, sedangkan klip validasinya disimpan lokal karena besar.
+
+## Rekaman CCTV Sabtu 14 November 2026
+
+Sembilan kamera direkam bersamaan pukul 07.30 sampai 08.00 sebagai kondisi tanpa pasar tumpah, lalu dihitung dengan config
+`cctv_14nov_sabtu.yaml`. Sudut kesembilan kamera sama dengan 13 November sehingga garis hitung tidak diubah. Rekap ada di
+`hasil_hitung/cctv_14nov_sabtu/` dan bisa dibuat ulang dengan `python video_counting/rekap_cctv.py`.
+
+Yang layak dipakai sebagai arus edge baru empat, yaitu S2 ke V_Singaperbangsa sekitar 1.510 kend/jam, V_DU_Selatan ke
+V_Singaperbangsa sekitar 2.702 kend/jam, V_Djuanda_Hasanuddin ke V_Djuanda_Diponegoro sekitar 1.852 kend/jam, dan V_Sulanjana ke
+V_Djuanda_Diponegoro sekitar 720 kend/jam. Di lima kamera lain motor banyak tidak terhitung karena pagi itu berkabut dan nilai
+kepercayaan deteksi motor di bawah ambang pembuatan jejak ByteTrack, atau rekamannya rusak (Gasibu Barat). Arah kamera S1
+terhadap edge S1 ke V_Cikapayang juga perlu dicek ulang karena hampir semua kendaraan tercatat di arah lawan.

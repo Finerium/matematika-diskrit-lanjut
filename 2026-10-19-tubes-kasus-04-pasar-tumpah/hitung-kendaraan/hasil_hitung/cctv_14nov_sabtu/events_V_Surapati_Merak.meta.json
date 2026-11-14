@@ -1,0 +1,60 @@
+{
+  "titik": "V_Surapati_Merak",
+  "cctv": {
+    "nama": "CCTV GASIBU_01",
+    "url": "https://pelindung.bandung.go.id:3443/video/DAHUA/GASIBU.m3u8"
+  },
+  "garis": [
+    {
+      "id": "L1",
+      "edge_model": "V_Surapati_Merak->T1",
+      "koordinat": [
+        [
+          150,
+          373
+        ],
+        [
+          639,
+          400
+        ]
+      ],
+      "arah_dihitung": "positif"
+    }
+  ],
+  "bobot": "yolo26s.pt",
+  "tracker": "bytetrack.yaml",
+  "imgsz": 640,
+  "conf": 0.1,
+  "agnostic_nms": false,
+  "iou_ganda": null,
+  "kelas": [
+    1,
+    2,
+    3,
+    5,
+    7
+  ],
+  "min_frame_track": 5,
+  "device": "mps",
+  "ultralytics": "8.4.192",
+  "lama_proses_detik": 944.8,
+  "frame_per_detik_proses": 37.7,
+  "bagian": [
+    {
+      "video": "data/video/14nov_sabtu/V_Surapati_Merak_20261114-073000.ts",
+      "mulai": "2026-11-14T07:29:53+07:00",
+      "fps": 19.766,
+      "frame_diproses": 35580,
+      "frame_rusak": 0,
+      "durasi_detik": 1800.045,
+      "ukuran": [
+        640,
+        480
+      ],
+      "kamera_geser": [],
+      "inlier_min": 154,
+      "geser_maks_px": 2.81
+    }
+  ],
+  "dibuat": "2026-11-14T17:12:42+07:00"
+}
