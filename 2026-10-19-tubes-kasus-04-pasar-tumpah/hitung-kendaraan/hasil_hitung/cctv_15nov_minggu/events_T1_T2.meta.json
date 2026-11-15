@@ -1,0 +1,60 @@
+{
+  "titik": "T1_T2",
+  "cctv": {
+    "nama": "CCTV PHH MUSTOFA-PUSDAI 01",
+    "url": "https://pelindung.bandung.go.id:3443/video/HIKSVISION/Muspus.m3u8"
+  },
+  "garis": [
+    {
+      "id": "L1",
+      "edge_model": "V_Surapati_Gagak->T1",
+      "koordinat": [
+        [
+          230,
+          330
+        ],
+        [
+          520,
+          160
+        ]
+      ],
+      "arah_dihitung": "positif"
+    }
+  ],
+  "bobot": "yolo26s.pt",
+  "tracker": "bytetrack.yaml",
+  "imgsz": 640,
+  "conf": 0.1,
+  "agnostic_nms": false,
+  "iou_ganda": null,
+  "kelas": [
+    1,
+    2,
+    3,
+    5,
+    7
+  ],
+  "min_frame_track": 5,
+  "device": "mps",
+  "ultralytics": "8.4.192",
+  "lama_proses_detik": 3087.3,
+  "frame_per_detik_proses": 14.3,
+  "bagian": [
+    {
+      "video": "data/video/15nov_minggu/T1_T2_20261115-073000.ts",
+      "mulai": "2026-11-15T07:29:54+07:00",
+      "fps": 24.746,
+      "frame_diproses": 44071,
+      "frame_rusak": 0,
+      "durasi_detik": 1800.037,
+      "ukuran": [
+        640,
+        480
+      ],
+      "kamera_geser": [],
+      "inlier_min": 2,
+      "geser_maks_px": 736.54
+    }
+  ],
+  "dibuat": "2026-11-15T13:39:08+07:00"
+}

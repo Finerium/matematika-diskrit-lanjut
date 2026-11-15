@@ -1,0 +1,109 @@
+{
+  "titik": "V_Gasibu_Barat",
+  "cctv": {
+    "nama": "CCTV JL. SURAPATI - GASIBU 01",
+    "url": "https://pelindung.bandung.go.id:3443/video/DAHUA/Surat.m3u8"
+  },
+  "garis": [
+    {
+      "id": "L1",
+      "edge_model": "V_DU_Selatan->V_Gasibu_Barat",
+      "koordinat": [
+        [
+          318,
+          350
+        ],
+        [
+          703,
+          345
+        ]
+      ],
+      "arah_dihitung": "positif"
+    }
+  ],
+  "bobot": "yolo26s.pt",
+  "tracker": "bytetrack.yaml",
+  "imgsz": 640,
+  "conf": 0.1,
+  "agnostic_nms": false,
+  "iou_ganda": null,
+  "kelas": [
+    1,
+    2,
+    3,
+    5,
+    7
+  ],
+  "min_frame_track": 5,
+  "device": "mps",
+  "ultralytics": "8.4.192",
+  "lama_proses_detik": 1731.5,
+  "frame_per_detik_proses": 20.6,
+  "bagian": [
+    {
+      "video": "data/video/15nov_minggu/V_Gasibu_Barat_20261115-073000.ts",
+      "mulai": "2026-11-15T07:29:47+07:00",
+      "fps": 23.129,
+      "frame_diproses": 35683,
+      "frame_rusak": 0,
+      "durasi_detik": 1800.009,
+      "ukuran": [
+        704,
+        576
+      ],
+      "kamera_geser": [
+        [
+          138.04,
+          142.96
+        ],
+        [
+          249.98,
+          259.97
+        ],
+        [
+          287.98,
+          298.93
+        ],
+        [
+          362.96,
+          370.93
+        ],
+        [
+          504.92,
+          514.95
+        ],
+        [
+          628.89,
+          632.89
+        ],
+        [
+          1119.91,
+          1123.91
+        ],
+        [
+          1133.95,
+          1139.91
+        ],
+        [
+          1191.99,
+          1195.99
+        ],
+        [
+          1281.89,
+          1302.81
+        ],
+        [
+          1362.83,
+          1365.86
+        ],
+        [
+          1487.81,
+          1491.81
+        ]
+      ],
+      "inlier_min": 0,
+      "geser_maks_px": 4648.57
+    }
+  ],
+  "dibuat": "2026-11-15T11:33:58+07:00"
+}

@@ -157,3 +157,22 @@ V_Singaperbangsa sekitar 2.702 kend/jam, V_Djuanda_Hasanuddin ke V_Djuanda_Dipon
 V_Djuanda_Diponegoro sekitar 720 kend/jam. Di lima kamera lain motor banyak tidak terhitung karena pagi itu berkabut dan nilai
 kepercayaan deteksi motor di bawah ambang pembuatan jejak ByteTrack, atau rekamannya rusak (Gasibu Barat). Arah kamera S1
 terhadap edge S1 ke V_Cikapayang juga perlu dicek ulang karena hampir semua kendaraan tercatat di arah lawan.
+
+## Rekaman CCTV Minggu 15 November 2026
+
+Kamera yang sama direkam lagi pukul 07.30 sampai 08.00 saat pasar tumpah berlangsung, lalu dihitung dengan config
+`cctv_15nov_minggu.yaml` (garis hitung sama dengan Sabtu). S2 tidak terekam karena stream CCTV-nya mengembalikan 404 sepanjang
+jam itu. Rekap ada di `hasil_hitung/cctv_15nov_minggu/`:
+
+```bash
+python video_counting/rekap_cctv.py video_counting/config/cctv_15nov_minggu.yaml data/lapangan/cctv_15nov_minggu hasil_hitung/cctv_15nov_minggu cctv_15nov_minggu
+```
+
+Dua hal yang terlihat jelas di video. Pertama, jalan di depan kamera Gasibu Timur tertutup penuh tenda lapak pasar, jadi
+arusnya 0 kend/jam dan kapasitas ruas itu saat pasar berlangsung bisa dianggap 0. Kedua, Jl. Ir. H. Djuanda ditutup untuk Car
+Free Day, jadi kamera Djuanda Hasanuddin cuma mencatat pejalan kaki dan sepeda, dan arus di persimpangan Cikapayang (DU Selatan)
+turun dari 2.702 ke 480 kend/jam. Penurunan di dua ruas Djuanda ini efek CFD, bukan efek pasar.
+
+Perbandingan Sabtu dan Minggu per ruas ada di `hasil_hitung/banding_cctv_sabtu_minggu.csv`. Ruas yang bisa dibandingkan
+langsung hanya Sulanjana (720 lawan 686 kend/jam, rasio 0,95). Gasibu Barat Minggu layak sebagai batas bawah (1.034 kend/jam)
+tapi rekaman Sabtunya rusak. S1, Surapati Merak, dan T1_T2 masih kurang hitung motor seperti Sabtu.

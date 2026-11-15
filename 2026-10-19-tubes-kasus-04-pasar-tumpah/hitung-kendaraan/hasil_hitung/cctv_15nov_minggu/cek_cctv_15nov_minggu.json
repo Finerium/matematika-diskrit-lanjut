@@ -1,0 +1,34 @@
+{
+ "S1/L1": [
+  "tidak (motor tidak terdeteksi, arah perlu dicek)",
+  "TIDAK LAYAK seperti Sabtu: kabut pagi, motor terlihat di dekat garis tapi tidak terdeteksi (0 SM searah, 24 SM lawan). Searah 139 lawan 452, pola sama dengan Sabtu, jadi arah_dihitung S1 tetap perlu dicek"
+ ],
+ "V_Sulanjana/L1": [
+  "ya",
+  "layak dengan catatan seperti Sabtu: motor terdeteksi di frame cek, motor yang rapat bisa terlewat, ada artefak decode stream Dahua. Searah 686 kend/jam, mirip Sabtu 720"
+ ],
+ "V_DU_Selatan/L1": [
+  "ya (terpengaruh Car Free Day)",
+  "garis di persimpangan Cikapayang, dekat jalur Car Free Day Djuanda; motor dan mobil terdeteksi di frame cek, 149 sepeda searah. Searah turun dari 2702 (Sabtu) ke 480 kend/jam, penurunan ini campuran efek CFD dan pasar tumpah, tidak bisa dipakai murni sebagai efek pasar"
+ ],
+ "V_Djuanda_Hasanuddin/L1": [
+  "ya (jalan ditutup Car Free Day, arus 0)",
+  "Jl. Ir. H. Djuanda ditutup untuk Car Free Day Minggu pagi: frame cek menunjukkan kerucut lalu lintas, pejalan kaki, dan pesepeda di badan jalan, tidak ada kendaraan bermotor. Program mencatat 1 SM dan 501 sepeda (KTB) dua arah. Arus 0 karena jalan ditutup, bukan karena pasar tumpah"
+ ],
+ "V_Surapati_Merak/L1": [
+  "tidak (motor kurang hitung)",
+  "TIDAK LAYAK seperti Sabtu: hanya 3 SM dari 236 kendaraan searah padahal motor terlihat di frame cek (motor kecil di garis, conf rendah). KR + KB bisa jadi batas bawah"
+ ],
+ "T1_T2/L1": [
+  "tidak (motor tidak terdeteksi)",
+  "TIDAK LAYAK seperti Sabtu: 0 motor dari sudut kamera yang curam. Searah 24 KR + 3 KB, batas bawah arus mobil saja"
+ ],
+ "V_Gasibu_Barat/L1": [
+  "ya (batas bawah, rekaman rusak sebagian)",
+  "rekaman lebih baik dari Sabtu: 5 dari 16 frame cek berartefak decode (Sabtu sampai 58%), 90 detik ditandai kamera_geser dan tidak dihitung. Motor terdeteksi baik di frame bersih. Ada petugas mengatur lalu lintas di dekat garis sekitar 07.56. Karena sebagian frame rusak, angka ini batas bawah"
+ ],
+ "V_Gasibu_Timur/L1": [
+  "ya (jalan tertutup lapak pasar tumpah, arus 0)",
+  "jalan di depan kamera tertutup penuh tenda lapak pasar tumpah Gasibu di frame cek detik 120, 900, dan 1500, tidak ada kendaraan yang bisa lewat dan program mencatat 0 lintasan. Arus 0 adalah hasil nyata, bukan kegagalan deteksi"
+ ]
+}
