@@ -29,8 +29,8 @@ titik:
     # sekitar 70 m antarkamera dalam 3 detik (tidak masuk akal); kalau jam selesai, 13-14 detik (masuk akal). Jadi
     # creation_time = jam selesai, rekaman ini sebenarnya 08:29:59-08:44:59 WIB.
     mulai: "2026-11-01T08:44:59+07:00"
-    tipe_jalan: null
-    ekr: {KR: 1.0, SM: null, KB: null}
+    tipe_jalan: "2/2TT"  # Jl. Dipatiukur lebar jalur ~8 m, arus dua arah 2377 kend/jam >= 1800
+    ekr: {KR: 1.0, SM: 0.25, KB: 1.2}  # ekr dari tabel ekr PKJI jalan perkotaan, lihat README bagian "ekr"
     antrean: null
     garis:
       # Dikoreksi 14 Nov: kamera di trotoar BARAT Jl. Dipatiukur, sekitar 43 m utara simpang, menghadap ke SELATAN ke

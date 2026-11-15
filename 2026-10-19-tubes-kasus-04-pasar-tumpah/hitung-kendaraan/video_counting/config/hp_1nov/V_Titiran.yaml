@@ -23,8 +23,8 @@ titik:
     # creation_time metadata 2026-11-01 05:19:01 UTC = 12:19:01 WIB. Metadata HP bisa jam mulai atau jam selesai
     # rekaman (durasi 901 detik), jadi kalau itu jam selesai, jam mulai sebenarnya sekitar 12:04:00 WIB.
     mulai: "2026-11-01T12:19:01+07:00"
-    tipe_jalan: null
-    ekr: {KR: 1.0, SM: null, KB: null}
+    tipe_jalan: "2/2TT"  # Jl. Singaperbangsa lebar jalur ~4-5 m, arus dua arah 679 kend/jam < 1800
+    ekr: {KR: 1.0, SM: 0.5, KB: 1.3}  # ekr dari tabel ekr PKJI jalan perkotaan, lihat README bagian "ekr"
     antrean: null
     garis:
       # Kamera di sisi timur simpang Jl. Singaperbangsa - Jl. Wirayuda Timur (sekitar 58 m selatan simpul V_Titiran

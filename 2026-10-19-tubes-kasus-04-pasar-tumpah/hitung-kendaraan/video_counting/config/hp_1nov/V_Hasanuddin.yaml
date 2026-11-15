@@ -29,8 +29,8 @@ titik:
     # Cek 14 Nov (dua bus yang sama terlihat di sini lalu di V_Singaperbangsa): creation_time = jam selesai, rekaman ini
     # sebenarnya 08:40:34-08:55:44 WIB. `mulai` dibiarkan apa adanya supaya kolom waktu di events lama tetap sebanding.
     mulai: "2026-11-01T08:55:44+07:00"
-    tipe_jalan: null
-    ekr: {KR: 1.0, SM: null, KB: null}
+    tipe_jalan: "2/2TT"  # Jl. Hasanuddin lebar jalur ~6 m, arus dua arah 930 kend/jam < 1800
+    ekr: {KR: 1.0, SM: 0.5, KB: 1.3}  # ekr dari tabel ekr PKJI jalan perkotaan, lihat README bagian "ekr"
     antrean: null
     garis:
       # Dikoreksi 14 Nov (hanya label, garis dan events penuh2/ tetap): kamera di sudut barat laut simpang menghadap ke
@@ -44,6 +44,8 @@ titik:
         edge_model: Dipatiukur_arah_utara (bukan edge graf)
         koordinat: [[550, 600], [550, 1100]]
         arah_dihitung: negatif
+        # L1 di Jl. Dipatiukur (2/2TT, lebar jalur ~8 m, arus dua arah 1705 kend/jam < 1800), bukan Jl. Hasanuddin
+        ekr: {KR: 1.0, SM: 0.40, KB: 1.3}
       # L2 positif = kendaraan dari S2 yang belok kanan masuk Jl. Hasanuddin (makin besar, keluar di kanan bawah).
       - id: L2
         edge_model: V_Hasanuddin->V_Djuanda_Hasanuddin

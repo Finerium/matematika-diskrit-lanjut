@@ -26,8 +26,8 @@ titik:
     imgsz: 1280                         # video kamera ini 1280x720
     video: data/video/15nov_minggu/S1_*.ts
     mulai: "2026-11-13T16:02:12+07:00"
-    tipe_jalan: null
-    ekr: {KR: 1.0, SM: null, KB: null}
+    tipe_jalan: "2/2TT"  # Jl. Tamansari lebar jalur ~7-8 m, arus dua arah 1186 kend/jam < 1800
+    ekr: {KR: 1.0, SM: 0.40, KB: 1.3}  # ekr dari tabel ekr PKJI jalan perkotaan, lihat README bagian "ekr"
     antrean: null
     garis:
       - id: L1
@@ -39,8 +39,8 @@ titik:
     cctv: {nama: "CCTV DIPATIUKUR SEKELOA 01", url: "https://pelindung.bandung.go.id:3443/video/HIKSVISION/Dipaunpad.m3u8"}
     video: data/video/15nov_minggu/S2_*.ts
     mulai: "2026-11-13T16:02:12+07:00"
-    tipe_jalan: null
-    ekr: {KR: 1.0, SM: null, KB: null}
+    tipe_jalan: "2/2TT"  # Jl. Dipatiukur lebar jalur ~8 m; Minggu tidak terekam, ekr ikut Sabtu (2772 kend/jam >= 1800)
+    ekr: {KR: 1.0, SM: 0.25, KB: 1.2}  # ekr dari tabel ekr PKJI jalan perkotaan, lihat README bagian "ekr"
     antrean: null
     garis:
       - id: L1
@@ -52,8 +52,8 @@ titik:
     cctv: {nama: "CCTV TAMAN SARI - WS 01", url: "https://pelindung.bandung.go.id:3443/video/DAHUA/Tamansr.m3u8"}
     video: data/video/15nov_minggu/V_Sulanjana_*.ts
     mulai: "2026-11-13T16:02:12+07:00"
-    tipe_jalan: null
-    ekr: {KR: 1.0, SM: null, KB: null}
+    tipe_jalan: "2/2TT"  # Jl. Sulanjana lebar jalur ~6 m, arus dua arah 1171 kend/jam < 1800
+    ekr: {KR: 1.0, SM: 0.5, KB: 1.3}  # ekr dari tabel ekr PKJI jalan perkotaan, lihat README bagian "ekr"
     antrean: null
     garis:
       - id: L1
@@ -65,8 +65,8 @@ titik:
     cctv: {nama: "CCTV DAGO 1-CIKAPAYANG 01", url: "https://pelindung.bandung.go.id:3443/video/HIKSVISION/Dagcik.m3u8"}
     video: data/video/15nov_minggu/V_DU_Selatan_*.ts
     mulai: "2026-11-13T16:02:12+07:00"
-    tipe_jalan: null
-    ekr: {KR: 1.0, SM: null, KB: null}
+    tipe_jalan: "2/2TT"  # Jl. Dipatiukur lebar jalur ~8 m, arus dua arah 1718 kend/jam < 1800
+    ekr: {KR: 1.0, SM: 0.40, KB: 1.3}  # ekr dari tabel ekr PKJI jalan perkotaan, lihat README bagian "ekr"
     antrean: null
     garis:
       - id: L1
@@ -78,8 +78,8 @@ titik:
     cctv: {nama: "CCTV DAGO 2-SMA 1 01", url: "https://pelindung.bandung.go.id:3443/video/HIKSVISION/Dagsm.m3u8"}
     video: data/video/15nov_minggu/V_Djuanda_Hasanuddin_*.ts
     mulai: "2026-11-13T16:02:12+07:00"
-    tipe_jalan: null
-    ekr: {KR: 1.0, SM: null, KB: null}
+    tipe_jalan: "4/2T"  # Jl. Ir. H. Djuanda dua jalur terpisah, 2 lajur per arah (OSM); Minggu ditutup Car Free Day
+    ekr: {KR: 1.0, SM: 0.40, KB: 1.3}  # ekr dari tabel ekr PKJI jalan perkotaan, lihat README bagian "ekr"
     antrean: null
     garis:
       - id: L1
@@ -91,8 +91,8 @@ titik:
     cctv: {nama: "CCTV GASIBU_01", url: "https://pelindung.bandung.go.id:3443/video/DAHUA/GASIBU.m3u8"}
     video: data/video/15nov_minggu/V_Surapati_Merak_*.ts
     mulai: "2026-11-13T16:02:12+07:00"
-    tipe_jalan: null
-    ekr: {KR: 1.0, SM: null, KB: null}
+    tipe_jalan: "3/1"  # Jl. Surapati satu arah 3 lajur, 157 kend/jam/lajur < 1100
+    ekr: {KR: 1.0, SM: 0.40, KB: 1.3}  # ekr dari tabel ekr PKJI jalan perkotaan, lihat README bagian "ekr"
     antrean: null
     garis:
       - id: L1
@@ -104,8 +104,8 @@ titik:
     cctv: {nama: "CCTV PHH MUSTOFA-PUSDAI 01", url: "https://pelindung.bandung.go.id:3443/video/HIKSVISION/Muspus.m3u8"}
     video: data/video/15nov_minggu/T1_T2_*.ts
     mulai: "2026-11-13T16:02:12+07:00"
-    tipe_jalan: null
-    ekr: {KR: 1.0, SM: null, KB: null}
+    tipe_jalan: "3/1"  # Jl. Surapati satu arah 3 lajur, < 1100 kend/jam/lajur
+    ekr: {KR: 1.0, SM: 0.40, KB: 1.3}  # ekr dari tabel ekr PKJI jalan perkotaan, lihat README bagian "ekr"
     antrean: null
     garis:
       - id: L1
@@ -117,8 +117,8 @@ titik:
     cctv: {nama: "CCTV JL. SURAPATI - GASIBU 01", url: "https://pelindung.bandung.go.id:3443/video/DAHUA/Surat.m3u8"}
     video: data/video/15nov_minggu/V_Gasibu_Barat_*.ts
     mulai: "2026-11-13T18:26:42+07:00"
-    tipe_jalan: null
-    ekr: {KR: 1.0, SM: null, KB: null}
+    tipe_jalan: "2/1"  # Jl. Surapati bawah flyover satu arah 2 lajur (OSM), 517 kend/jam/lajur < 1050
+    ekr: {KR: 1.0, SM: 0.40, KB: 1.3}  # ekr dari tabel ekr PKJI jalan perkotaan, lihat README bagian "ekr"
     antrean: null
     garis:
       - id: L1
@@ -130,8 +130,8 @@ titik:
     cctv: {nama: "CCTV LAPANG GASIBU 02", url: "https://pelindung.bandung.go.id:3443/video/HIKSVISION/lpgasibuu.m3u8"}
     video: data/video/15nov_minggu/V_Gasibu_Timur_*.ts
     mulai: "2026-11-13T18:26:42+07:00"
-    tipe_jalan: null
-    ekr: {KR: 1.0, SM: null, KB: null}
+    tipe_jalan: "3/1"  # Jl. Surapati utara Gasibu satu arah 3 lajur, < 1100 kend/jam/lajur
+    ekr: {KR: 1.0, SM: 0.40, KB: 1.3}  # ekr dari tabel ekr PKJI jalan perkotaan, lihat README bagian "ekr"
     antrean: null
     garis:
       - id: L1

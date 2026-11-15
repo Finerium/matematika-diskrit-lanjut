@@ -1,10 +1,10 @@
-titik,edge_model,sabtu_kend_per_jam,sabtu_dipakai,minggu_kend_per_jam,minggu_dipakai,rasio_minggu_per_sabtu,kesimpulan
-S1,S1->V_Cikapayang,68.3,"tidak (motor tidak terdeteksi, arah perlu dicek)",278.9,"tidak (motor tidak terdeteksi, arah perlu dicek)",,"tidak bisa dibandingkan, motor tidak terdeteksi di kedua hari"
-S2,S2->V_Singaperbangsa,1510.0,ya,,tidak terekam,,Minggu tidak terekam (stream CCTV 404 sepanjang 07.30-08.00)
-V_Sulanjana,V_Sulanjana->V_Djuanda_Diponegoro,720.0,ya,685.9,ya,0.95,"hampir sama, Sulanjana tidak terdampak berarti"
-V_DU_Selatan,V_DU_Selatan->V_Singaperbangsa,2702.0,ya,480.0,ya (terpengaruh Car Free Day),0.18,"turun jauh, tapi bercampur efek Car Free Day Djuanda"
-V_Djuanda_Hasanuddin,V_Djuanda_Hasanuddin->V_Djuanda_Diponegoro,1852.0,ya,2.0,"ya (jalan ditutup Car Free Day, arus 0)",0.0,"Minggu jalan ditutup Car Free Day, bukan efek pasar"
-V_Surapati_Merak,V_Surapati_Merak->T1,620.0,tidak (motor kurang hitung),472.0,tidak (motor kurang hitung),,"tidak bisa dibandingkan, motor kurang hitung di kedua hari"
-T1_T2,V_Surapati_Gagak->T1,42.0,tidak (motor tidak terdeteksi),54.0,tidak (motor tidak terdeteksi),,"tidak bisa dibandingkan, motor tidak terdeteksi di kedua hari"
-V_Gasibu_Barat,V_DU_Selatan->V_Gasibu_Barat,833.0,tidak (rekaman rusak berat),1033.5,"ya (batas bawah, rekaman rusak sebagian)",,"Sabtu rekaman rusak berat, tidak ada pembanding"
-V_Gasibu_Timur,V_Gasibu_Barat->V_Gasibu_Timur,192.0,tidak (motor kurang hitung),0.0,"ya (jalan tertutup lapak pasar tumpah, arus 0)",,"Minggu jalan tertutup penuh lapak pasar tumpah (kapasitas 0); Sabtu motor kurang hitung, KR saja 118 kend/jam"
+titik,edge_model,sabtu_kend_per_jam,sabtu_skr_per_jam,sabtu_dipakai,minggu_kend_per_jam,minggu_skr_per_jam,minggu_dipakai,rasio_minggu_per_sabtu,kesimpulan
+S1,S1->V_Cikapayang,68.3,71.4,"tidak (motor tidak terdeteksi, arah perlu dicek)",278.9,290.4,"tidak (motor tidak terdeteksi, arah perlu dicek)",,"tidak bisa dibandingkan, motor tidak terdeteksi di kedua hari"
+S2,S2->V_Singaperbangsa,1510.0,645.9,ya,,,tidak terekam,,Minggu tidak terekam (stream CCTV 404 sepanjang 07.30-08.00)
+V_Sulanjana,V_Sulanjana->V_Djuanda_Diponegoro,720.0,518.0,ya,685.9,469.8,ya,0.95,"hampir sama, Sulanjana tidak terdampak berarti"
+V_DU_Selatan,V_DU_Selatan->V_Singaperbangsa,2702.0,1435.5,ya,480.0,336.0,ya (terpengaruh Car Free Day),0.18,"turun jauh, tapi bercampur efek Car Free Day Djuanda"
+V_Djuanda_Hasanuddin,V_Djuanda_Hasanuddin->V_Djuanda_Diponegoro,1852.0,1282.0,ya,2.0,0.8,"ya (jalan ditutup Car Free Day, arus 0)",0.0,"Minggu jalan ditutup Car Free Day, bukan efek pasar"
+V_Surapati_Merak,V_Surapati_Merak->T1,620.0,605.0,tidak (motor kurang hitung),472.0,495.4,tidak (motor kurang hitung),,"tidak bisa dibandingkan, motor kurang hitung di kedua hari"
+T1_T2,V_Surapati_Gagak->T1,42.0,43.2,tidak (motor tidak terdeteksi),54.0,55.8,tidak (motor tidak terdeteksi),,"tidak bisa dibandingkan, motor tidak terdeteksi di kedua hari"
+V_Gasibu_Barat,V_DU_Selatan->V_Gasibu_Barat,833.0,681.2,tidak (rekaman rusak berat),1033.5,795.5,"ya (batas bawah, rekaman rusak sebagian)",,"Sabtu rekaman rusak berat, tidak ada pembanding"
+V_Gasibu_Timur,V_Gasibu_Barat->V_Gasibu_Timur,192.0,180.0,tidak (motor kurang hitung),0.0,0.0,"ya (jalan tertutup lapak pasar tumpah, arus 0)",,"Minggu jalan tertutup penuh lapak pasar tumpah (kapasitas 0); Sabtu motor kurang hitung, KR saja 118 kend/jam"

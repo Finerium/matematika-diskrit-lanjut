@@ -20,8 +20,8 @@ titik:
     cek_kamera: false
     video: /Users/ghaisan/Downloads/diponegoro-cilamaya.mp4
     mulai: "2026-11-01T09:46:34+07:00"  # creation_time 02:46:34 UTC; kalau HP mencatat jam selesai, mulainya 09:31:30
-    tipe_jalan: null
-    ekr: {KR: 1.0, SM: null, KB: null}
+    tipe_jalan: "4/2T"  # garis L2 di Jl. Diponegoro jalur selatan, satu arah 2 lajur (OSM), 807 kend/jam/lajur < 1050
+    ekr: {KR: 1.0, SM: 0.40, KB: 1.3}  # ekr dari tabel ekr PKJI jalan perkotaan, lihat README bagian "ekr"
     antrean: null
     garis:
       # L1 dimatikan: garisnya pendek dan hampir mendatar, menempel di ujung atas L2 di tengah kumpulan motor.

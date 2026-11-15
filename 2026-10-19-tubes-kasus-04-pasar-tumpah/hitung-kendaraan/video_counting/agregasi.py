@@ -57,15 +57,18 @@ def ada_antrean(antrean, awal, akhir):
 
 
 def rekap(events, rentang, interval_menit, ekr, garis, antrean=None):
-    """garis = [(id, edge_model)]. Satu baris per garis, arah, dan interval yang cukup terekam."""
+    """garis = [(id, edge_model)] atau [(id, edge_model, ekr_garis)]. ekr_garis, kalau ada, dipakai menggantikan ekr titik
+    untuk garis itu, karena satu titik bisa menghitung ruas dengan tipe jalan berbeda. Satu baris per garis, arah, dan
+    interval yang cukup terekam."""
     if not rentang:
         return []
-    lengkap = all(ekr.get(k) is not None for k in ("KR", "SM", "KB"))
     detik = interval_menit * 60
     t0, t1 = min(a for a, _ in rentang), max(z for _, z in rentang)
     awal0 = datetime.fromtimestamp(t0.timestamp() // detik * detik, t0.tzinfo)  # dibulatkan ke bawah mengikuti jam
     baris = []
-    for gid, edge in garis:
+    for gid, edge, *eg in garis:
+        ek = eg[0] if eg and eg[0] else ekr
+        lengkap = all(ek.get(k) is not None for k in ("KR", "SM", "KB"))
         for arah in ("positif", "negatif"):
             awal = awal0
             while awal < t1:
@@ -78,7 +81,7 @@ def rekap(events, rentang, interval_menit, ekr, garis, antrean=None):
                                 and e["kelas_pkji"] in n and awal <= e["waktu"] < akhir):
                             n[e["kelas_pkji"]] += 1
                     per_jam = 3600 / cover
-                    skr = sum(n[c] * ekr[c] for c in ("KR", "SM", "KB")) * per_jam if lengkap else None
+                    skr = sum(n[c] * ek[c] for c in ("KR", "SM", "KB")) * per_jam if lengkap else None
                     baris.append({"garis": gid, "edge_model": edge, "arah": arah, "mulai_interval": awal,
                                   "durasi_menit": round(cover / 60, 2), **n,
                                   "kend_per_jam": round((n["KR"] + n["SM"] + n["KB"]) * per_jam, 1),
@@ -128,7 +131,8 @@ def main():
         meta = json.loads(f.with_suffix(".meta.json").read_text())
         if None in (t["ekr"].get("SM"), t["ekr"].get("KB")):
             print(f"{t['id']}: ekr SM/KB belum diisi dari tabel PKJI 2014, kolom skr_per_jam dikosongkan")
-        garis = [(g["id"], g["edge_model"]) for g in meta["garis"]]
+        ekr_garis = {g["id"]: g.get("ekr") for g in t["garis"]}
+        garis = [(g["id"], g["edge_model"], ekr_garis.get(g["id"])) for g in meta["garis"]]
         searah = {g["id"]: g["arah_dihitung"] for g in meta["garis"]}
         baris = rekap(baca_events(f), rentang_valid(meta["bagian"]), iv, t["ekr"], garis, t.get("antrean"))
         for x in baris:

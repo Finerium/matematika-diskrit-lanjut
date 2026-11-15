@@ -55,8 +55,10 @@ for t in cfg["titik"]:
     rentang = ag.rentang_valid(meta["bagian"])
     detik = sum((z - a).total_seconds() for a, z in rentang)
     events = ag.baca_events(fe)
-    lengkap = all(t["ekr"].get(k) is not None for k in ("KR", "SM", "KB"))
+    ekr_garis = {g["id"]: g.get("ekr") for g in t["garis"]}
     for g in meta["garis"]:
+        ek = ekr_garis.get(g["id"]) or t["ekr"]
+        lengkap = all(ek.get(k) is not None for k in ("KR", "SM", "KB"))
         for arah in sorted(("negatif", "positif"), key=lambda a: a != g["arah_dihitung"]):  # searah dulu
             n = dict.fromkeys(ag.KELAS, 0)
             for e in events:
@@ -73,7 +75,7 @@ for t in cfg["titik"]:
                 **n, "kend": n["KR"] + n["SM"] + n["KB"],
                 **{f"{k}_per_jam": round(n[k] * 3600 / detik, 1) for k in ag.KELAS},
                 "kend_per_jam": round((n["KR"] + n["SM"] + n["KB"]) * 3600 / detik, 1),
-                "skr_per_jam": round(sum(n[k] * t["ekr"][k] for k in ("KR", "SM", "KB")) * 3600 / detik, 1) if lengkap else MENUNGGU,
+                "skr_per_jam": round(sum(n[k] * ek[k] for k in ("KR", "SM", "KB")) * 3600 / detik, 1) if lengkap else MENUNGGU,
                 "dipakai_sebagai_arus_edge": dipakai if ya else "tidak (arah lawan, bukan edge di graf)",
                 "catatan": catatan if ya else "",
                 "sumber": str(fe.relative_to(P)),

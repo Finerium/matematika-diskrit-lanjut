@@ -22,8 +22,8 @@ titik:
     # creation_time metadata 2026-11-01 03:15:24 UTC = 10:15:24 WIB. Metadata HP bisa jam mulai atau jam selesai
     # rekaman (durasi 905 detik), jadi kalau itu jam selesai, jam mulai sebenarnya sekitar 10:00:19 WIB.
     mulai: "2026-11-01T10:15:24+07:00"
-    tipe_jalan: null
-    ekr: {KR: 1.0, SM: null, KB: null}
+    tipe_jalan: "2/1"  # Jl. Cimandiri satu arah 2 lajur (graf.json), 859 kend/jam/lajur < 1050
+    ekr: {KR: 1.0, SM: 0.40, KB: 1.3}  # ekr dari tabel ekr PKJI jalan perkotaan, lihat README bagian "ekr"
     antrean: null
     garis:
       # Kamera di trotoar sudut utara simpang, menghadap kira-kira ke tenggara (dari arah bayangan jam 10 pagi).

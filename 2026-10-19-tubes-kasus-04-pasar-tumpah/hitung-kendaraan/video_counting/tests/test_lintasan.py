@@ -139,6 +139,12 @@ def test_rekap_skr_antrean_dan_dua_garis():
     assert [x["ada_antrean"] for x in pos(b)] == ["tidak", "ya"]
 
 
+def test_rekap_ekr_per_garis_menggantikan_ekr_titik():
+    titik, gagak = {"KR": 1.0, "SM": 0.4, "KB": 1.3}, {"KR": 1.0, "SM": 0.5, "KB": 1.3}
+    b = rekap([ev(1, "SM"), ev(2, "SM", garis="L2")], rentang(0, 5), 5, titik, [("L1", "A->B", gagak), ("L2", "B->C", None)])
+    assert pos(b)[0]["skr_per_jam"] == 6.0 and pos(b, "L2")[0]["skr_per_jam"] == 4.8  # 1 SM x ekr x 12 per jam
+
+
 def test_kamera_geser_dikeluarkan_dari_rekap():
     bagian = [{"mulai": MULAI.isoformat(), "durasi_detik": 600, "kamera_geser": [[300, 480]]}]
     r = rentang_valid(bagian)

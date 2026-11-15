@@ -78,7 +78,7 @@ def rekap_titik(tid):
     iv, t = t["interval_menit"], t["titik"][0]
     ada = {g["id"] for g in meta["garis"]}  # garis yang benar-benar dihitung di events ini
     cfg_garis = [g for g in t["garis"] if g["id"] in ada]
-    garis = [(g["id"], g["edge_model"]) for g in cfg_garis]
+    garis = [(g["id"], g["edge_model"], g.get("ekr")) for g in cfg_garis]
     searah = {g["id"]: g["arah_dihitung"] for g in cfg_garis}
 
     buang = BUANG.get(tid, [])
@@ -98,7 +98,7 @@ def rekap_titik(tid):
 
     detik = sum((z - a).total_seconds() for a, z in rentang)
     limabelas = []
-    for gid, edge in garis:
+    for gid, edge, ek in garis:
         for arah in sorted(("negatif", "positif"), key=lambda a: a != searah[gid]):  # searah dulu
             n = dict.fromkeys(ag.KELAS, 0)
             for e in events:
@@ -111,7 +111,7 @@ def rekap_titik(tid):
                 "detik_bersih": round(detik, 1), **n, "kend": n["KR"] + n["SM"] + n["KB"],
                 **{f"{k}_per_jam": round(n[k] * 3600 / detik, 1) for k in ag.KELAS},
                 "kend_per_jam": round((n["KR"] + n["SM"] + n["KB"]) * 3600 / detik, 1),
-                "skr_per_jam": skr(n, t["ekr"], detik),
+                "skr_per_jam": skr(n, ek or t["ekr"], detik),
                 "dipakai_sebagai_arus_edge": (TIDAK_DIPAKAI.get((tid, gid), "ya") if ya else "tidak (arah lawan, bukan edge di graf)"),
                 "catatan": CATATAN.get((tid, gid), "") if ya else "",
                 "sumber": str(f.relative_to(P)),

@@ -27,8 +27,8 @@ titik:
     # creation_time metadata 2026-11-01 04:00:54 UTC = 11:00:54 WIB. Metadata HP bisa jam mulai atau jam selesai
     # rekaman (durasi 902 detik), jadi kalau itu jam selesai, jam mulai sebenarnya sekitar 10:45:52 WIB.
     mulai: "2026-11-01T11:00:54+07:00"
-    tipe_jalan: null
-    ekr: {KR: 1.0, SM: null, KB: null}
+    tipe_jalan: "3/1"  # Jl. Surapati satu arah 3 lajur (garis L2, L3), 741 kend/jam/lajur < 1100; L1 Jl. Gagak punya ekr sendiri
+    ekr: {KR: 1.0, SM: 0.40, KB: 1.3}  # ekr dari tabel ekr PKJI jalan perkotaan, lihat README bagian "ekr"
     antrean: null
     garis:
       # Kamera di sisi selatan Jl. Surapati (GPS video -6.8992, 107.6238), agak tinggi, menghadap utara ke mulut
@@ -48,6 +48,9 @@ titik:
         edge_model: V_Gagak->V_Surapati_Gagak
         koordinat: [[1000, 725], [1260, 725]]
         arah_dihitung: negatif
+        # Jl. Gagak di OSM dua arah (oneway=no), 1 lajur, lebar 3 m -> 2/2TT lebar <= 6 m, arus dua arah 652 kend/jam < 1800.
+        # graf.json menulisnya satu arah; yang dipakai data OSM karena arah lawan juga terhitung (168 kend/jam).
+        ekr: {KR: 1.0, SM: 0.5, KB: 1.3}
       - id: L2
         edge_model: V_Surapati_Gagak->T1
         koordinat: [[1650, 860], [1650, 1180]]

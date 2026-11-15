@@ -61,8 +61,9 @@ Semua perintah dijalankan dari folder ini.
 4. **Uji 1 menit dulu**: `python video_counting/hitung.py --titik T1 --detik 60 --anotasi`, lalu tonton
    `data/lapangan/anotasi_*.mp4`.
 5. **Proses penuh**: `python video_counting/hitung.py`.
-6. **Isi ekr** SM dan KB tiap titik dari tabel ekr PKJI 2014 (wajib, jangan pakai angka dari chat AI), isi juga
-   catatan `antrean` dari lapangan, lalu `python video_counting/agregasi.py`.
+6. **Isi ekr** SM dan KB tiap titik dari tabel ekr PKJI (bagian "ekr" di bawah), sesuai tipe jalan, lebar jalur, dan
+   arus di titik itu. Kalau satu titik menghitung jalan dengan tipe berbeda, isi `ekr` di garisnya. Isi juga catatan
+   `antrean` dari lapangan, lalu `python video_counting/agregasi.py`.
 7. **Validasi**: potong 3 klip x 2 menit per titik (`python video_counting/potong_klip.py --titik T1 --mulai 600
    --durasi 120 --lambat 0.5`), dua orang menghitung manual, isi `data/lapangan/manual.csv` (format di
    `python video_counting/validasi.py -h`), lalu `python video_counting/validasi.py`. Target: error total
@@ -176,3 +177,28 @@ turun dari 2.702 ke 480 kend/jam. Penurunan di dua ruas Djuanda ini efek CFD, bu
 Perbandingan Sabtu dan Minggu per ruas ada di `hasil_hitung/banding_cctv_sabtu_minggu.csv`. Ruas yang bisa dibandingkan
 langsung hanya Sulanjana (720 lawan 686 kend/jam, rasio 0,95). Gasibu Barat Minggu layak sebagai batas bawah (1.034 kend/jam)
 tapi rekaman Sabtunya rusak. S1, Surapati Merak, dan T1_T2 masih kurang hitung motor seperti Sabtu.
+
+## ekr
+
+Arus diubah ke skr/jam dengan ekr dari tabel ekr PKJI untuk jalan perkotaan. KR selalu 1,0. Sepeda (KTB) tidak ikut
+dihitung.
+
+| Tipe jalan | Arus | KB | SM (lebar jalur <= 6 m) | SM (lebar jalur > 6 m) |
+|---|---|---|---|---|
+| 2/2TT | < 1800 kend/jam dua arah | 1,3 | 0,5 | 0,40 |
+| 2/2TT | >= 1800 kend/jam dua arah | 1,2 | 0,35 | 0,25 |
+| 2/1 dan 4/2T | < 1050 kend/jam per lajur | 1,3 | 0,40 | 0,40 |
+| 2/1 dan 4/2T | >= 1050 kend/jam per lajur | 1,2 | 0,25 | 0,25 |
+| 3/1 dan 6/2T | < 1100 kend/jam per lajur | 1,3 | 0,40 | 0,40 |
+| 3/1 dan 6/2T | >= 1100 kend/jam per lajur | 1,2 | 0,25 | 0,25 |
+
+Dokumen resmi PKJI tidak bisa diunduh dari situs Bina Marga (yang terbuka hanya cuplikan 5 halaman), jadi angka di atas
+diambil dari dua skripsi yang mengutip tabel PKJI 2023 dengan angka yang sama persis (Tabel 2.9 dan 2.10 skripsi
+Mauliddyah Turrochmah, UM Surabaya; Tabel 2.23 dan 2.24 skripsi Arif Rachman, ITPLN). Kutipan tabel PKJI 2014 di sumber
+lain memberi angka yang sama, tapi batas arus 2/2TT di sana tertulis "< 3700" lalu ">= 1800". Batas yang dipakai di sini
+1800, sama dengan PKJI 2023. Di dua titik (S2 Sabtu 2.772 dan V_Singaperbangsa 2.377 kend/jam dua arah) pilihan ini
+mengubah ekr. Kalau ada yang memegang dokumen resmi PKJI, angka ini sebaiknya dicek ulang.
+
+Tipe jalan, lebar jalur, dan jumlah lajur tiap titik diambil dari OpenStreetMap (unduhan 19 Oktober 2026) dan
+`graph/data/graf.json`, lalu ditulis sebagai komentar di samping `tipe_jalan` di config. Jl. Gagak ditulis satu arah
+di graf.json tapi dua arah di OSM. Yang dipakai OSM, karena arah lawan juga terhitung di rekaman HP.
