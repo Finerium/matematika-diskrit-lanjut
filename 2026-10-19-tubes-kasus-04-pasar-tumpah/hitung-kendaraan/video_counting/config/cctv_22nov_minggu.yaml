@@ -1,0 +1,40 @@
+# Rekaman CCTV 22nov_minggu 07.30-08.00 untuk ruas Gasibu Atas (keputusan kelompok 19 Nov 2026: penyempitan Gasibu Atas dari
+# perbandingan Sabtu dan Minggu kamera Gasibu_02, ruas lain kapasitas PKJI). Kamera Lapang Gasibu 02 tidak dipakai lagi
+# karena menghadap ke arah Telkom Japati, bukan Jl. Surapati.
+# Gasibu_02 dihitung otomatis setelah rekaman (data/video/otomatis_21_22nov/jalankan.py). Surapati_Gasibu_02 cuma
+# direkam sebagai cadangan, garisnya belum ada karena frame malamnya silau lampu.
+interval_menit: 1
+model:
+  bobot: yolo26s.pt
+  imgsz: 640
+  conf: 0.1
+  tracker: bytetrack.yaml
+  kelas: [1, 2, 3, 5, 7]
+  kedalaman_asal: 0.2
+  min_frame_track: 5
+
+titik:
+  - id: Gasibu_02
+    # di Jl. Surapati sebelah timur V_Gasibu_Timur (-6.899248, 107.619440), menghadap ke arah Lapangan Gasibu, 640x360
+    cctv: {nama: "CCTV GASIBU_02", url: "https://pelindung.bandung.go.id:3443/video/DAHUA/GASI.m3u8"}
+    video: data/video/22nov_minggu/Gasibu_02_*.ts
+    tipe_jalan: "3/1"  # Jl. Surapati satu arah 3 lajur, arus per lajur < 1100 kend/jam
+    ekr: {KR: 1.0, SM: 0.40, KB: 1.3}  # ekr dari tabel ekr PKJI jalan perkotaan, lihat README bagian "ekr"
+    antrean: null
+    garis:
+      # Garis dipasang 19 Nov dari frame malam rekaman uji (gelap dan hujan), tegak di x 300 memotong badan jalan.
+      # Kendaraan yang mendekati kamera (dari kanan ke kiri gambar) dianggap arus Gasibu Atas ke arah timur, jadi
+      # arah_dihitung negatif. Ini perkiraan: cek di video anotasi, kalau terbalik pakai angka arah lawan di ringkasan.
+      - id: L1
+        edge_model: V_Gasibu_Barat->V_Gasibu_Timur
+        koordinat: [[300, 150], [300, 350]]
+        arah_dihitung: negatif
+
+  - id: Surapati_Gasibu_02
+    # cadangan, di Jl. Surapati bawah flyover (-6.898899, 107.617003), menghadap ke arah Surapati, 1920x1080
+    cctv: {nama: "CCTV JL. SURAPATI - GASIBU 02", url: "https://pelindung.bandung.go.id:3443/video/DAHUA/Sura.m3u8"}
+    video: data/video/22nov_minggu/Surapati_Gasibu_02_*.ts
+    tipe_jalan: null
+    ekr: {KR: 1.0, SM: null, KB: null}
+    antrean: null
+    garis: []

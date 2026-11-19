@@ -1,0 +1,11 @@
+edge_model,nama_jalan,arus_terukur_skr_per_jam,sumber,kapasitas_skr_per_jam,derajat_kejenuhan,arus_tidak_melebihi_kapasitas
+V_DU_Selatan->V_Singaperbangsa,Jl. Dipatiukur (selatan),1435.5,CCTV Sabtu 14 Nov (V_DU_Selatan),1421.6,1.01,ya
+V_DU_Selatan->V_Gasibu_Barat,"Jl. Surapati (barat, bawah flyover)",795.5,CCTV Minggu 15 Nov (V_Gasibu_Barat),3003.0,0.26,ya
+V_Hasanuddin->V_Djuanda_Hasanuddin,Jl. Hasanuddin,305.7,HP 1 Nov (V_Hasanuddin),1084.9,0.28,ya
+V_Sulanjana->V_Djuanda_Diponegoro,Jl. Sulanjana,518.0,CCTV Sabtu 14 Nov (V_Sulanjana),1084.9,0.48,ya
+V_AriaJipang->V_Cilamaya,Jl. Aria Jipang,1000.2,HP 1 Nov (V_Cilamaya),1084.9,0.92,ya
+V_Cimandiri->V_Cisanggarung,Jl. Cimandiri,1000.0,HP 1 Nov (V_Cisanggarung),2611.0,0.38,ya
+V_Singaperbangsa->V_Titiran,Jl. Singaperbangsa,79.9,HP 1 Nov (V_Titiran),698.3,0.11,ya
+V_Gagak->V_Surapati_Gagak,Jl. Gagak,242.2,HP 1 Nov (V_Surapati_Gagak),698.3,0.35,ya
+V_Surapati_Merak->V_Surapati_Gagak,Jl. Surapati (timur),1232.3,HP 1 Nov (V_Surapati_Gagak),4684.7,0.26,ya
+V_Surapati_Gagak->T1,Jl. Surapati (ke PUSDAI),1181.2,HP 1 Nov (V_Surapati_Gagak),4684.7,0.25,ya
